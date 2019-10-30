@@ -51,4 +51,15 @@ public abstract class Projectile : Area2D
   public void setSpeed(int speed) {
     this.speed = speed;
   }
+
+  public void _on_Timer_timeout() {
+    destroy();
+  }
+
+  /// <summary>
+  /// Destroys the projectile.
+  /// </summary>
+  private void destroy() {
+    QueueFree();
+  }
 }
