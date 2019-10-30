@@ -6,54 +6,54 @@ using System;
 /// </summary>
 public class ProjectileShooter : Sprite, IProjectileShooter
 {
-  private PackedScene projectile;
-  private int magSize;
-  private int ammo;
-  private float secBetweenShots;
-  private bool canShoot;
-  private Timer timer;
+  private PackedScene _projectile;
+  private int _magSize;
+  private int _ammo;
+  private float _secondsBetweenShots;
+  private bool _canShoot;
+  private Timer _timer;
 
   public override void _Ready()
   {
-    projectile = GD.Load("res://src/objects/projectile/Projectile.tscn") as PackedScene;
-    timer = GetNode("Timer") as Timer;
-    secBetweenShots = 0.2f;
-    canShoot = true;
-    magSize = 20;
-    ammo = 300;
+    _projectile = GD.Load("res://src/objects/projectile/Projectile.tscn") as PackedScene;
+    _timer = GetNode("Timer") as Timer;
+    _secondsBetweenShots = 0.2f;
+    _canShoot = true;
+    _magSize = 20;
+    _ammo = 300;
   }
 
   public override void _Process(float delta)
   {
-    if (Input.IsActionPressed("shoot") && canShoot)
+    if (Input.IsActionPressed("shoot") && _canShoot)
     {
-      shoot();
+      Shoot();
     }
   }
 
   public void _on_Timer_timeout()
   {
-    canShoot = true;
+    _canShoot = true;
   }
 
-  public void reload()
+  public void Reload()
   {
     GD.Print("reloading.");
   }
 
-  public void appendProjectile()
+  public void AppendProjectile()
   {
-    Projectile proj = projectile.Instance() as Projectile;
+    Projectile proj = _projectile.Instance() as Projectile;
     GetParent().AddChild(proj);
     proj.SetPosition(Transform.origin);
-    proj.setDirection(toMouseVec());
+    proj.SetDirection(ToMouseVec());
   }
 
-  public void shoot()
+  public void Shoot()
   {
-    canShoot = false;
-    appendProjectile();
-    timer.Start(secBetweenShots);
+    _canShoot = false;
+    AppendProjectile();
+    _timer.Start(_secondsBetweenShots);
   }
 
   /// <summary>
@@ -64,7 +64,7 @@ public class ProjectileShooter : Sprite, IProjectileShooter
   /// <returns>
   /// The direction vector from the projectile shooter to the mouse.
   /// </returns>
-  private Vector2 toMouseVec()
+  private Vector2 ToMouseVec()
   {
     Vector2 mousePos = GetGlobalMousePosition();
     if (mousePos == null) return new Vector2();

@@ -3,15 +3,15 @@ public interface IProjectileShooter
   /// <summary>
   /// Shoots a projectile and decreases ammo and other relevant stuff.
   /// </summary>
-  void shoot();
+  void Shoot();
 
   /// <summary>
   /// Appends a projectile.
   /// </summary>
-  void appendProjectile();
+  void AppendProjectile();
 
   /// <summary>
   /// Reload the projectile shooter.
   /// </summary>
-  void reload();
+  void Reload();
 }

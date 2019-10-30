@@ -6,37 +6,37 @@ using Godot;
 /// </summary>
 public sealed class Player : KinematicBody2D
 {
-  private Vector2 velocity;
-  private int movementSpeed;
-  private InventoryManager inventoryManager;
+  private Vector2 _velocity;
+  private int _movementSpeed;
+  private InventoryManager _inventoryManager;
 
   public override void _Ready()
   {
-    velocity = new Vector2();
-    movementSpeed = 300;
-    inventoryManager = new InventoryManager();
+    _velocity = new Vector2();
+    _movementSpeed = 300;
+    _inventoryManager = new InventoryManager();
   }
 
   public override void _Process(float delta)
   {
-    velocity = getMovementInputVector() * movementSpeed;
-    velocity = MoveAndSlide(velocity);
+    _velocity = GetMovementInputVector() * _movementSpeed;
+    _velocity = MoveAndSlide(_velocity);
   }
 
   /// <summary>
   /// Returns the unit vector of the input direction.
   /// </summary>
   /// <returns>The unit vector of the input direction.</returns>
-  private Vector2 getMovementInputVector()
+  private Vector2 GetMovementInputVector()
   {
     const int composant = 1;
-    var inputVec = new Vector2();
+    var inputVector = new Vector2();
 
-    if (Input.IsActionPressed("up")) inputVec.y -= composant;
-    if (Input.IsActionPressed("down")) inputVec.y += composant;
-    if (Input.IsActionPressed("right")) inputVec.x += composant;
-    if (Input.IsActionPressed("left")) inputVec.x -= composant;
+    if (Input.IsActionPressed("up")) inputVector.y -= composant;
+    if (Input.IsActionPressed("down")) inputVector.y += composant;
+    if (Input.IsActionPressed("right")) inputVector.x += composant;
+    if (Input.IsActionPressed("left")) inputVector.x -= composant;
 
-    return inputVec.Normalized();
+    return inputVector.Normalized();
   }
 }

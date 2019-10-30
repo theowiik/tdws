@@ -33,7 +33,7 @@ public abstract class Projectile : Area2D
   /// <exception cref="NullReferenceException">
   /// If the provided vector is null.
   /// </exception>
-  public void setDirection(Vector2 direction) {
+  public void SetDirection(Vector2 direction) {
     if (direction == null) {
       throw new NullReferenceException("Direction can not be null.");
     }
@@ -48,18 +48,18 @@ public abstract class Projectile : Area2D
   /// <param name="speed">
   /// The new speed of the projecile.
   /// </param>
-  public void setSpeed(int speed) {
+  public void SetSpeed(int speed) {
     this.speed = speed;
   }
 
   public void _on_Timer_timeout() {
-    destroy();
+    Destroy();
   }
 
   /// <summary>
   /// Destroys the projectile.
   /// </summary>
-  private void destroy() {
+  private void Destroy() {
     QueueFree();
   }
 }
