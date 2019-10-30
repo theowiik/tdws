@@ -27,21 +27,13 @@ public class Player : KinematicBody2D
   /// <returns>The unit vector of the input direction.</returns>
   private Vector2 getMovementInputVector()
   {
+    const int composant = 1;
     var inputVec = new Vector2();
-    bool up = Input.IsActionPressed("up");
-    bool down = Input.IsActionPressed("down");
-    bool right = Input.IsActionPressed("right");
-    bool left = Input.IsActionPressed("left");
 
-    if (up ^ down)
-    {
-      inputVec.y = up ? -1 : 1;
-    }
-
-    if (left ^ right)
-    {
-      inputVec.x = left ? -1 : 1;
-    }
+    if (Input.IsActionPressed("up")) inputVec.y -= composant;
+    if (Input.IsActionPressed("down")) inputVec.y += composant;
+    if (Input.IsActionPressed("right")) inputVec.x += composant;
+    if (Input.IsActionPressed("left")) inputVec.x -= composant;
 
     return inputVec.Normalized();
   }
