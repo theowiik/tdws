@@ -19,6 +19,10 @@ config/name="tdws"
 run/main_scene="res://src/Game.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [input]
 
 up={
