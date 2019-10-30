@@ -52,6 +52,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\actors\player\Player.cs" />
     <Compile Include="src\objects\projectile\Projectile.cs" />
+    <Compile Include="src\projectile_shooters\projectile_shooter\ProjectileShooter.cs" />
+    <Compile Include="src\projectile_shooters\IProjectileShooter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
