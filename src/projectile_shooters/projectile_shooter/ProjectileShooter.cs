@@ -7,15 +7,33 @@ using System;
 public class ProjectileShooter : Sprite, IProjectileShooter
 {
   private PackedScene projectile;
+  private int magSize;
+  private int ammo;
+  private float secBetweenShots;
+  private bool canShoot;
+  private Timer timer;
 
   public override void _Ready()
   {
     projectile = GD.Load("res://src/objects/projectile/Projectile.tscn") as PackedScene;
+    timer = GetNode("Timer") as Timer;
+    secBetweenShots = 0.2f;
+    canShoot = true;
+    magSize = 20;
+    ammo = 300;
   }
 
   public override void _Process(float delta)
   {
-    if (Input.IsActionPressed("shoot")) shoot();
+    if (Input.IsActionPressed("shoot") && canShoot)
+    {
+      shoot();
+    }
+  }
+
+  public void _on_Timer_timeout()
+  {
+    canShoot = true;
   }
 
   public void reload()
@@ -23,12 +41,19 @@ public class ProjectileShooter : Sprite, IProjectileShooter
     GD.Print("reloading.");
   }
 
-  public void shoot()
+  public void appendProjectile()
   {
     Projectile proj = projectile.Instance() as Projectile;
     GetParent().AddChild(proj);
     proj.SetPosition(Transform.origin);
     proj.setDirection(toMouseVec());
+  }
+
+  public void shoot()
+  {
+    canShoot = false;
+    appendProjectile();
+    timer.Start(secBetweenShots);
   }
 
   /// <summary>

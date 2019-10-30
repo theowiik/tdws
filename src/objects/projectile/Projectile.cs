@@ -11,7 +11,7 @@ public abstract class Projectile : Area2D
 
   public override void _Ready()
   {
-    speed = 300;
+    speed = 5_000;
     direction = new Vector2(1, 1);
   }
 
