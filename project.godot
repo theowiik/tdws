@@ -21,7 +21,7 @@ config/icon="res://icon.png"
 
 [display]
 
-window/size/fullscreen=true
+window/size/resizable=false
 window/stretch/mode="viewport"
 
 [importer_defaults]
