@@ -25,15 +25,11 @@ public class Holster : Node
 
   public override void _Process(float delta)
   {
-    if (Input.IsActionJustReleased("weapon_next")) NextWeapon();
-    if (Input.IsActionJustReleased("weapon_previous")) PreviousWeapon();
+    bool next = Input.IsActionJustReleased("weapon_next");
+    bool previous = Input.IsActionJustReleased("weapon_previous");
 
-    if (GetHolding() != null)
-    {
-      GD.Print("holding a weapon!");
-    } else {
-      GD.Print("NOT holding a weapon");
-    }
+    if (next) NextWeapon();
+    if (previous) PreviousWeapon();
   }
 
   /// <summary>
