@@ -1,18 +1,26 @@
-using System.Collections.Generic;
 using Godot;
+using System;
+using System.Collections.Generic;
 
 /// <summary>
-/// The InventoryManager is used for managing inventories.
+/// The Holster is used for managing the projectile shooters
+/// the player is holding.
 /// </summary>
-sealed class InventoryManager
+public class Holster : Node
 {
   private List<IProjectileShooter> _projectileShooters;
   private int _inventoryIndex;
 
-  public InventoryManager()
+  public override void _Ready()
   {
     _inventoryIndex = 0;
     _projectileShooters = new List<IProjectileShooter>(10);
+  }
+
+  public override void _Process(float delta)
+  {
+    if (Input.IsActionPressed("weapon_next")) GD.Print("do something ...");
+    if (Input.IsActionPressed("weapon_previous")) GD.Print("do something else ...");
   }
 
   /// <summary>
@@ -22,7 +30,8 @@ sealed class InventoryManager
   /// <returns>
   /// The projectile shooter that is held.
   /// </returns>
-  public IProjectileShooter GetHolding() {
+  public IProjectileShooter GetHolding()
+  {
     return _projectileShooters[_inventoryIndex];
   }
 
@@ -33,7 +42,8 @@ sealed class InventoryManager
   /// <param name="projectileShooter">
   /// The projectile shooter that should be added.
   /// </param>
-  public void Add(IProjectileShooter projectileShooter) {
+  public void Add(IProjectileShooter projectileShooter)
+  {
     _projectileShooters.Add(projectileShooter);
   }
 
@@ -44,7 +54,8 @@ sealed class InventoryManager
   /// <returns>
   /// The projectile shooter that was removed. Null if no projectile shooter was removed.
   /// </returns>
-  public IProjectileShooter RemoveHolding() {
+  public IProjectileShooter RemoveHolding()
+  {
     var removedProjectileShooter = _projectileShooters[_inventoryIndex];
     _projectileShooters[_inventoryIndex] = null;
     return removedProjectileShooter;

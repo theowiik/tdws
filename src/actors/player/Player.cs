@@ -8,13 +8,11 @@ public sealed class Player : KinematicBody2D
 {
   private Vector2 _velocity;
   private int _movementSpeed;
-  private InventoryManager _inventoryManager;
 
   public override void _Ready()
   {
     _velocity = new Vector2();
     _movementSpeed = 300;
-    _inventoryManager = new InventoryManager();
   }
 
   public override void _Process(float delta)
