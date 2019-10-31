@@ -12,7 +12,7 @@ public abstract class Projectile : Area2D
   public override void _Ready()
   {
     speed = 5_000;
-    direction = new Vector2(1, 1);
+    direction = new Vector2();
   }
 
   public override void _PhysicsProcess(float delta)
