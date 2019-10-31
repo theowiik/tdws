@@ -31,6 +31,8 @@ public class Holster : Node
     if (GetHolding() != null)
     {
       GD.Print("holding a weapon!");
+    } else {
+      GD.Print("NOT holding a weapon");
     }
   }
 
