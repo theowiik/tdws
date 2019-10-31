@@ -15,7 +15,7 @@ public sealed class Player : KinematicBody2D
     _movementSpeed = 300;
   }
 
-  public override void _Process(float delta)
+  public override void _PhysicsProcess(float delta)
   {
     _velocity = GetMovementInputVector() * _movementSpeed;
     _velocity = MoveAndSlide(_velocity);

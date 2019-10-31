@@ -15,7 +15,7 @@ public abstract class Projectile : Area2D
     direction = new Vector2(1, 1);
   }
 
-  public override void _Process(float delta)
+  public override void _PhysicsProcess(float delta)
   {
     Transform2D transform = this.Transform;
     transform.origin += direction * speed * delta;
