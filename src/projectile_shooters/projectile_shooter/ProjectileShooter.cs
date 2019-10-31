@@ -3,6 +3,8 @@ using System;
 
 /// <summary>
 /// The ProjectileShooter class represents something that can shoot.
+///
+/// TODO make projectile shooter abstract?
 /// </summary>
 public class ProjectileShooter : Sprite, IProjectileShooter
 {
@@ -12,6 +14,7 @@ public class ProjectileShooter : Sprite, IProjectileShooter
   private float _secondsBetweenShots;
   private bool _canShoot;
   private Timer _timer;
+  private string _name;
 
   public override void _Ready()
   {
@@ -21,6 +24,7 @@ public class ProjectileShooter : Sprite, IProjectileShooter
     _canShoot = true;
     _magSize = 20;
     _ammo = 300;
+    _name = "Assault Rifle";
   }
 
   public override void _Process(float delta)
