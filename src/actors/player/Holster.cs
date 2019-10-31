@@ -8,7 +8,7 @@ using System.Collections.Generic;
 /// </summary>
 public class Holster : Node
 {
-  private List<IProjectileShooter> _projectileShooters;
+  private IProjectileShooter[] _projectileShooters;
   private int _inventoryIndex;
   private int _maxInventorySize;
 
@@ -16,7 +16,11 @@ public class Holster : Node
   {
     _inventoryIndex = 0;
     _maxInventorySize = 5;
-    _projectileShooters = new List<IProjectileShooter>(10);
+    _projectileShooters = new IProjectileShooter[_maxInventorySize];
+
+    // Add a weapon at the start...
+    IProjectileShooter proj = ProjectileShooterFactory.createAssaultRifle();
+    Add(proj);
   }
 
   public override void _Process(float delta)
@@ -24,7 +28,10 @@ public class Holster : Node
     if (Input.IsActionJustReleased("weapon_next")) NextWeapon();
     if (Input.IsActionJustReleased("weapon_previous")) PreviousWeapon();
 
-    GD.Print(_inventoryIndex);
+    if (GetHolding() != null)
+    {
+      GD.Print("holding a weapon!");
+    }
   }
 
   /// <summary>
@@ -63,26 +70,44 @@ public class Holster : Node
 
   /// <summary>
   /// Returns the projectile shooter that is held.
+  /// Returns null if there is no projectile shooter being held.
   /// </summary>
   ///
   /// <returns>
   /// The projectile shooter that is held.
+  /// Returns null if there is no projectile shooter being held.
   /// </returns>
   public IProjectileShooter GetHolding()
   {
+    bool tooSmall = _inventoryIndex < 0;
+    bool tooLarge = _inventoryIndex >= _projectileShooters.Length;
+    if (tooSmall || tooLarge) return null;
+
     return _projectileShooters[_inventoryIndex];
   }
 
   /// <summary>
-  /// Adds a projectile shooter to the inventory.
+  /// Adds a projectile shooter to the inventory at the first free spot.
+  /// Does nothing if all spots are occupied.
   /// </summary>
   ///
   /// <param name="projectileShooter">
   /// The projectile shooter that should be added.
   /// </param>
+  /// 
+  /// <exception cref="NullReferenceException">
+  /// If the provided projectile shooter is null.
+  /// </exception>
   public void Add(IProjectileShooter projectileShooter)
   {
-    _projectileShooters.Add(projectileShooter);
+    if (projectileShooter == null) throw new NullReferenceException("Projectile shooter cannot be null.");
+
+    for (int i = 0; i < _projectileShooters.Length; i++)
+      if (_projectileShooters[i] == null)
+      {
+        _projectileShooters[i] = projectileShooter;
+        break;
+      }
   }
 
   /// <summary>
