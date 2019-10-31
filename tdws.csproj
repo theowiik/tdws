@@ -55,6 +55,7 @@
     <Compile Include="src\actors\player\Holster.cs" />
     <Compile Include="src\actors\player\Player.cs" />
     <Compile Include="src\engine\Directions.cs" />
+    <Compile Include="src\Game.cs" />
     <Compile Include="src\objects\projectile\Projectile.cs" />
     <Compile Include="src\projectile_shooters\projectile_shooter\ProjectileShooter.cs" />
     <Compile Include="src\projectile_shooters\ProjectileShooterFactory.cs" />
