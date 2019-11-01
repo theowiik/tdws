@@ -52,23 +52,6 @@ public sealed class PlayerController : AbstractActor
   }
 
   /// <summary>
-  /// Returns the unit vector of the input direction.
-  /// </summary>
-  /// <returns>The unit vector of the input direction.</returns>
-  private Vector2 GetMovementInputVector()
-  {
-    const int composant = 1;
-    var inputVector = new Vector2();
-
-    if (Input.IsActionPressed("up")) inputVector.y -= composant;
-    if (Input.IsActionPressed("down")) inputVector.y += composant;
-    if (Input.IsActionPressed("right")) inputVector.x += composant;
-    if (Input.IsActionPressed("left")) inputVector.x -= composant;
-
-    return inputVector.Normalized();
-  }
-
-  /// <summary>
   /// Removes all child nodes from the _projectileShooterHolder node.
   /// </summary>
   private void UnequipProjectileShooters()
