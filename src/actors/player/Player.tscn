@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://src/actors/player/Player.cs" type="Script" id=1]
+[ext_resource path="res://src/actors/player/PlayerController.cs" type="Script" id=1]
 [ext_resource path="res://assets/sprites/player.png" type="Texture" id=2]
 [ext_resource path="res://src/actors/player/Holster.tscn" type="PackedScene" id=3]
 
@@ -71,7 +71,7 @@ tracks/0/keys = {
 "values": [ 3 ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=6]
 resource_name = "push_down"
 loop = true
 tracks/0/type = "value"
@@ -87,7 +87,7 @@ tracks/0/keys = {
 "values": [ 8, 9 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=7]
 resource_name = "push_left"
 loop = true
 tracks/0/type = "value"
@@ -103,7 +103,7 @@ tracks/0/keys = {
 "values": [ 14, 15 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=8]
 resource_name = "push_right"
 loop = true
 tracks/0/type = "value"
@@ -119,7 +119,7 @@ tracks/0/keys = {
 "values": [ 12, 13 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=9]
 resource_name = "push_up"
 loop = true
 tracks/0/type = "value"
@@ -135,8 +135,7 @@ tracks/0/keys = {
 "values": [ 10, 11 ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "walk_down"
+[sub_resource type="Animation" id=10]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -151,8 +150,7 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=9]
-resource_name = "walk_left"
+[sub_resource type="Animation" id=11]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -167,8 +165,7 @@ tracks/0/keys = {
 "values": [ 6, 7 ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "walk_right"
+[sub_resource type="Animation" id=12]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -183,8 +180,7 @@ tracks/0/keys = {
 "values": [ 4, 5 ]
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "walk_up"
+[sub_resource type="Animation" id=13]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -221,11 +217,11 @@ anims/idle_down = SubResource( 2 )
 anims/idle_left = SubResource( 3 )
 anims/idle_right = SubResource( 4 )
 anims/idle_up = SubResource( 5 )
-anims/push_down = SubResource( 13 )
-anims/push_left = SubResource( 11 )
-anims/push_right = SubResource( 10 )
-anims/push_up = SubResource( 12 )
-anims/walk_down = SubResource( 6 )
-anims/walk_left = SubResource( 9 )
-anims/walk_right = SubResource( 7 )
-anims/walk_up = SubResource( 8 )
+anims/push_down = SubResource( 6 )
+anims/push_left = SubResource( 7 )
+anims/push_right = SubResource( 8 )
+anims/push_up = SubResource( 9 )
+anims/walk_down = SubResource( 10 )
+anims/walk_left = SubResource( 11 )
+anims/walk_right = SubResource( 12 )
+anims/walk_up = SubResource( 13 )

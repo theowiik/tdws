@@ -3,7 +3,7 @@ using Godot;
 /// <summary>
 /// The Player charachter.
 /// </summary>
-public sealed class Player : AbstractActor
+public sealed class PlayerController : AbstractActor
 {
   private Vector2 _velocity;
   private int _movementSpeed;
