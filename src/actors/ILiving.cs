@@ -29,9 +29,4 @@ public interface ILiving
   /// Returns true if it lives. False otherwise.
   /// </returns>
   bool isAlive();
-
-  /// <summary>
-  /// Kills the living thing.
-  /// </summary>
-  void kill();
 }
