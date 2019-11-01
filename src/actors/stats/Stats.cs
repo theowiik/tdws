@@ -1,5 +1,5 @@
-using Godot;
 using System;
+using Godot;
 
 /// <summary>
 /// The Stats class is used for storing a actors health.
