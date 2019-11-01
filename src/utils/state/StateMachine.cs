@@ -2,18 +2,17 @@ using System.Collections.Generic;
 using Godot;
 
 /// <summary>
-/// Generic state machine.
+/// Abstract state machine.
 /// Delegates _PhysicsProcess and _Input to specific states.
 /// Is also used for selecting which state to be in.
 /// </summary>
-public class StateMachine : Node
+public abstract class StateMachine : Node
 {
   private IState _state;
   private List<IState> _states;
 
   public override void _Ready()
   {
-    // TODO: Possible refactor?
     _states.Add(GetChild(0) as IState);
     _state = _states[0];
   }
