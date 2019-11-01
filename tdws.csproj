@@ -59,6 +59,7 @@
     <Compile Include="src\engine\Directions.cs" />
     <Compile Include="src\Game.cs" />
     <Compile Include="src\objects\projectile\Projectile.cs" />
+    <Compile Include="src\utils\state\IState.cs" />
     <Compile Include="src\projectile_shooters\projectile_shooter\ProjectileShooter.cs" />
     <Compile Include="src\projectile_shooters\ProjectileShooterFactory.cs" />
     <Compile Include="src\projectile_shooters\IProjectileShooter.cs" />

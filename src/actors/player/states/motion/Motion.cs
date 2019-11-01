@@ -3,7 +3,7 @@ using Godot;
 /// <summary>
 /// TODO: Add doc!
 /// </summary>
-public class Motion : IState
+public class Motion : Node, IState
 {
   public void Enter()
   {
