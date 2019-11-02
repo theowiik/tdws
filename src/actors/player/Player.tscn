@@ -1,8 +1,10 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/actors/player/PlayerController.cs" type="Script" id=1]
 [ext_resource path="res://assets/sprites/player.png" type="Texture" id=2]
 [ext_resource path="res://src/actors/player/Holster.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/actors/player/PlayerStateMachine.cs" type="Script" id=4]
+[ext_resource path="res://src/actors/player/states/motion/on_ground/Walk.cs" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6, 7 )
@@ -225,3 +227,9 @@ anims/walk_down = SubResource( 10 )
 anims/walk_left = SubResource( 11 )
 anims/walk_right = SubResource( 12 )
 anims/walk_up = SubResource( 13 )
+
+[node name="PlayerStateMachine" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="Walk" type="Node" parent="PlayerStateMachine"]
+script = ExtResource( 5 )
