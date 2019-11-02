@@ -5,10 +5,9 @@ using Godot;
 /// </summary>
 public sealed class PlayerController : AbstractActor
 {
-  private Vector2 _velocity;
-  private int _movementSpeed;
   private Holster _holster;
   private AnimationPlayer _animationPlayer;
+  private StateMachine _stateMachine;
 
   /// <summary>
   /// The node that projectiles should be attached to.
@@ -17,39 +16,14 @@ public sealed class PlayerController : AbstractActor
 
   public override void _Ready()
   {
-    _velocity = new Vector2();
     _projectileShooterHolder = GetNode("ProjectileShooterHolder") as Node2D;
     _animationPlayer = GetNode("AnimationPlayer") as AnimationPlayer;
     _holster = GetNode("Holster") as Holster;
-    _movementSpeed = 300;
+    _stateMachine = GetNode("PlayerStateMachine") as StateMachine;
+    _stateMachine.Start();
   }
 
-  public override void _PhysicsProcess(float delta)
-  {
-    _velocity = GetMovementInputVector() * _movementSpeed;
-    _velocity = MoveAndSlide(_velocity);
-    PlayAnimation();
-  }
-
-  /// <summary>
-  /// Plays the animation that corresponds to the players velocity.
-  /// </summary>
-  private void PlayAnimation() {
-    if (_velocity.x > 0 )
-      _animationPlayer.Play("walk_right");
-
-    if (_velocity.x < 0 )
-      _animationPlayer.Play("walk_left");
-
-    if (_velocity.y > 0 )
-      _animationPlayer.Play("walk_down");
-
-    if (_velocity.y < 0 )
-      _animationPlayer.Play("walk_up");
-
-    if (_velocity.Length() == 0)
-      _animationPlayer.Play("idle_down");
-  }
+  public override void _PhysicsProcess(float delta) { }
 
   /// <summary>
   /// Removes all child nodes from the _projectileShooterHolder node.
@@ -58,6 +32,18 @@ public sealed class PlayerController : AbstractActor
   {
     foreach (Node child in _projectileShooterHolder.GetChildren())
       _projectileShooterHolder.RemoveChild(child);
+  }
+
+  /// <summary>
+  /// Moves the player with the given velocity.
+  /// </summary>
+  ///
+  /// <param name="velocity">
+  /// The velocity to be added to the player.
+  /// </param>
+  public void Move(Vector2 velocity)
+  {
+    MoveAndSlide(velocity);
   }
 
   /// <summary>
