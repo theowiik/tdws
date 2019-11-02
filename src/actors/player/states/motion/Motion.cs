@@ -1,29 +1,14 @@
 using Godot;
 
 /// <summary>
-/// TODO: Add doc!
+/// The Motion class is a abstract state that represents motion.
 /// </summary>
-public class Motion : Node, IState
+public abstract class Motion : Node, IState
 {
-  public void Enter()
-  {
-    throw new System.NotImplementedException();
-  }
-
-  public void Exit()
-  {
-    throw new System.NotImplementedException();
-  }
-
-  public void HandleInput(InputEvent @event)
-  {
-    throw new System.NotImplementedException();
-  }
-
-  public void Update()
-  {
-    throw new System.NotImplementedException();
-  }
+  public abstract void Enter();
+  public abstract void Exit();
+  public abstract void HandleInput(InputEvent @event);
+  public abstract void Update();
 
   /// <summary>
   /// Returns the unit vector of the input direction from the user.
@@ -32,7 +17,7 @@ public class Motion : Node, IState
   /// <returns>
   /// The unit vector of the input direction.
   /// </returns>
-  private Vector2 GetMovementInputVector()
+  protected Vector2 GetMovementInputVector()
   {
     const int composant = 1;
     var inputVector = new Vector2();
