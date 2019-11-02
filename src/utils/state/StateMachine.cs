@@ -8,13 +8,12 @@ using Godot;
 /// </summary>
 public abstract class StateMachine : Node
 {
-  private IState _state;
-  private List<IState> _states;
+  protected IState _state;
+  protected List<IState> _states;
 
-  public override void _Ready()
+  protected StateMachine()
   {
-    _states.Add(GetChild(0) as IState);
-    _state = _states[0];
+    _states = new List<IState>();
   }
 
   public override void _PhysicsProcess(float delta)
