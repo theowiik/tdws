@@ -7,20 +7,19 @@ public sealed class Walk : OnGround
 {
   private const int _MaxWalkSpeed = 300;
 
+  public Walk(IMovable movable) : base(movable) { }
+
   public override void Enter()
   {
     Speed = 0.0;
   }
 
-  public override void Exit()
-  {
-    // do something
-  }
+  public override void Exit() { }
 
   public override void Update(float delta)
   {
     Vector2 inputDirection = GetMovementInputVector();
     _velocity = inputDirection * _MaxWalkSpeed;
-    ((PlayerController)Owner).Move(_velocity);
+    _movable.Move(_velocity);
   }
 }

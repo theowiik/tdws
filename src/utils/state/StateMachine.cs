@@ -9,12 +9,6 @@ using Godot;
 public abstract class StateMachine : Node
 {
   protected IState _state;
-  protected List<IState> _states;
-
-  protected StateMachine()
-  {
-    _states = new List<IState>();
-  }
 
   public override void _PhysicsProcess(float delta)
   {
@@ -33,9 +27,10 @@ public abstract class StateMachine : Node
   /// </summary>
   public void Start()
   {
-    if (!HasState()) return;
-
-    _state.Enter();
+    if (HasState())
+    {
+      _state.Enter();
+    }
   }
 
   /// <summary>

@@ -8,7 +8,7 @@ public abstract class OnGround : Motion
   public double Speed { get; set; }
   protected Vector2 _velocity;
 
-  public override void _Ready()
+  protected OnGround(IMovable movable) : base(movable)
   {
     Speed = 0.0;
     _velocity = new Vector2();
