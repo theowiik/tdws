@@ -9,6 +9,7 @@ public abstract class Motion : Node, IState
   public abstract void Exit();
   public abstract void HandleInput(InputEvent @event);
   public abstract void Update();
+  public abstract void Update(float delta);
 
   /// <summary>
   /// Returns the unit vector of the input direction from the user.

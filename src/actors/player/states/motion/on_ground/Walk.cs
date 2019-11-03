@@ -17,7 +17,7 @@ public sealed class Walk : OnGround
     // do something
   }
 
-  public override void Update()
+  public override void Update(float delta)
   {
     Vector2 inputDirection = GetMovementInputVector();
     _velocity = inputDirection * _MaxWalkSpeed;

@@ -23,5 +23,5 @@ public interface IState
   /// <summary>
   /// Updates the state.
   /// </summary>
-  void Update();
+  void Update(float delta);
 }

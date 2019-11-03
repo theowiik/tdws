@@ -19,7 +19,7 @@ public abstract class StateMachine : Node
   public override void _PhysicsProcess(float delta)
   {
     if (HasState())
-      _state.Update();
+      _state.Update(delta);
   }
 
   public override void _UnhandledInput(InputEvent @event)
