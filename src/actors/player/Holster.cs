@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.Collections.Generic;
 
 /// <summary>
 /// The Holster is used for managing the projectile shooters
@@ -23,33 +22,26 @@ public class Holster : Node
     Add(proj);
   }
 
-  public override void _Process(float delta)
-  {
-    bool next = Input.IsActionJustReleased("weapon_next");
-    bool previous = Input.IsActionJustReleased("weapon_previous");
-
-    if (next) NextWeapon();
-    if (previous) PreviousWeapon();
-  }
-
   /// <summary>
   /// Increases the _inventoryIndex value.
   /// Sets the _inventoryIndex to 0 if it is greater or equal to the max inventory size.
   /// </summary>
-  private void NextWeapon()
+  public void NextWeapon()
   {
     _inventoryIndex++;
     setClosestLegalInventoryIndex();
+    GD.Print("next weapon");
   }
 
   /// <summary>
   /// Decreases the _inventoryIndex value.
   /// Sets the _inventoryIndex to the max inventory size if it is smaller than 0.
   /// </summary>
-  private void PreviousWeapon()
+  public void PreviousWeapon()
   {
     _inventoryIndex--;
     setClosestLegalInventoryIndex();
+    GD.Print("prev weapon");
   }
 
   /// <summary>
