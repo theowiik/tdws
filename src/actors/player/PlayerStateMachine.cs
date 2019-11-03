@@ -1,5 +1,3 @@
-using System;
-
 /// <summary>
 /// The PlayerStateMachine is the state machine for the player.
 /// Controlls the movement and ...
