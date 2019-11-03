@@ -25,4 +25,26 @@ public sealed class ProjectileShooterFactory
 
     return projectileShooter.Instance() as IProjectileShooter;
   }
+
+  /// <summary>
+  /// Creates and returns a basic shotgun.
+  /// </summary>
+  ///
+  /// <returns>
+  /// Creates and returns a basic shotgun.
+  /// </returns>
+  ///
+  /// <exception cref="FileNotFoundException">
+  /// If the projectile shooter scene is not found.
+  /// </exception>
+  public static IProjectileShooter createShotgun()
+  {
+    PackedScene projectileShooter = GD.Load("res://src/projectile_shooters/projectile_shooter/ProjectileShooter.tscn") as PackedScene;
+    if (projectileShooter == null)
+      throw new FileNotFoundException("Could not find ProjectileShooter.tscn");
+
+    return projectileShooter.Instance() as IProjectileShooter;
+  }
+
+  
 }
