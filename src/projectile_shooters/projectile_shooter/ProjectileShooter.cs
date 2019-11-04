@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using tdws.objects.projectile;
 
@@ -14,6 +15,7 @@ namespace tdws.projectile_shooters.projectile_shooter
     private int _magSize;
     private string _name;
     private PackedScene _projectile;
+    private int _projectilesPerShot;
     private float _secondsBetweenShots;
     private Timer _timer;
 
@@ -24,10 +26,22 @@ namespace tdws.projectile_shooters.projectile_shooter
 
     public void AppendProjectile()
     {
-      var proj = _projectile.Instance() as Projectile;
-      GetParent().AddChild(proj);
-      proj.SetPosition(Transform.origin);
-      proj.SetDirection(ToMouseVec());
+      var rand = new Random();
+
+      for (var i = 0; i < _projectilesPerShot; i++)
+      {
+        /*
+         * I find this hard to read. But the formatter wants it this way.
+         * TODO: Figure out if this is a common way of writing.
+         */
+        if (!(_projectile.Instance() is Projectile proj)) continue;
+
+        var trajectoryOffset = rand.NextDouble();
+        
+        GetParent().AddChild(proj);
+        proj.SetPosition(Transform.origin);
+        proj.SetDirection(ToMouseVec());
+      }
     }
 
     public void Shoot()
@@ -45,7 +59,8 @@ namespace tdws.projectile_shooters.projectile_shooter
       _canShoot = true;
       _magSize = 20;
       _ammo = 300;
-      _name = "Assault Rifle";
+      _projectilesPerShot = 20;
+      _name = "Base Projectile Shooter";
     }
 
     public override void _Process(float delta)
