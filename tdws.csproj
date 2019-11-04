@@ -62,6 +62,7 @@
     <Compile Include="src\actors\player\states\motion\on_ground\Walk.cs" />
     <Compile Include="src\actors\stats\Stats.cs" />
     <Compile Include="src\Game.cs" />
+    <Compile Include="src\objects\crate\Crate.cs" />
     <Compile Include="src\objects\projectile\IProjectile.cs" />
     <Compile Include="src\objects\projectile\Projectile.cs" />
     <Compile Include="src\utils\state\IState.cs" />
