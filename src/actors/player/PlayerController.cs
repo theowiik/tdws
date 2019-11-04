@@ -1,72 +1,73 @@
-using System;
 using Godot;
+using tdws.utils.state;
 
-/// <summary>
-/// The Player charachter.
-/// </summary>
-public sealed class PlayerController : AbstractActor, IMovable
+namespace tdws.actors.player
 {
-  private Holster _holster;
-  private AnimationPlayer _animationPlayer;
-  private StateMachine _stateMachine;
-
   /// <summary>
-  /// The node that projectiles should be attached to.
+  ///   The Player character.
   /// </summary>
-  private Node2D _projectileShooterHolder;
-
-  public override void _Ready()
+  public sealed class PlayerController : AbstractActor, IMovable
   {
-    _projectileShooterHolder = GetNode("ProjectileShooterHolder") as Node2D;
-    _animationPlayer = GetNode("AnimationPlayer") as AnimationPlayer;
-    _holster = GetNode("Holster") as Holster;
-    _stateMachine = GetNode("PlayerStateMachine") as StateMachine;
-    _stateMachine.Start();
-  }
+    private AnimationPlayer _animationPlayer;
+    private Holster _holster;
 
-  public override void _Process(float delta)
-  {
-    HolsterLoop();
-  }
+    /// <summary>
+    ///   The node that projectiles should be attached to.
+    /// </summary>
+    private Node2D _projectileShooterHolder;
 
-  /// <summary>
-  /// Checks if there was a projectile shooter switch and equips the new projectile shooter.
-  /// </summary>
-  private void HolsterLoop()
-  {
-    bool next = Input.IsActionJustReleased("weapon_next");
-    bool previous = Input.IsActionJustReleased("weapon_previous");
+    private StateMachine _stateMachine;
 
-    if (next) _holster.NextWeapon();
-    if (previous) _holster.PreviousWeapon();
-
-    if (next || previous)
+    void IMovable.Move(Vector2 velocity)
     {
-      EquipHoldingProjectileShooter();
+      MoveAndSlide(velocity);
     }
-  }
 
-  void IMovable.Move(Vector2 velocity)
-  {
-    MoveAndSlide(velocity);
-  }
+    public override void _Ready()
+    {
+      _projectileShooterHolder = GetNode("ProjectileShooterHolder") as Node2D;
+      _animationPlayer = GetNode("AnimationPlayer") as AnimationPlayer;
+      _holster = GetNode("Holster") as Holster;
+      _stateMachine = GetNode("PlayerStateMachine") as StateMachine;
+      _stateMachine.Start();
+    }
 
-  /// <summary>
-  /// Removes all child nodes from the _projectileShooterHolder node.
-  /// </summary>
-  private void UnequipProjectileShooters()
-  {
-    foreach (Node child in _projectileShooterHolder.GetChildren())
-      _projectileShooterHolder.RemoveChild(child);
-  }
+    public override void _Process(float delta)
+    {
+      HolsterLoop();
+    }
 
-  /// <summary>
-  /// Unequips all projectile shooters and equips the projectile shooter that is currently held.
-  /// </summary>
-  private void EquipHoldingProjectileShooter()
-  {
-    UnequipProjectileShooters();
-    var holding = _holster.GetHolding() as Node;
-    _projectileShooterHolder.AddChild(holding);
+    /// <summary>
+    ///   Checks if there was a projectile shooter switch and equips the new projectile shooter.
+    /// </summary>
+    private void HolsterLoop()
+    {
+      var next = Input.IsActionJustReleased("weapon_next");
+      var previous = Input.IsActionJustReleased("weapon_previous");
+
+      if (next) _holster.NextWeapon();
+      if (previous) _holster.PreviousWeapon();
+
+      if (next || previous) EquipHoldingProjectileShooter();
+    }
+
+    /// <summary>
+    ///   Removes all child nodes from the _projectileShooterHolder node.
+    /// </summary>
+    private void UnequipProjectileShooters()
+    {
+      foreach (Node child in _projectileShooterHolder.GetChildren())
+        _projectileShooterHolder.RemoveChild(child);
+    }
+
+    /// <summary>
+    ///   Unequips all projectile shooters and equips the projectile shooter that is currently held.
+    /// </summary>
+    private void EquipHoldingProjectileShooter()
+    {
+      UnequipProjectileShooters();
+      var holding = _holster.GetHolding() as Node;
+      _projectileShooterHolder.AddChild(holding);
+    }
   }
 }

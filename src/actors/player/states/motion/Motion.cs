@@ -1,54 +1,52 @@
 using System;
 using Godot;
+using tdws.utils.state;
 
-/// <summary>
-/// The Motion class is a abstract state that represents motion.
-/// </summary>
-public abstract class Motion : IState
+namespace tdws.actors.player.states.motion
 {
-  protected IMovable _movable;
-
-  public abstract void Enter();
-  public abstract void Exit();
-  public abstract void HandleInput(InputEvent @event);
-  public abstract void Update(float delta);
-
   /// <summary>
-  /// Creates and returns a new motion state.
+  ///   The Motion class is a abstract state that represents motion.
   /// </summary>
-  ///
-  /// <param name="movable">
-  /// The object to move.
-  /// </param>
-  ///
-  /// <exception cref="ArgumentNullException">
-  /// If the provided movable is null.
-  /// </exception>
-  protected Motion(IMovable movable)
+  public abstract class Motion : IState
   {
-    if (movable == null)
-      throw new ArgumentNullException("movable cannot be null");
+    protected readonly IMovable Movable;
 
-    _movable = movable;
-  }
+    /// <summary>
+    ///   Creates and returns a new motion state.
+    /// </summary>
+    /// <param name="movable">
+    ///   The object to move.
+    /// </param>
+    /// <exception cref="ArgumentNullException">
+    ///   If the provided movable is null.
+    /// </exception>
+    protected Motion(IMovable movable)
+    {
+      Movable = movable ?? throw new ArgumentNullException(nameof(movable), "cannot be null.");
+    }
 
-  /// <summary>
-  /// Returns the unit vector of the input direction from the user.
-  /// </summary>
-  ///
-  /// <returns>
-  /// The unit vector of the input direction.
-  /// </returns>
-  protected Vector2 GetMovementInputVector()
-  {
-    const int composant = 1;
-    var inputVector = new Vector2();
+    public abstract void Enter();
+    public abstract void Exit();
+    public abstract void HandleInput(InputEvent @event);
+    public abstract void Update(float delta);
 
-    if (Input.IsActionPressed("up")) inputVector.y -= composant;
-    if (Input.IsActionPressed("down")) inputVector.y += composant;
-    if (Input.IsActionPressed("right")) inputVector.x += composant;
-    if (Input.IsActionPressed("left")) inputVector.x -= composant;
+    /// <summary>
+    ///   Returns the unit vector of the input direction from the user.
+    /// </summary>
+    /// <returns>
+    ///   The unit vector of the input direction.
+    /// </returns>
+    protected static Vector2 GetMovementInputVector()
+    {
+      const int composant = 1;
+      var inputVector = new Vector2();
 
-    return inputVector.Normalized();
+      if (Input.IsActionPressed("up")) inputVector.y -= composant;
+      if (Input.IsActionPressed("down")) inputVector.y += composant;
+      if (Input.IsActionPressed("right")) inputVector.x += composant;
+      if (Input.IsActionPressed("left")) inputVector.x -= composant;
+
+      return inputVector.Normalized();
+    }
   }
 }

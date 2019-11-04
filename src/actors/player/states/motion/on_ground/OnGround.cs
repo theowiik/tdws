@@ -1,24 +1,25 @@
 using Godot;
 
-/// <summary>
-/// The OnGround class is the base class that all on ground states extends.
-/// </summary>
-public abstract class OnGround : Motion
+namespace tdws.actors.player.states.motion.on_ground
 {
-  public double Speed { get; set; }
-  protected Vector2 _velocity;
-
-  protected OnGround(IMovable movable) : base(movable)
+  /// <summary>
+  ///   The OnGround class is the base class that all on ground states extends.
+  /// </summary>
+  public abstract class OnGround : Motion
   {
-    Speed = 0.0;
-    _velocity = new Vector2();
-  }
+    protected Vector2 Velocity;
 
-  public override void HandleInput(InputEvent @event)
-  {
-    if (@event.IsActionPressed("jump"))
+    protected OnGround(IMovable movable) : base(movable)
     {
-      GD.Print("Jump!");
+      Speed = 0.0;
+      Velocity = new Vector2();
+    }
+
+    public double Speed { get; set; }
+
+    public override void HandleInput(InputEvent @event)
+    {
+      if (@event.IsActionPressed("jump")) GD.Print("Jump!");
     }
   }
 }

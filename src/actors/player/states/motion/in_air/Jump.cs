@@ -1,24 +1,30 @@
 using Godot;
 
-public class Jump : Motion
+namespace tdws.actors.player.states.motion.in_air
 {
-  private float _height;
-
-  public Jump(IMovable movable) : base(movable)
-  { }
-
-  public override void Enter() { }
-
-  public override void Exit() { }
-
-  public override void HandleInput(InputEvent @event) { }
-
-  public override void Update(float delta)
+  public class Jump : Motion
   {
-    if (_height <= 0)
+    private float _height;
+
+    public Jump(IMovable movable) : base(movable)
     {
-      GD.Print("JUMP FINISHED!");
+    }
+
+    public override void Enter()
+    {
+    }
+
+    public override void Exit()
+    {
+    }
+
+    public override void HandleInput(InputEvent @event)
+    {
+    }
+
+    public override void Update(float delta)
+    {
+      if (_height <= 0) GD.Print("JUMP FINISHED!");
     }
   }
-
 }

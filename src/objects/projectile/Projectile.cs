@@ -1,70 +1,67 @@
-using Godot;
 using System;
+using Godot;
 
-/// <summary>
-/// The Projectile class represents a projectile.
-/// </summary>
-public abstract class Projectile : Area2D
+namespace tdws.objects.projectile
 {
-  private int speed;
-  private Vector2 direction;
-
-  public override void _Ready()
-  {
-    speed = 5_000;
-    direction = new Vector2();
-  }
-
-  public override void _PhysicsProcess(float delta)
-  {
-    Transform2D transform = this.Transform;
-    transform.origin += direction * speed * delta;
-    SetTransform(transform);
-  }
-
   /// <summary>
-  /// Sets the direction vector of the projectile.
+  ///   The Projectile class represents a projectile.
   /// </summary>
-  ///
-  /// <param name="direction">
-  /// The direction the projectile should have.
-  /// </param>
-  ///
-  /// <exception cref="NullReferenceException">
-  /// If the provided vector is null.
-  /// </exception>
-  public void SetDirection(Vector2 direction)
+  public abstract class Projectile : Area2D
   {
-    if (direction == null)
+    private Vector2 _direction;
+    private int _speed;
+
+    public override void _Ready()
     {
-      throw new NullReferenceException("Direction can not be null.");
+      _speed = 5_000;
+      _direction = new Vector2();
     }
 
-    this.direction = direction;
-  }
+    public override void _PhysicsProcess(float delta)
+    {
+      var transform = Transform;
+      transform.origin += _direction * _speed * delta;
+      SetTransform(transform);
+    }
 
-  /// <summary>
-  /// Sets the speed of the projectile.
-  /// </summary>
-  ///
-  /// <param name="speed">
-  /// The new speed of the projecile.
-  /// </param>
-  public void SetSpeed(int speed)
-  {
-    this.speed = speed;
-  }
+    /// <summary>
+    ///   Sets the direction vector of the projectile.
+    /// </summary>
+    /// <param name="direction">
+    ///   The direction the projectile should have.
+    /// </param>
+    /// <exception cref="NullReferenceException">
+    ///   If the provided vector is null.
+    /// </exception>
+    public void SetDirection(Vector2 direction)
+    {
+      if (direction == null) throw new NullReferenceException("Direction can not be null.");
 
-  public void _on_Timer_timeout()
-  {
-    Destroy();
-  }
+      _direction = direction;
+    }
 
-  /// <summary>
-  /// Destroys the projectile.
-  /// </summary>
-  private void Destroy()
-  {
-    QueueFree();
+    /// <summary>
+    ///   Sets the speed of the projectile.
+    /// </summary>
+    /// <param name="speed">
+    ///   The new speed of the projectile.
+    /// </param>
+    public void SetSpeed(int speed)
+    {
+      _speed = speed;
+    }
+
+    public void _on_Timer_timeout()
+    {
+      Destroy();
+    }
+
+    /// <summary>
+    ///   Destroys the projectile.
+    /// </summary>
+    private void Destroy()
+    {
+      QueueFree();
+    }
   }
 }

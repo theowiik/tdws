@@ -1,18 +1,25 @@
-/// <summary>
-/// The PlayerStateMachine is the state machine for the player.
-/// Controlls the movement and ...
-/// </summary>
-public class PlayerStateMachine : StateMachine
+using tdws.actors.player.states.motion.in_air;
+using tdws.actors.player.states.motion.on_ground;
+using tdws.utils.state;
+
+namespace tdws.actors.player
 {
-  private IState _walkState;
-  private IState _jumpState;
-
-  public override void _Ready()
+  /// <summary>
+  ///   The PlayerStateMachine is the state machine for the player.
+  ///   Controls the movement and ...
+  /// </summary>
+  public class PlayerStateMachine : StateMachine
   {
-    IMovable movable = Owner as IMovable;
-    _walkState = new Walk(movable);
-    _jumpState = new Jump(movable);
+    private IState _jumpState;
+    private IState _walkState;
 
-    _state = _walkState;
+    public override void _Ready()
+    {
+      var movable = Owner as IMovable;
+      _walkState = new Walk(movable);
+      _jumpState = new Jump(movable);
+
+      State = _walkState;
+    }
   }
 }

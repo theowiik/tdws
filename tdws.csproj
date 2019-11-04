@@ -61,7 +61,6 @@
     <Compile Include="src\actors\player\states\motion\on_ground\OnGround.cs" />
     <Compile Include="src\actors\player\states\motion\on_ground\Walk.cs" />
     <Compile Include="src\actors\stats\Stats.cs" />
-    <Compile Include="src\engine\Directions.cs" />
     <Compile Include="src\Game.cs" />
     <Compile Include="src\objects\projectile\Projectile.cs" />
     <Compile Include="src\utils\state\IState.cs" />
@@ -69,6 +68,9 @@
     <Compile Include="src\projectile_shooters\ProjectileShooterFactory.cs" />
     <Compile Include="src\projectile_shooters\IProjectileShooter.cs" />
     <Compile Include="src\utils\state\StateMachine.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\engine" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
