@@ -6,10 +6,20 @@ namespace tdws.objects.projectile
   /// <summary>
   ///   The Projectile class represents a projectile.
   /// </summary>
-  public abstract class Projectile : Area2D
+  public abstract class Projectile : Area2D, IProjectile
   {
     private Vector2 _direction;
     private int _speed;
+
+    public void Move(Vector2 velocity)
+    {
+      throw new NotImplementedException();
+    }
+
+    public void Destroy()
+    {
+      QueueFree();
+    }
 
     public override void _Ready()
     {
@@ -54,14 +64,6 @@ namespace tdws.objects.projectile
     public void _on_Timer_timeout()
     {
       Destroy();
-    }
-
-    /// <summary>
-    ///   Destroys the projectile.
-    /// </summary>
-    private void Destroy()
-    {
-      QueueFree();
     }
   }
 }
