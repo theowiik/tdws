@@ -23,7 +23,7 @@ namespace tdws.objects.projectile
 
     public override void _Ready()
     {
-      _speed = 5_000;
+      _speed = 2_000;
       _direction = new Vector2();
     }
 
@@ -47,7 +47,7 @@ namespace tdws.objects.projectile
     {
       if (direction == null) throw new NullReferenceException("Direction can not be null.");
 
-      _direction = direction;
+      _direction = direction.Normalized();
     }
 
     /// <summary>

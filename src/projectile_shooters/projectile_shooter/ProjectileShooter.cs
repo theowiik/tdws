@@ -13,8 +13,15 @@ namespace tdws.projectile_shooters.projectile_shooter
     private int _ammo;
     private bool _canShoot;
     private int _magSize;
+
+    /// <summary>
+    ///   The maximum offset the projectiles will have in degrees.
+    /// </summary>
+    private double _maxOffsetAngle;
+
     private string _name;
     private PackedScene _projectile;
+
     private int _projectilesPerShot;
     private float _secondsBetweenShots;
     private Timer _timer;
@@ -26,21 +33,14 @@ namespace tdws.projectile_shooters.projectile_shooter
 
     public void AppendProjectile()
     {
-      var rand = new Random();
-
       for (var i = 0; i < _projectilesPerShot; i++)
       {
-        /*
-         * I find this hard to read. But the formatter wants it this way.
-         * TODO: Figure out if this is a common way of writing.
-         */
-        if (!(_projectile.Instance() is Projectile proj)) continue;
+        if (!(_projectile.Instance() is Projectile proj))
+          continue;
 
-        var trajectoryOffset = rand.NextDouble();
-        
         GetParent().AddChild(proj);
         proj.SetPosition(Transform.origin);
-        proj.SetDirection(ToMouseVec());
+        proj.SetDirection(GetTrajectoryVector());
       }
     }
 
@@ -51,16 +51,30 @@ namespace tdws.projectile_shooters.projectile_shooter
       _timer.Start(_secondsBetweenShots);
     }
 
+    /// <summary>
+    ///   Creates and returns a vector pointing towards the mouse from the projectile shooter with a random offset.
+    /// </summary>
+    /// <returns>
+    ///   A vector pointing towards the mouse from the projectile shooter with a random offset.
+    /// </returns>
+    private Vector2 GetTrajectoryVector()
+    {
+      var offsetAngle = (float) (_maxOffsetAngle * GD.RandRange(-1, 1));
+      return ToMouseVec().Rotated(Mathf.Deg2Rad(offsetAngle));
+    }
+
+
     public override void _Ready()
     {
       _projectile = GD.Load("res://src/objects/projectile/Projectile.tscn") as PackedScene;
       _timer = GetNode("Timer") as Timer;
-      _secondsBetweenShots = 0.2f;
+      _secondsBetweenShots = 0.4f;
       _canShoot = true;
       _magSize = 20;
       _ammo = 300;
-      _projectilesPerShot = 20;
+      _projectilesPerShot = 8;
       _name = "Base Projectile Shooter";
+      _maxOffsetAngle = 3;
     }
 
     public override void _Process(float delta)
@@ -83,7 +97,6 @@ namespace tdws.projectile_shooters.projectile_shooter
     private Vector2 ToMouseVec()
     {
       var mousePos = GetGlobalMousePosition();
-      if (mousePos == null) return new Vector2();
 
       return new Vector2(
         mousePos.x - GetGlobalPosition().x,
