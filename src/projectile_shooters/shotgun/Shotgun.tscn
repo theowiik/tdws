@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/projectile_shooters/projectile_shooter/ProjectileShooter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/projectile_shooters/shotgun/Shotgun.cs" type="Script" id=2]
+
+[node name="Shotgun" index="0" instance=ExtResource( 1 )]
+scale = Vector2( 0.426557, 0.136393 )
+script = ExtResource( 2 )
