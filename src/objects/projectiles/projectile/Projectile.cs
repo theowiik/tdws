@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace tdws.objects.projectile
+namespace tdws.objects.projectiles.projectile
 {
   /// <summary>
   ///   The Projectile class represents a projectile.

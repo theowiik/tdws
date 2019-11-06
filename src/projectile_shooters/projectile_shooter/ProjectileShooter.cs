@@ -1,5 +1,5 @@
 using Godot;
-using tdws.objects.projectile;
+using tdws.objects.projectiles.projectile;
 
 namespace tdws.projectile_shooters.projectile_shooter
 {
@@ -9,17 +9,16 @@ namespace tdws.projectile_shooters.projectile_shooter
   public abstract class ProjectileShooter : Sprite, IProjectileShooter
   {
     private bool _canShoot;
+    private Timer _timer;
+    protected int Ammo;
+    protected int MagSize;
 
     /// <summary>
     ///   The maximum offset the projectiles will have in degrees.
     /// </summary>
-    private double _maxOffsetAngle;
+    protected double MaxOffsetAngle;
 
-    private Timer _timer;
-    protected int Ammo;
-    protected int MagSize;
     protected PackedScene Projectile;
-
     protected string ProjectileShooterName;
     protected int ProjectilesPerShot;
     protected float SecondsBetweenShots;
@@ -57,7 +56,7 @@ namespace tdws.projectile_shooters.projectile_shooter
     /// </returns>
     private Vector2 GetTrajectoryVector()
     {
-      var offsetAngle = (float) (_maxOffsetAngle * GD.RandRange(-1, 1));
+      var offsetAngle = (float) (MaxOffsetAngle * GD.RandRange(-1, 1));
       return ToMouseVec().Rotated(Mathf.Deg2Rad(offsetAngle));
     }
 
@@ -80,7 +79,7 @@ namespace tdws.projectile_shooters.projectile_shooter
       Ammo = 300;
       ProjectilesPerShot = 8;
       ProjectileShooterName = "Abstract Projectile Shooter";
-      _maxOffsetAngle = 3;
+      MaxOffsetAngle = 3;
     }
 
     /// <summary>

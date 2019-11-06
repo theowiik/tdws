@@ -1,6 +1,6 @@
-﻿using tdws.actors.player;
+using tdws.actors.player;
 
-namespace tdws.objects.projectile
+namespace tdws.objects.projectiles.projectile
 {
   public interface IProjectile : IMovable
   {

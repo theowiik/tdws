@@ -1,3 +1,5 @@
+using Godot;
+
 namespace tdws.projectile_shooters
 {
   public interface IProjectileShooter

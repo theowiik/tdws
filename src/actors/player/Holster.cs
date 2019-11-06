@@ -20,9 +20,9 @@ namespace tdws.actors.player
       _maxInventorySize = 5;
       _projectileShooters = new IProjectileShooter[_maxInventorySize];
 
-      // Add a weapon at the start...
-      var proj = ProjectileShooterFactory.CreateAssaultRifle();
-      Add(proj);
+      // Add a weapons at the start...
+      Add(ProjectileShooterFactory.CreateAssaultRifle());
+      Add(ProjectileShooterFactory.CreateShotgun());
     }
 
     /// <summary>
