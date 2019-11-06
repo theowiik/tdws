@@ -32,8 +32,8 @@ namespace tdws.projectile_shooters.projectile_shooter
     {
       for (var i = 0; i < ProjectilesPerShot; i++)
       {
-        if (!(Projectile.Instance() is Projectile proj))
-          continue;
+        var proj = Projectile.Instance() as Projectile;
+        if (proj == null) continue;
 
         GetParent().AddChild(proj);
         proj.SetPosition(Transform.origin);

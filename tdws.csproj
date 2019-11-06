@@ -65,6 +65,7 @@
     <Compile Include="src\objects\crate\Crate.cs" />
     <Compile Include="src\objects\projectiles\projectile\Projectile.cs" />
     <Compile Include="src\objects\projectiles\IProjectile.cs" />
+    <Compile Include="src\objects\projectiles\wonky_projectile\WonkyProjectile.cs" />
     <Compile Include="src\projectile_shooters\assault_rifle\AssaultRifle.cs" />
     <Compile Include="src\projectile_shooters\shotgun\Shotgun.cs" />
     <Compile Include="src\projectile_shooters\wonky_gun\WonkyGun.cs" />
@@ -73,7 +74,6 @@
     <Compile Include="src\projectile_shooters\ProjectileShooterFactory.cs" />
     <Compile Include="src\projectile_shooters\IProjectileShooter.cs" />
     <Compile Include="src\utils\state\StateMachine.cs" />
-    <Compile Include="WonkyProjectile.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\engine" />
