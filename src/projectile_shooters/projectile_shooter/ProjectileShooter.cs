@@ -71,7 +71,7 @@ namespace tdws.projectile_shooters.projectile_shooter
     /// </summary>
     private void InitStandardValues()
     {
-      Projectile = GD.Load("res://src/objects/projectile/Projectile.tscn") as PackedScene;
+      Projectile = ProjectileFactory.CreateBullet();
       _timer = GetNode("Timer") as Timer;
       SecondsBetweenShots = 0.4f;
       _canShoot = true;

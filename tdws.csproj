@@ -63,6 +63,7 @@
     <Compile Include="src\actors\stats\Stats.cs" />
     <Compile Include="src\Game.cs" />
     <Compile Include="src\objects\crate\Crate.cs" />
+    <Compile Include="src\objects\projectiles\ProjectileFactory.cs" />
     <Compile Include="src\objects\projectiles\projectile\Projectile.cs" />
     <Compile Include="src\objects\projectiles\IProjectile.cs" />
     <Compile Include="src\objects\projectiles\wonky_projectile\WonkyProjectile.cs" />
