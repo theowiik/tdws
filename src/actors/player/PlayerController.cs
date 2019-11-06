@@ -35,6 +35,19 @@ namespace tdws.actors.player
     public override void _Process(float delta)
     {
       HolsterLoop();
+      AnimationLoop();
+    }
+
+    private void AnimationLoop()
+    {
+      if (GetFloorVelocity().x > 0)
+      {
+        _animationPlayer.Play("walk_right");
+      }
+      else
+      {
+        _animationPlayer.Play("idle_down");
+      }
     }
 
     /// <summary>

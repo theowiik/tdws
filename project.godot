@@ -17,12 +17,17 @@ _global_script_class_icons={
 
 config/name="tdws"
 run/main_scene="res://src/Game.tscn"
+boot_splash/bg_color=Color( 0.184314, 0.211765, 0.25098, 1 )
 config/icon="res://icon.png"
 
 [display]
 
+window/size/width=384
+window/size/height=216
 window/size/resizable=false
+window/size/fullscreen=true
 window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [importer_defaults]
 
@@ -97,4 +102,5 @@ debugger_agent/wait_timeout=5000
 
 [rendering]
 
+environment/default_clear_color=Color( 0.184314, 0.211765, 0.25098, 1 )
 environment/default_environment="res://default_env.tres"

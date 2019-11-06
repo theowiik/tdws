@@ -23,7 +23,7 @@ namespace tdws.objects.projectiles.projectile
 
     public override void _Ready()
     {
-      _speed = 2_000;
+      _speed = 600;
       _direction = new Vector2();
     }
 

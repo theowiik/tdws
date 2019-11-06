@@ -5,7 +5,7 @@ namespace tdws.actors.player.states.motion.on_ground
   /// </summary>
   public sealed class Walk : OnGround
   {
-    private const int MaxWalkSpeed = 300;
+    private const int MaxWalkSpeed = 125;
 
     public Walk(IMovable movable) : base(movable)
     {

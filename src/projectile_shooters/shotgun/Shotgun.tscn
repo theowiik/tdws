@@ -4,5 +4,5 @@
 [ext_resource path="res://src/projectile_shooters/shotgun/Shotgun.cs" type="Script" id=2]
 
 [node name="Shotgun" instance=ExtResource( 1 )]
-scale = Vector2( 0.426557, 0.136393 )
+scale = Vector2( 0.0309487, 0.0123411 )
 script = ExtResource( 2 )

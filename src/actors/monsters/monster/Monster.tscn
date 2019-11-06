@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/actors/monsters/monster/Monster.cs" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/tdws_spritesheet.png" type="Texture" id=2]
 [ext_resource path="res://src/actors/stats/Stats.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 47.0007, 43.9996 )
+extents = Vector2( 3.57953, 4.38626 )
 
 [node name="Monster" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -15,5 +15,8 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
+vframes = 6
+hframes = 8
+frame = 16
 
 [node name="Stats" parent="." instance=ExtResource( 3 )]

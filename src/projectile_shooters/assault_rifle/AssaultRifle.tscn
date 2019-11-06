@@ -4,4 +4,5 @@
 [ext_resource path="res://src/projectile_shooters/assault_rifle/AssaultRifle.cs" type="Script" id=2]
 
 [node name="AssaultRifle" instance=ExtResource( 1 )]
+scale = Vector2( 0.0864363, 0.0217921 )
 script = ExtResource( 2 )
