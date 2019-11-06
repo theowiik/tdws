@@ -53,6 +53,7 @@
     <Compile Include="src\actors\AbstractActor.cs" />
     <Compile Include="src\actors\ILiving.cs" />
     <Compile Include="src\actors\monsters\monster\Monster.cs" />
+    <Compile Include="src\actors\monsters\skeleton\Skeleton.cs" />
     <Compile Include="src\actors\player\Holster.cs" />
     <Compile Include="src\actors\player\IMovable.cs" />
     <Compile Include="src\actors\player\PlayerController.cs" />
