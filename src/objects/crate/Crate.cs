@@ -16,7 +16,7 @@ namespace tdws.objects.crate
     }
 
     /// <summary>
-    /// Picks up the projectile shooter.
+    ///   Picks up the projectile shooter.
     /// </summary>
     public void PickUp()
     {
