@@ -1,4 +1,3 @@
-using System;
 using Godot;
 using tdws.objects.projectile;
 
@@ -6,25 +5,24 @@ namespace tdws.projectile_shooters.projectile_shooter
 {
   /// <summary>
   ///   The ProjectileShooter class represents something that can shoot.
-  ///   TODO make projectile shooter abstract?
   /// </summary>
-  public class ProjectileShooter : Sprite, IProjectileShooter
+  public abstract class ProjectileShooter : Sprite, IProjectileShooter
   {
-    private int _ammo;
     private bool _canShoot;
-    private int _magSize;
 
     /// <summary>
     ///   The maximum offset the projectiles will have in degrees.
     /// </summary>
     private double _maxOffsetAngle;
 
-    private string _name;
-    private PackedScene _projectile;
-
-    private int _projectilesPerShot;
-    private float _secondsBetweenShots;
     private Timer _timer;
+    protected int Ammo;
+    protected int MagSize;
+    protected PackedScene Projectile;
+
+    protected string ProjectileShooterName;
+    protected int ProjectilesPerShot;
+    protected float SecondsBetweenShots;
 
     public void Reload()
     {
@@ -33,9 +31,9 @@ namespace tdws.projectile_shooters.projectile_shooter
 
     public void AppendProjectile()
     {
-      for (var i = 0; i < _projectilesPerShot; i++)
+      for (var i = 0; i < ProjectilesPerShot; i++)
       {
-        if (!(_projectile.Instance() is Projectile proj))
+        if (!(Projectile.Instance() is Projectile proj))
           continue;
 
         GetParent().AddChild(proj);
@@ -48,7 +46,7 @@ namespace tdws.projectile_shooters.projectile_shooter
     {
       _canShoot = false;
       AppendProjectile();
-      _timer.Start(_secondsBetweenShots);
+      _timer.Start(SecondsBetweenShots);
     }
 
     /// <summary>
@@ -63,19 +61,32 @@ namespace tdws.projectile_shooters.projectile_shooter
       return ToMouseVec().Rotated(Mathf.Deg2Rad(offsetAngle));
     }
 
-
     public override void _Ready()
     {
-      _projectile = GD.Load("res://src/objects/projectile/Projectile.tscn") as PackedScene;
+      InitStandardValues();
+      OverrideProperties();
+    }
+
+    /// <summary>
+    ///   Sets all instance variables to standard values.
+    /// </summary>
+    private void InitStandardValues()
+    {
+      Projectile = GD.Load("res://src/objects/projectile/Projectile.tscn") as PackedScene;
       _timer = GetNode("Timer") as Timer;
-      _secondsBetweenShots = 0.4f;
+      SecondsBetweenShots = 0.4f;
       _canShoot = true;
-      _magSize = 20;
-      _ammo = 300;
-      _projectilesPerShot = 8;
-      _name = "Base Projectile Shooter";
+      MagSize = 20;
+      Ammo = 300;
+      ProjectilesPerShot = 8;
+      ProjectileShooterName = "Abstract Projectile Shooter";
       _maxOffsetAngle = 3;
     }
+
+    /// <summary>
+    ///   Override specific properties of a projectile shooter, such as the mag size and damage.
+    /// </summary>
+    protected abstract void OverrideProperties();
 
     public override void _Process(float delta)
     {
