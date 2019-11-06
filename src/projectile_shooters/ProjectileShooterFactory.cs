@@ -15,13 +15,13 @@ namespace tdws.projectile_shooters
     ///   Creates and returns a basic automatic rifle.
     /// </returns>
     /// <exception cref="FileNotFoundException">
-    ///   If the projectile shooter scene is not found.
+    ///   If the assault rifle scene is not found.
     /// </exception>
     public static IProjectileShooter CreateAssaultRifle()
     {
-      if (!(GD.Load("res://src/projectile_shooters/projectile_shooter/ProjectileShooter.tscn") is PackedScene
+      if (!(GD.Load("res://src/projectile_shooters/assault_rifle/AssaultRifle.tscn") is PackedScene
         projectileShooter))
-        throw new FileNotFoundException("Could not find ProjectileShooter.tscn");
+        throw new FileNotFoundException("Could not find AssaultRifle.tscn");
 
       return projectileShooter.Instance() as IProjectileShooter;
     }
@@ -33,13 +33,13 @@ namespace tdws.projectile_shooters
     ///   Creates and returns a basic shotgun.
     /// </returns>
     /// <exception cref="FileNotFoundException">
-    ///   If the projectile shooter scene is not found.
+    ///   If the shotgun scene is not found.
     /// </exception>
     public static IProjectileShooter CreateShotgun()
     {
-      if (!(GD.Load("res://src/projectile_shooters/projectile_shooter/ProjectileShooter.tscn") is PackedScene
+      if (!(GD.Load("res://src/projectile_shooters/shotgun/Shotgun.tscn") is PackedScene
         projectileShooter))
-        throw new FileNotFoundException("Could not find ProjectileShooter.tscn");
+        throw new FileNotFoundException("Could not find Shotgun.tscn");
 
       return projectileShooter.Instance() as IProjectileShooter;
     }
