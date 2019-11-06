@@ -1,4 +1,5 @@
 using Godot;
+using tdws.utils;
 using tdws.utils.state;
 
 namespace tdws.actors.player
@@ -21,6 +22,8 @@ namespace tdws.actors.player
     void IMovable.Move(Vector2 velocity)
     {
       MoveAndSlide(velocity);
+      Directions direction 
+      PlayWalkingAnimation();
     }
 
     public override void _Ready()
@@ -35,12 +38,11 @@ namespace tdws.actors.player
     public override void _Process(float delta)
     {
       HolsterLoop();
-      AnimationLoop();
     }
 
-    private void AnimationLoop()
+    private void PlayWalkingAnimation()
     {
-      if (GetFloorVelocity().x > 0)
+      if ()
       {
         _animationPlayer.Play("walk_right");
       }
