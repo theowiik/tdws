@@ -1,5 +1,7 @@
+using System;
 using Godot;
 using tdws.objects.projectiles.projectile;
+using tdws.utils;
 
 namespace tdws.projectile_shooters.projectile_shooter
 {
@@ -93,6 +95,23 @@ namespace tdws.projectile_shooters.projectile_shooter
     public override void _Process(float delta)
     {
       if (Input.IsActionPressed("shoot") && _canShoot) Shoot();
+      RotationLoop();
+    }
+
+    /// <summary>
+    ///   Rotates the projectile shooter to look towards the mouse.
+    /// </summary>
+    private void RotationLoop()
+    {
+      var radians = ToMouseVec().Angle();
+      SetGlobalRotation(radians);
+
+      var firstQuadrant = radians >= -Math.PI / 2 && radians <= 0;
+      var secondQuadrant = radians <= Math.PI / 2 && radians >= 0;
+      var thirdQuadrant = radians >= Math.PI / 2 && radians <= Math.PI;
+      var fourthQuadrant = radians >= -Math.PI && radians <= -Math.PI / 2;
+      
+      FlipV = thirdQuadrant || fourthQuadrant;
     }
 
     public void _on_Timer_timeout()
@@ -112,8 +131,8 @@ namespace tdws.projectile_shooters.projectile_shooter
       var mousePos = GetGlobalMousePosition();
 
       return new Vector2(
-        mousePos.x - GetGlobalPosition().x,
-        mousePos.y - GetGlobalPosition().y
+        mousePos.x - _output.GlobalPosition.x,
+        mousePos.y - _output.GlobalPosition.y
       ).Normalized();
     }
   }
