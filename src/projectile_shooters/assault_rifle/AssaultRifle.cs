@@ -9,12 +9,12 @@ namespace tdws.projectile_shooters.assault_rifle
   {
     protected override void OverrideProperties()
     {
-      SecondsBetweenShots = 0.05f;
+      SecondsBetweenShots = 0.1f;
       ProjectilesPerShot = 1;
       MagSize = 31;
       Ammo = 300;
       ProjectileShooterName = "Assault Rifle";
-      MaxOffsetAngle = 2;
+      MaxOffsetAngle = 5;
     }
   }
 }

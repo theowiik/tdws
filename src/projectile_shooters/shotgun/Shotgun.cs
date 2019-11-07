@@ -10,7 +10,8 @@ namespace tdws.projectile_shooters.shotgun
     protected override void OverrideProperties()
     {
       ProjectilesPerShot = 5;
-      SecondsBetweenShots = 0.5f;
+      SecondsBetweenShots = 0.8f;
+      MaxOffsetAngle = 7;
       Ammo = 30;
       MagSize = 3;
       ProjectileShooterName = "Shotgun";
