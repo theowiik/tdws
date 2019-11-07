@@ -7,7 +7,7 @@ namespace tdws.actors.monsters.monster
   /// <summary>
   ///   A abstract monster.
   /// </summary>
-  public abstract class Monster : KinematicBody2D, IDamagable
+  public abstract class Monster : KinematicBody2D, IDamageable
   {
     protected Stats stats;
 

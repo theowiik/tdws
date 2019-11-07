@@ -3,9 +3,9 @@
 namespace tdws.actors
 {
   /// <summary>
-  ///   The IDamagable interface represents something that can take damage.
+  ///   The IDamageable interface represents something that can take damage.
   /// </summary>
-  public interface IDamagable
+  public interface IDamageable
   {
     /// <summary>
     ///   Take damage from a damage source.
