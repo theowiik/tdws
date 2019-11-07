@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using tdws.actors;
 
 namespace tdws.objects.projectiles.projectile
 {
@@ -79,6 +80,14 @@ namespace tdws.objects.projectiles.projectile
     public void _on_Timer_timeout()
     {
       Destroy();
+    }
+
+    private void _on_Projectile_area_entered(object area)
+    {
+      if (area is IDamageable damageable)
+      {
+        damageable.TakeDamage(this);
+      }
     }
   }
 }
