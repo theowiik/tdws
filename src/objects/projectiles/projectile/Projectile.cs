@@ -11,6 +11,7 @@ namespace tdws.objects.projectiles.projectile
     private Vector2 _direction;
     private int _speed;
 
+    // TODO: It is not implemented! Rethink some things.
     public void Move(Vector2 velocity)
     {
       throw new NotImplementedException();
@@ -32,6 +33,15 @@ namespace tdws.objects.projectiles.projectile
       var transform = Transform;
       transform.origin += _direction * _speed * delta;
       SetTransform(transform);
+      RotationLoop();
+    }
+
+    /// <summary>
+    ///   Rotates the projectile to look the way it is traveling.
+    /// </summary>
+    private void RotationLoop()
+    {
+      SetGlobalRotation(_direction.Angle());
     }
 
     /// <summary>
