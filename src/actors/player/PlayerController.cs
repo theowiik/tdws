@@ -22,7 +22,6 @@ namespace tdws.actors.player
     void IMovable.Move(Vector2 velocity)
     {
       MoveAndSlide(velocity);
-      Directions direction 
       PlayWalkingAnimation();
     }
 
@@ -42,14 +41,6 @@ namespace tdws.actors.player
 
     private void PlayWalkingAnimation()
     {
-      if ()
-      {
-        _animationPlayer.Play("walk_right");
-      }
-      else
-      {
-        _animationPlayer.Play("idle_down");
-      }
     }
 
     /// <summary>
