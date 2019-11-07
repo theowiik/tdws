@@ -9,6 +9,7 @@ namespace tdws.projectile_shooters.projectile_shooter
   public abstract class ProjectileShooter : Sprite, IProjectileShooter
   {
     private bool _canShoot;
+    private Position2D _output;
     private Timer _timer;
     protected int Ammo;
     protected int MagSize;
@@ -35,8 +36,9 @@ namespace tdws.projectile_shooters.projectile_shooter
         var proj = Projectile.Instance() as Projectile;
         if (proj == null) continue;
 
-        GetParent().AddChild(proj);
-        proj.SetPosition(Transform.origin);
+        // TODO: How to fix this?
+        GetParent().GetParent().GetParent().AddChild(proj);
+        proj.SetPosition(_output.GlobalPosition);
         proj.SetDirection(GetTrajectoryVector());
       }
     }
@@ -62,6 +64,7 @@ namespace tdws.projectile_shooters.projectile_shooter
 
     public override void _Ready()
     {
+      _output = GetNode("Output") as Position2D;
       InitStandardValues();
       OverrideProperties();
     }
