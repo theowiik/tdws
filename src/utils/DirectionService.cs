@@ -25,7 +25,7 @@ namespace tdws.utils
       if (velocity == null) throw new NullReferenceException("velocity cannot be null");
       var zeroX = velocity.x == 0;
       var zeroY = velocity.y == 0;
-      
+
       if (!zeroX && zeroY) // It is only a horizontal component
       {
         if (velocity.x > 0) return Directions.Left;
@@ -36,8 +36,9 @@ namespace tdws.utils
         if (velocity.y > 0) return Directions.Up;
         if (velocity.y < 0) return Directions.Down;
       }
-
-      return null;
+      
+      // It is a combination
+      return Directions.None;
     }
   }
 }
