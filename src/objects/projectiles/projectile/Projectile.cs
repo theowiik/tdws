@@ -11,6 +11,11 @@ namespace tdws.objects.projectiles.projectile
     private Vector2 _direction;
     private int _speed;
 
+    public int GetDamage()
+    {
+      return 10;
+    }
+
     // TODO: It is not implemented! Rethink some things.
     public void Move(Vector2 velocity)
     {
