@@ -53,7 +53,6 @@ namespace tdws.actors.player
     {
       var direction = DirectionService.VelocityToDirection(_velocity);
       PlayAnimation(direction);
-      GD.Print(_velocity);
     }
 
     /// <summary>
