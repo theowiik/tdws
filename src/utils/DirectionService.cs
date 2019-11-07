@@ -26,18 +26,16 @@ namespace tdws.utils
       var zeroX = velocity.x == 0;
       var zeroY = velocity.y == 0;
 
-      if (!zeroX && zeroY) // It is only a horizontal component
-      {
-        if (velocity.x > 0) return Directions.Left;
-        if (velocity.x < 0) return Directions.Right;
-      }
-      else if (!zeroY && zeroX) // It is only a vertical component
-      {
-        if (velocity.y > 0) return Directions.Up;
-        if (velocity.y < 0) return Directions.Down;
-      }
-      
-      // It is a combination
+      if (zeroX && zeroY) return Directions.None;
+
+      // Horizontal animations are prioritized over vertical ones.
+      if (velocity.x > 0) return Directions.Right;
+      if (velocity.x < 0) return Directions.Left;
+
+      // Only use vertical animations if a horizontal button is NOT pressed.
+      if (velocity.y > 0 && zeroX) return Directions.Down;
+      if (velocity.y < 0 && zeroX) return Directions.Up;
+
       return Directions.None;
     }
   }

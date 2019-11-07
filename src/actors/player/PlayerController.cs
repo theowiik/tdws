@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using tdws.utils;
 using tdws.utils.state;
@@ -19,10 +20,15 @@ namespace tdws.actors.player
 
     private StateMachine _stateMachine;
 
+    /// <summary>
+    ///   The latest velocity the player had.
+    ///   Used for playing the correct animation.
+    /// </summary>
+    private Vector2 _velocity;
+
     void IMovable.Move(Vector2 velocity)
     {
-      MoveAndSlide(velocity);
-      PlayWalkingAnimation();
+      _velocity = MoveAndSlide(velocity);
     }
 
     public override void _Ready()
@@ -37,10 +43,45 @@ namespace tdws.actors.player
     public override void _Process(float delta)
     {
       HolsterLoop();
+      AnimationLoop();
     }
 
-    private void PlayWalkingAnimation()
+    /// <summary>
+    ///   Plays the correct animation.
+    /// </summary>
+    private void AnimationLoop()
     {
+      var direction = DirectionService.VelocityToDirection(_velocity);
+      PlayAnimation(direction);
+      GD.Print(_velocity);
+    }
+
+    /// <summary>
+    ///   Plays the appropriate animation for the player given a direction enum.
+    /// </summary>
+    /// <param name="direction">
+    ///   The direction the player is facing.
+    /// </param>
+    private void PlayAnimation(Directions direction)
+    {
+      switch (direction)
+      {
+        case Directions.Up:
+          _animationPlayer.Play("walk_up");
+          break;
+        case Directions.Right:
+          _animationPlayer.Play("walk_right");
+          break;
+        case Directions.Down:
+          _animationPlayer.Play("walk_down");
+          break;
+        case Directions.Left:
+          _animationPlayer.Play("walk_left");
+          break;
+        default:
+          _animationPlayer.Play("idle_down");
+          break;
+      }
     }
 
     /// <summary>
