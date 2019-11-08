@@ -108,5 +108,6 @@ debugger_agent/wait_timeout=5000
 
 [rendering]
 
+quality/2d/use_pixel_snap=true
 environment/default_clear_color=Color( 0.184314, 0.211765, 0.25098, 1 )
 environment/default_environment="res://default_env.tres"
