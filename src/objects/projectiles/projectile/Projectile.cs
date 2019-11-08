@@ -82,11 +82,12 @@ namespace tdws.objects.projectiles.projectile
       Destroy();
     }
 
-    private void _on_Projectile_area_entered(object area)
+    private void _on_Projectile_body_entered(object body)
     {
-      if (area is IDamageable damageable)
+      if (body is IDamageable damageable)
       {
         damageable.TakeDamage(this);
+        Destroy();
       }
     }
   }
