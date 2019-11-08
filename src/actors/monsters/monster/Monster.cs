@@ -14,6 +14,21 @@ namespace tdws.actors.monsters.monster
     public void TakeDamage(IDamageSource damageSource)
     {
       GD.Print("oof! Took " + damageSource.GetDamage() + " damage!");
+
+      stats.TakeDamage(damageSource.GetDamage());
+
+      if (stats.IsDead()) Die();
+    }
+
+    public void Die()
+    {
+      QueueFree();
+      
+      if (!(_deathEffect.Instance() is Particles2D particles))
+        return;
+      
+      particles.SetGlobalPosition(GetGlobalPosition());
+      GetParent().AddChild(particles);
     }
 
     public override void _Ready()

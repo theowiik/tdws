@@ -14,5 +14,10 @@ namespace tdws.actors
     ///   The source of the damage.
     /// </param>
     void TakeDamage(IDamageSource damageSource);
+
+    /// <summary>
+    ///   Kills the damage object.
+    /// </summary>
+    void Die();
   }
 }
