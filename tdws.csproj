@@ -64,6 +64,7 @@
     <Compile Include="src\actors\player\states\motion\on_ground\OnGround.cs" />
     <Compile Include="src\actors\player\states\motion\on_ground\Walk.cs" />
     <Compile Include="src\actors\stats\Stats.cs" />
+    <Compile Include="src\Camera.cs" />
     <Compile Include="src\Game.cs" />
     <Compile Include="src\objects\crate\Crate.cs" />
     <Compile Include="src\objects\IDamageSource.cs" />
