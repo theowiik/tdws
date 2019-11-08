@@ -9,6 +9,7 @@ namespace tdws.actors.monsters.monster
   /// </summary>
   public abstract class Monster : KinematicBody2D, IDamageable
   {
+    private PackedScene _deathEffect;
     protected Stats stats;
 
     public void TakeDamage(IDamageSource damageSource)
@@ -34,6 +35,7 @@ namespace tdws.actors.monsters.monster
     public override void _Ready()
     {
       stats = GetNode("Stats") as Stats;
+      _deathEffect = GD.Load("res://src/particles/death_effect.tscn") as PackedScene;
     }
   }
 }
