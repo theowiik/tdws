@@ -19,7 +19,12 @@ namespace tdws.actors.stats
 
     public bool IsAlive()
     {
-      return _hp <= 0;
+      return _hp > 0;
+    }
+
+    public bool IsDead()
+    {
+      return !IsAlive();
     }
 
     public void TakeDamage(int hp)
@@ -29,7 +34,7 @@ namespace tdws.actors.stats
 
     public override void _Ready()
     {
-      _maxHp = 10;
+      _maxHp = 100;
       _hp = _maxHp;
     }
   }

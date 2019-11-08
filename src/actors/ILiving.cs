@@ -28,5 +28,13 @@ namespace tdws.actors
     ///   Returns true if it lives. False otherwise.
     /// </returns>
     bool IsAlive();
+
+    /// <summary>
+    ///   Checks if the living thing is dead.
+    /// </summary>
+    /// <returns>
+    ///   Returns true if it is dead. False otherwise.
+    /// </returns>
+    bool IsDead();
   }
 }
