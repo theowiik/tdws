@@ -35,7 +35,7 @@ namespace tdws.actors.monsters.monster
     public override void _Ready()
     {
       stats = GetNode("Stats") as Stats;
-      _deathEffect = GD.Load("res://src/particles/death_effect.tscn") as PackedScene;
+      _deathEffect = GD.Load("res://src/particles/DeathEffect.tscn") as PackedScene;
     }
   }
 }
