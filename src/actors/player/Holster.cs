@@ -23,6 +23,7 @@ namespace tdws.actors.player
       // Add a weapons at the start...
       Add(ProjectileShooterFactory.CreateAssaultRifle());
       Add(ProjectileShooterFactory.CreateShotgun());
+      Add(ProjectileShooterFactory.CreateWonkyGun());
     }
 
     /// <summary>
