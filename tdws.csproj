@@ -68,6 +68,7 @@
     <Compile Include="src\Game.cs" />
     <Compile Include="src\objects\crate\Crate.cs" />
     <Compile Include="src\objects\IDamageSource.cs" />
+    <Compile Include="src\objects\projectiles\bullet\Bullet.cs" />
     <Compile Include="src\objects\projectiles\ProjectileFactory.cs" />
     <Compile Include="src\objects\projectiles\projectile\Projectile.cs" />
     <Compile Include="src\objects\projectiles\IProjectile.cs" />

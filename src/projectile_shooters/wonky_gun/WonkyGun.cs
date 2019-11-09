@@ -8,6 +8,7 @@ namespace tdws.projectile_shooters.wonky_gun
     protected override void OverrideProperties()
     {
       Projectile = GD.Load("res://src/objects/projectiles/wonky_projectile/WonkyProjectile.tscn") as PackedScene;
+      ProjectilesPerShot = 1;
     }
   }
 }

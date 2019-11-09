@@ -5,12 +5,12 @@ using tdws.actors;
 namespace tdws.objects.projectiles.projectile
 {
   /// <summary>
-  ///   The Projectile class represents a projectile.
+  ///   The Projectile class represents a abstract projectile.
   /// </summary>
   public abstract class Projectile : Area2D, IProjectile
   {
-    private Vector2 _direction;
-    private int _speed;
+    protected Vector2 Direction;
+    protected int Speed;
 
     public int GetDamage()
     {
@@ -30,15 +30,27 @@ namespace tdws.objects.projectiles.projectile
 
     public override void _Ready()
     {
-      _speed = 600;
-      _direction = new Vector2();
+      InitStandardValues();
+      OverrideProperties();
+    }
+
+    /// <summary>
+    ///   Override specific properties of a projectile shooter, such as the mag size and damage.
+    /// </summary>
+    protected abstract void OverrideProperties();
+
+    /// <summary>
+    ///   Sets all instance variables to standard values.
+    /// </summary>
+    private void InitStandardValues()
+    {
+      Speed = 600;
+      Direction = new Vector2();
     }
 
     public override void _PhysicsProcess(float delta)
     {
-      var transform = Transform;
-      transform.origin += _direction * _speed * delta;
-      SetTransform(transform);
+      Move(delta);
       RotationLoop();
     }
 
@@ -47,7 +59,7 @@ namespace tdws.objects.projectiles.projectile
     /// </summary>
     private void RotationLoop()
     {
-      SetGlobalRotation(_direction.Angle());
+      SetGlobalRotation(Direction.Angle());
     }
 
     /// <summary>
@@ -63,7 +75,7 @@ namespace tdws.objects.projectiles.projectile
     {
       if (direction == null) throw new NullReferenceException("Direction can not be null.");
 
-      _direction = direction.Normalized();
+      Direction = direction.Normalized();
     }
 
     /// <summary>
@@ -74,12 +86,25 @@ namespace tdws.objects.projectiles.projectile
     /// </param>
     public void SetSpeed(int speed)
     {
-      _speed = speed;
+      Speed = speed;
     }
 
     public void _on_Timer_timeout()
     {
       Destroy();
+    }
+
+    /// <summary>
+    ///   Moves the projectile.
+    /// </summary>
+    /// <param name="delta">
+    ///   The time difference since the last process call.
+    /// </param>
+    protected virtual void Move(float delta)
+    {
+      var transform = Transform;
+      transform.origin += Direction * Speed * delta;
+      SetTransform(transform);
     }
 
     private void _on_Projectile_body_entered(object body)

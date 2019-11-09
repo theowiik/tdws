@@ -12,7 +12,7 @@ namespace tdws.objects.projectiles.projectile
     /// </returns>
     public static PackedScene CreateBullet()
     {
-      PackedScene packedScene = GD.Load("res://src/objects/projectiles/projectile/Projectile.tscn") as PackedScene;
+      PackedScene packedScene = GD.Load("res://src/objects/projectiles/bullet/Bullet.tscn") as PackedScene;
       return packedScene;
     }
   }
