@@ -11,6 +11,18 @@ namespace tdws
     {
       if (@event.IsActionPressed("ui_cancel"))
         GetTree().Quit();
+
+      if (@event.IsActionPressed("toggle_fullscreen"))
+        ToggleFullscreen();
+    }
+
+    /// <summary>
+    ///   Toggles the fullscreen.
+    /// </summary>
+    private static void ToggleFullscreen()
+    {
+      OS.WindowFullscreen = !OS.IsWindowFullscreen();
+    }
     }
   }
 }
