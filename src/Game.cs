@@ -23,6 +23,5 @@ namespace tdws
     {
       OS.WindowFullscreen = !OS.IsWindowFullscreen();
     }
-    }
   }
 }
