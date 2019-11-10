@@ -7,6 +7,32 @@ namespace tdws
   /// </summary>
   public class Game : Node2D
   {
+    private Sprite _crosshair;
+
+    public override void _Ready()
+    {
+      // Init crosshair
+      var crosshairScene = GD.Load("res://src/Crosshair.tscn") as PackedScene;
+      _crosshair = crosshairScene.Instance() as Sprite;
+      AddChild(_crosshair);
+
+      // Hide the cursor
+      Input.SetMouseMode(Input.MouseMode.Hidden);
+    }
+
+    public override void _Process(float delta)
+    {
+      CrosshairLoop();
+    }
+
+    /// <summary>
+    ///   Sets the crosshair's position to the mouse coordinate.
+    /// </summary>
+    private void CrosshairLoop()
+    {
+      _crosshair.SetGlobalPosition(GetGlobalMousePosition());
+    }
+
     public override void _Input(InputEvent @event)
     {
       if (@event.IsActionPressed("ui_cancel"))
