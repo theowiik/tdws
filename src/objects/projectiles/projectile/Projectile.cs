@@ -89,7 +89,10 @@ namespace tdws.objects.projectiles.projectile
       Speed = speed;
     }
 
-    public void _on_Timer_timeout()
+    /// <summary>
+    ///   Gets called when the projectile has existed its life span.
+    /// </summary>
+    public void OnTimerTimeout()
     {
       Destroy();
     }
@@ -107,7 +110,13 @@ namespace tdws.objects.projectiles.projectile
       SetTransform(transform);
     }
 
-    private void _on_Projectile_body_entered(object body)
+    /// <summary>
+    ///   Gets called when a projectile hits a body.
+    /// </summary>
+    /// <param name="body">
+    ///   The body that got hit.
+    /// </param>
+    private void OnProjectileBodyEntered(object body)
     {
       if (body is IDamageable damageable)
       {

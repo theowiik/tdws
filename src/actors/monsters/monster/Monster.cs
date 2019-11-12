@@ -20,8 +20,6 @@ namespace tdws.actors.monsters.monster
 
     public void TakeDamage(IDamageSource damageSource)
     {
-      GD.Print("oof! Took " + damageSource.GetDamage() + " damage!");
-
       stats.TakeDamage(damageSource.GetDamage());
 
       if (stats.IsDead()) Die();
@@ -43,16 +41,26 @@ namespace tdws.actors.monsters.monster
       return 10;
     }
 
-    private void _on_Area2D_body_exited(object body)
+    /// <summary>
+    ///   Gets called when a body enters the detection area.
+    /// </summary>
+    /// <param name="body">
+    ///   The body that entered the area.
+    /// </param>
+    private void OnDetectionAreaExited(object body)
     {
       if (body == _target)
         _target = null;
     }
 
-    private void _on_Area2D_body_entered(object body)
+    /// <summary>
+    ///   Gets called when a body exits the detection area.
+    /// </summary>
+    /// <param name="body">
+    ///   The body that exited the area.
+    /// </param>
+    private void OnDetectionAreaEntered(object body)
     {
-      GD.Print("ENTER!");
-
       if (body is KinematicBody2D body2D)
         _target = body2D;
     }

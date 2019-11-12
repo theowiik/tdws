@@ -110,11 +110,14 @@ namespace tdws.projectile_shooters.projectile_shooter
       var secondQuadrant = radians <= Math.PI / 2 && radians >= 0;
       var thirdQuadrant = radians >= Math.PI / 2 && radians <= Math.PI;
       var fourthQuadrant = radians >= -Math.PI && radians <= -Math.PI / 2;
-      
+
       FlipV = thirdQuadrant || fourthQuadrant;
     }
 
-    public void _on_Timer_timeout()
+    /// <summary>
+    ///   Gets called when the timer signifying that you cant shoot is done.
+    /// </summary>
+    public void OnTimerTimeout()
     {
       _canShoot = true;
     }
