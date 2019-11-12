@@ -16,7 +16,6 @@ public class DeathEffect : Particles2D
 
     if (_elapsedTime > Lifetime)
     {
-      GD.Print("REMOVING !");
       QueueFree();
     }
   }

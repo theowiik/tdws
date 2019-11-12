@@ -75,7 +75,6 @@ namespace tdws.actors.monsters.monster
     {
       if (_target == null) return;
 
-      GD.Print("MOVE!!!!");
       var toTarget = GetGlobalPosition().DirectionTo(_target.GetGlobalPosition());
       MoveAndSlide(toTarget.Normalized() * 100);
     }

@@ -19,7 +19,10 @@ namespace tdws.actors.player.states.motion.on_ground
 
     public override void HandleInput(InputEvent @event)
     {
-      if (@event.IsActionPressed("jump")) GD.Print("Jump!");
+      if (@event.IsActionPressed("jump"))
+      {
+        // Jump !
+      }
     }
   }
 }

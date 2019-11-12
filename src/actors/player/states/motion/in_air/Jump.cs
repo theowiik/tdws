@@ -24,7 +24,10 @@ namespace tdws.actors.player.states.motion.in_air
 
     public override void Update(float delta)
     {
-      if (_height <= 0) GD.Print("JUMP FINISHED!");
+      if (_height <= 0)
+      {
+        // Jump finished.
+      }
     }
   }
 }

@@ -34,7 +34,6 @@ namespace tdws.actors.player
     {
       _inventoryIndex++;
       SetClosestLegalInventoryIndex();
-      GD.Print("next weapon");
     }
 
     /// <summary>
@@ -45,7 +44,6 @@ namespace tdws.actors.player
     {
       _inventoryIndex--;
       SetClosestLegalInventoryIndex();
-      GD.Print("prev weapon");
     }
 
     /// <summary>

@@ -28,7 +28,6 @@ namespace tdws.projectile_shooters.projectile_shooter
 
     public void Reload()
     {
-      GD.Print("reloading.");
     }
 
     public void AppendProjectile()
