@@ -43,6 +43,12 @@ namespace tdws.actors.monsters.monster
       return 10;
     }
 
+    private void _on_Area2D_body_exited(object body)
+    {
+      if (body == _target)
+        _target = null;
+    }
+
     private void _on_Area2D_body_entered(object body)
     {
       GD.Print("ENTER!");
