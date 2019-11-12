@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/actors/monsters/monster/Monster.cs" type="Script" id=1]
 [ext_resource path="res://assets/sprites/tdws_spritesheet.png" type="Texture" id=2]
@@ -6,6 +6,9 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3.57953, 4.38626 )
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 86.623
 
 [node name="Monster" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -20,3 +23,9 @@ hframes = 8
 frame = 16
 
 [node name="Stats" parent="." instance=ExtResource( 3 )]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
