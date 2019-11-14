@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using tdws.utils;
 
 namespace tdws.actors.stats
 {
@@ -15,6 +16,7 @@ namespace tdws.actors.stats
     {
       _hp += hp;
       _hp = Math.Min(_hp, _maxHp);
+      NotifyHealthChanged();
     }
 
     public bool IsAlive()
@@ -30,12 +32,22 @@ namespace tdws.actors.stats
     public void TakeDamage(int hp)
     {
       _hp -= hp;
+      NotifyHealthChanged();
+    }
+
+    /// <summary>
+    ///   Notifies the HealthChanged signal.
+    /// </summary>
+    private void NotifyHealthChanged()
+    {
+      SignalManager.GetInstance().NotifyHealthChanged(_hp);
     }
 
     public override void _Ready()
     {
       _maxHp = 100;
       _hp = _maxHp;
+      NotifyHealthChanged();
     }
   }
 }
