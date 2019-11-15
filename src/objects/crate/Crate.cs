@@ -1,4 +1,5 @@
 ﻿using Godot;
+using tdws.actors;
 using tdws.projectile_shooters;
 
 namespace tdws.objects.crate
@@ -15,11 +16,14 @@ namespace tdws.objects.crate
       ProjectileShooter = ProjectileShooterFactory.CreateShotgun();
     }
 
-    /// <summary>
-    ///   Picks up the projectile shooter.
-    /// </summary>
-    public void PickUp()
+    public void OnBodyEntered(object body)
     {
+      // Find this hard to read. But the formatter wants it this way.
+      if (!(body is ICanPickup canPickup)) return;
+
+      var projectileShooter = ProjectileShooterFactory.CreateShotgun();
+      canPickup.PickupProjectileShooter(projectileShooter);
+      QueueFree();
     }
   }
 }

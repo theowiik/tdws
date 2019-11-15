@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using tdws.projectile_shooters;
 using tdws.utils;
 using tdws.utils.state;
 
@@ -8,7 +9,7 @@ namespace tdws.actors.player
   /// <summary>
   ///   The Player character.
   /// </summary>
-  public sealed class PlayerController : AbstractActor, IMovable
+  public sealed class PlayerController : AbstractActor, IMovable, ICanPickup
   {
     private AnimationPlayer _animationPlayer;
     private Holster _holster;
@@ -114,6 +115,17 @@ namespace tdws.actors.player
       UnequipProjectileShooters();
       var holding = _holster.GetHolding() as Node;
       _projectileShooterHolder.AddChild(holding);
+    }
+
+    public void PickupProjectileShooter(IProjectileShooter projectileShooter)
+    {
+      if (projectileShooter == null) return;
+      _holster.Add(projectileShooter);
+    }
+
+    public void PickupCoins(int amount)
+    {
+      throw new NotImplementedException();
     }
   }
 }
