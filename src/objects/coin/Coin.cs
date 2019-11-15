@@ -1,4 +1,5 @@
 using Godot;
+using tdws.actors;
 
 namespace tdws.objects.coin
 {
@@ -17,7 +18,11 @@ namespace tdws.objects.coin
     /// </param>
     private void OnBodyEntered(object body)
     {
-      QueueFree();
+      if (body is ICanPickup pickup)
+      {
+        pickup.PickupCoins(Value);
+        QueueFree();
+      }
     }
   }
 }
