@@ -1,7 +1,18 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/actors/abstract_actor/AbstractActor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/actors/monsters/abstract_monster/AbstractMonster.cs" type="Script" id=2]
 
-[node name="AbstractMonster" index="0" instance=ExtResource( 1 )]
+[sub_resource type="CircleShape2D" id=1]
+radius = 68.5443
+
+[node name="AbstractMonster" instance=ExtResource( 1 )]
+collision_layer = 4
+collision_mask = 5
 script = ExtResource( 2 )
+
+[node name="DetectionArea" type="Area2D" parent="." index="3"]
+collision_layer = 0
+
+[node name="DetectionAreaShape" type="CollisionShape2D" parent="DetectionArea" index="0"]
+shape = SubResource( 1 )
