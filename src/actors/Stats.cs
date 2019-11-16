@@ -1,5 +1,4 @@
 using System;
-using Godot;
 using tdws.utils;
 
 namespace tdws.actors.stats
@@ -7,10 +6,19 @@ namespace tdws.actors.stats
   /// <summary>
   ///   The Stats class is used for storing a actors health.
   /// </summary>
-  public class Stats : Node, ILiving
+  public class Stats : ILiving
   {
+    private readonly int _maxHp;
     private int _hp;
-    private int _maxHp;
+
+    /// <param name="hp">The health points.</param>
+    /// <param name="maxHp">The max amount of health points.</param>
+    public Stats(int hp, int maxHp)
+    {
+      _hp = hp;
+      _maxHp = maxHp;
+      NotifyHealthChanged();
+    }
 
     public void Heal(int hp)
     {
@@ -41,13 +49,6 @@ namespace tdws.actors.stats
     private void NotifyHealthChanged()
     {
       SignalManager.GetInstance().NotifyHealthChanged(_hp);
-    }
-
-    public override void _Ready()
-    {
-      _maxHp = 100;
-      _hp = _maxHp;
-      NotifyHealthChanged();
     }
   }
 }
