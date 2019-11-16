@@ -1,12 +1,17 @@
 using Godot;
-using tdws.actors.stats;
 
-namespace tdws.actors
+namespace tdws.actors.abstract_actor
 {
   /// <summary>
-  ///   The Entity class represents a actor that can walk and take damage.
+  ///   The base class all actors inherit from.
   /// </summary>
   public abstract class AbstractActor : KinematicBody2D
   {
+    protected Stats Stats;
+
+    protected AbstractActor()
+    {
+      Stats = new Stats(100, 100);
+    }
   }
 }

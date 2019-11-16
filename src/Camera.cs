@@ -1,15 +1,17 @@
 using Godot;
-using System;
 
-/// <summary>
-///   The main camera for the game.
-/// </summary>
-public class Camera : Camera2D
+namespace tdws
 {
-  public override void _Ready()
+  /// <summary>
+  ///   The main camera for the game.
+  /// </summary>
+  public class Camera : Camera2D
   {
-    Current = true;
-    SmoothingEnabled = true;
-    SmoothingSpeed = 5f;
+    public override void _Ready()
+    {
+      Current = true;
+      SmoothingEnabled = true;
+      SmoothingSpeed = 5f;
+    }
   }
 }

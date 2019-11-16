@@ -1,7 +1,7 @@
 using System;
 using Godot;
+using tdws.objects.projectiles;
 using tdws.objects.projectiles.projectile;
-using tdws.utils;
 
 namespace tdws.projectile_shooters.projectile_shooter
 {

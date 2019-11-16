@@ -8,7 +8,7 @@ namespace tdws.utils
   public class SignalManager
   {
     private static SignalManager _instance;
-    private List<IHealthChangeListener> _healthChangeListeners;
+    private readonly List<IHealthChangeListener> _healthChangeListeners;
 
     private SignalManager()
     {

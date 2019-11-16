@@ -1,5 +1,5 @@
-using System;
 using Godot;
+using tdws.actors.abstract_actor;
 using tdws.projectile_shooters;
 using tdws.utils;
 using tdws.utils.state;
@@ -26,6 +26,17 @@ namespace tdws.actors.player
     ///   Used for playing the correct animation.
     /// </summary>
     private Vector2 _velocity;
+
+    public void PickupProjectileShooter(IProjectileShooter projectileShooter)
+    {
+      if (projectileShooter == null) return;
+      _holster.Add(projectileShooter);
+    }
+
+    public void PickupCoins(int amount)
+    {
+      Stats.Coins += amount;
+    }
 
     void IMovable.Move(Vector2 velocity)
     {
@@ -115,17 +126,6 @@ namespace tdws.actors.player
       UnequipProjectileShooters();
       var holding = _holster.GetHolding() as Node;
       _projectileShooterHolder.AddChild(holding);
-    }
-
-    public void PickupProjectileShooter(IProjectileShooter projectileShooter)
-    {
-      if (projectileShooter == null) return;
-      _holster.Add(projectileShooter);
-    }
-
-    public void PickupCoins(int amount)
-    {
-      throw new NotImplementedException();
     }
   }
 }

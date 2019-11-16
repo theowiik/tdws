@@ -1,22 +1,21 @@
 using Godot;
-using System;
 
-public class DeathEffect : Particles2D
+namespace tdws.particles
 {
-  private float _elapsedTime;
-
-  public override void _Ready()
+  public class DeathEffect : Particles2D
   {
-    _elapsedTime = 0f;
-  }
+    private float _elapsedTime;
 
-  public override void _Process(float delta)
-  {
-    _elapsedTime += delta;
-
-    if (_elapsedTime > Lifetime)
+    public override void _Ready()
     {
-      QueueFree();
+      _elapsedTime = 0f;
+    }
+
+    public override void _Process(float delta)
+    {
+      _elapsedTime += delta;
+
+      if (_elapsedTime > Lifetime) QueueFree();
     }
   }
 }

@@ -1,7 +1,7 @@
 using System;
 using tdws.utils;
 
-namespace tdws.actors.stats
+namespace tdws.actors
 {
   /// <summary>
   ///   The Stats class is used for storing a actors health.
@@ -11,6 +11,7 @@ namespace tdws.actors.stats
     private readonly int _maxHp;
     private int _hp;
 
+
     /// <param name="hp">The health points.</param>
     /// <param name="maxHp">The max amount of health points.</param>
     public Stats(int hp, int maxHp)
@@ -19,6 +20,8 @@ namespace tdws.actors.stats
       _maxHp = maxHp;
       NotifyHealthChanged();
     }
+
+    public int Coins { get; set; }
 
     public void Heal(int hp)
     {

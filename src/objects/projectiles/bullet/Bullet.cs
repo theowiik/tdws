@@ -1,11 +1,12 @@
-using Godot;
-using System;
 using tdws.objects.projectiles.projectile;
 
-public class Bullet : Projectile
+namespace tdws.objects.projectiles.bullet
 {
-  protected override void OverrideProperties()
+  public class Bullet : Projectile
   {
-    Speed = 600;
+    protected override void OverrideProperties()
+    {
+      Speed = 600;
+    }
   }
 }
