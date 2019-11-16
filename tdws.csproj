@@ -50,12 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\actors\AbstractActor.cs" />
+    <Compile Include="src\actors\abstract_actor\AbstractActor.cs" />
+    <Compile Include="src\actors\monsters\abstract_monster\AbstractMonster.cs" />
     <Compile Include="src\actors\ICanPickup.cs" />
     <Compile Include="src\actors\IDamageable.cs" />
     <Compile Include="src\actors\ILiving.cs" />
-    <Compile Include="src\actors\monsters\monster\Monster.cs" />
-    <Compile Include="src\actors\monsters\skeleton\Skeleton.cs" />
     <Compile Include="src\actors\player\Holster.cs" />
     <Compile Include="src\actors\player\IMovable.cs" />
     <Compile Include="src\actors\player\PlayerController.cs" />
@@ -64,7 +63,7 @@
     <Compile Include="src\actors\player\states\motion\Motion.cs" />
     <Compile Include="src\actors\player\states\motion\on_ground\OnGround.cs" />
     <Compile Include="src\actors\player\states\motion\on_ground\Walk.cs" />
-    <Compile Include="src\actors\stats\Stats.cs" />
+    <Compile Include="src\actors\Stats.cs" />
     <Compile Include="src\Camera.cs" />
     <Compile Include="src\Game.cs" />
     <Compile Include="src\interfacee\HUD.cs" />
@@ -91,6 +90,7 @@
     <Compile Include="src\utils\state\StateMachine.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="src\actors\monsters\skeleton" />
     <Folder Include="src\engine" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

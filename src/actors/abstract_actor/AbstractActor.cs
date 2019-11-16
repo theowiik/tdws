@@ -8,11 +8,5 @@ namespace tdws.actors
   /// </summary>
   public abstract class AbstractActor : KinematicBody2D
   {
-    private Stats _stats;
-
-    public override void _Ready()
-    {
-      _stats = GetNode("Stats") as Stats;
-    }
   }
 }
