@@ -9,30 +9,28 @@ namespace tdws.actors
   public class Stats : ILiving
   {
     private readonly int _maxHp;
-    private int _hp;
+    public int Hp { get; private set; }
 
 
     /// <param name="hp">The health points.</param>
     /// <param name="maxHp">The max amount of health points.</param>
     public Stats(int hp, int maxHp)
     {
-      _hp = hp;
+      Hp = hp;
       _maxHp = maxHp;
-      NotifyHealthChanged();
     }
 
     public int Coins { get; set; }
 
     public void Heal(int hp)
     {
-      _hp += hp;
-      _hp = Math.Min(_hp, _maxHp);
-      NotifyHealthChanged();
+      Hp += hp;
+      Hp = Math.Min(Hp, _maxHp);
     }
 
     public bool IsAlive()
     {
-      return _hp > 0;
+      return Hp > 0;
     }
 
     public bool IsDead()
@@ -42,16 +40,7 @@ namespace tdws.actors
 
     public void TakeDamage(int hp)
     {
-      _hp -= hp;
-      NotifyHealthChanged();
-    }
-
-    /// <summary>
-    ///   Notifies the HealthChanged signal.
-    /// </summary>
-    private void NotifyHealthChanged()
-    {
-      SignalManager.GetInstance().NotifyHealthChanged(_hp);
+      Hp -= hp;
     }
   }
 }

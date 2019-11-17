@@ -52,10 +52,21 @@ namespace tdws.actors.player
       _stateMachine.Start();
     }
 
+    /// <summary>
+    ///   Notifies the HealthChanged signal.
+    /// </summary>
+    private void NotifyHealthChanged()
+    {
+      SignalManager.GetInstance().NotifyHealthChanged(Stats.Hp);
+    }
+
     public override void _Process(float delta)
     {
       HolsterLoop();
       AnimationLoop();
+
+      // Not good. Only update when it is changed. Where to put it?
+      NotifyHealthChanged();
     }
 
     /// <summary>
