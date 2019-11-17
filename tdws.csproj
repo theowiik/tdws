@@ -67,6 +67,7 @@
     <Compile Include="src\Camera.cs" />
     <Compile Include="src\Game.cs" />
     <Compile Include="src\interfacee\HUD.cs" />
+    <Compile Include="src\objects\box\Box.cs" />
     <Compile Include="src\objects\coin\Coin.cs" />
     <Compile Include="src\objects\coin\IPickupable.cs" />
     <Compile Include="src\objects\crate\Crate.cs" />
