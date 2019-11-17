@@ -4,32 +4,12 @@ using tdws.objects;
 
 namespace tdws.actors.monsters.abstract_monster
 {
-  public abstract class AbstractMonster : AbstractActor, IDamageable, IDamageSource
+  public abstract class AbstractMonster : AbstractActor, IDamageSource
   {
-    private PackedScene _deathEffect;
-
     /// <summary>
     ///   The target destination.
     /// </summary>
     private KinematicBody2D _target;
-
-    public void TakeDamage(IDamageSource damageSource)
-    {
-      Stats.TakeDamage(damageSource.GetDamage());
-
-      if (Stats.IsDead()) Die();
-    }
-
-    public void Die()
-    {
-      QueueFree();
-
-      if (!(_deathEffect.Instance() is Particles2D particles))
-        return;
-
-      particles.SetGlobalPosition(GetGlobalPosition());
-      GetParent().AddChild(particles);
-    }
 
     public int GetDamage()
     {
@@ -58,11 +38,6 @@ namespace tdws.actors.monsters.abstract_monster
     {
       if (body is KinematicBody2D body2D)
         _target = body2D;
-    }
-
-    public override void _Ready()
-    {
-      _deathEffect = GD.Load("res://src/particles/DeathEffect.tscn") as PackedScene;
     }
 
     public override void _PhysicsProcess(float delta)
