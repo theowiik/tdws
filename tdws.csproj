@@ -55,6 +55,7 @@
     <Compile Include="src\actors\ICanPickup.cs" />
     <Compile Include="src\actors\IDamageable.cs" />
     <Compile Include="src\actors\ILiving.cs" />
+    <Compile Include="src\actors\monsters\MonsterFactory.cs" />
     <Compile Include="src\actors\player\holster\Holster.cs" />
     <Compile Include="src\actors\player\IMovable.cs" />
     <Compile Include="src\actors\player\PlayerController.cs" />
