@@ -1,6 +1,5 @@
 using Godot;
 using tdws.actors.monsters;
-using tdws.actors.monsters.abstract_monster;
 
 namespace tdws
 {
