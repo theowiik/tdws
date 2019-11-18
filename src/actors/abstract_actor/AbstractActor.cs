@@ -13,9 +13,12 @@ namespace tdws.actors.abstract_actor
 
     protected AbstractActor()
     {
+      Inertia = 10;
       Stats = new Stats(100, 100);
       _deathEffect = GD.Load("res://src/particles/DeathEffect.tscn") as PackedScene;
     }
+
+    protected int Inertia { get; }
 
     public void TakeDamage(IDamageSource damageSource)
     {

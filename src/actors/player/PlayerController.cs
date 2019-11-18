@@ -40,7 +40,16 @@ namespace tdws.actors.player
 
     void IMovable.Move(Vector2 velocity)
     {
-      _velocity = MoveAndSlide(velocity);
+      _velocity = MoveAndSlide(velocity, Vector2.Zero, false, 4, 0, false);
+
+      for (var i = 0; i < GetSlideCount(); i++)
+      {
+        var collision = GetSlideCollision(i);
+        var collider = collision.Collider;
+
+        var rigidBody = collider as RigidBody2D;
+        rigidBody?.ApplyCentralImpulse(-collision.Normal * Inertia);
+      }
     }
 
     public override void _Ready()
