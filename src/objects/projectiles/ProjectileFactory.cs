@@ -15,5 +15,10 @@ namespace tdws.objects.projectiles
       var packedScene = GD.Load("res://src/objects/projectiles/bullet/Bullet.tscn") as PackedScene;
       return packedScene;
     }
+
+    public static PackedScene CreateHomingProjectile()
+    {
+      return GD.Load("res://src/objects/projectiles/homing_projectile/HomingProjectile.tscn") as PackedScene;
+    }
   }
 }
