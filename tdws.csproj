@@ -66,6 +66,8 @@
     <Compile Include="src\actors\player\states\motion\on_ground\Walk.cs" />
     <Compile Include="src\actors\Stats.cs" />
     <Compile Include="src\Camera.cs" />
+    <Compile Include="src\engine\world_generator\Room.cs" />
+    <Compile Include="src\engine\world_generator\WorldGenerator.cs" />
     <Compile Include="src\Game.cs" />
     <Compile Include="src\interfacee\HUD.cs" />
     <Compile Include="src\objects\box\Box.cs" />
@@ -93,7 +95,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\actors\monsters\skeleton" />
-    <Folder Include="src\engine" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
