@@ -2,24 +2,51 @@ using Godot;
 using tdws.actors.monsters.abstract_monster;
 using tdws.objects.projectiles.projectile;
 
-/// <summary>
-///   A homing projectile.
-/// </summary>
-public class HomingProjectile : Projectile
+namespace tdws.objects.projectiles.homing_projectile
 {
-  private Area2D _detectionArea;
-  private Vector2 _target;
-
-  protected override void OverrideProperties()
+  /// <summary>
+  ///   A homing projectile.
+  /// </summary>
+  public class HomingProjectile : Projectile
   {
-    _detectionArea = GetNode("DetectionArea") as Area2D;
-  }
+    /// <summary>
+    ///   This constant is multiplied when turning towards a target.
+    ///   0 will not turn it at all, 1 will turn it strongly.
+    /// </summary>
+    private const float TurnMultiplier = 0.3f;
 
-  public void OnDetectionAreaBodyEntered(object body)
-  {
-    if (body is AbstractMonster monster)
+    private Area2D _detectionArea;
+    private bool _hasTarget;
+    private Vector2 _target;
+
+    protected override void OverrideProperties()
     {
-      Direction = GetGlobalPosition().DirectionTo(monster.GetGlobalPosition());
+      _detectionArea = GetNode("DetectionArea") as Area2D;
+      _hasTarget = false;
+    }
+
+    public override void _Process(float delta)
+    {
+      if (!_hasTarget) return;
+
+      var desiredDirection = _target - GetGlobalPosition();
+      Direction += desiredDirection.Normalized() * TurnMultiplier;
+      Direction = Direction.Normalized();
+
+//      var rotationAmount = 0.1f;
+//      var angleToMonster = GetGlobalPosition().AngleTo(_target);
+//
+//      if (Direction.Angle() > angleToMonster) rotationAmount *= -1;
+//      Direction = Direction.Rotated(rotationAmount);
+    }
+
+    public void OnDetectionAreaBodyEntered(object body)
+    {
+      if (body is AbstractMonster monster)
+      {
+        _target = monster.GlobalPosition;
+        _hasTarget = true;
+      }
     }
   }
 }

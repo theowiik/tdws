@@ -44,7 +44,7 @@ namespace tdws.objects.projectiles.projectile
     /// </summary>
     private void InitStandardValues()
     {
-      Speed = 600;
+      Speed = 400;
       Direction = new Vector2();
     }
 

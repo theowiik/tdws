@@ -61,5 +61,14 @@ namespace tdws.projectile_shooters
 
       return projectileShooter.Instance() as IProjectileShooter;
     }
+
+    public static IProjectileShooter CreateAlienGun()
+    {
+      if (!(GD.Load("res://src/projectile_shooters/alien_gun/AlienGun.tscn") is PackedScene
+        projectileShooter))
+        throw new FileNotFoundException("Could not find AlienGun.tscn");
+
+      return projectileShooter.Instance() as IProjectileShooter;
+    }
   }
 }

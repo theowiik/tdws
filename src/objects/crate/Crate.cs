@@ -21,7 +21,7 @@ namespace tdws.objects.crate
       // Find this hard to read. But the formatter wants it this way.
       if (!(body is ICanPickup canPickup)) return;
 
-      var projectileShooter = ProjectileShooterFactory.CreateShotgun();
+      var projectileShooter = ProjectileShooterFactory.CreateAlienGun();
       canPickup.PickupProjectileShooter(projectileShooter);
       QueueFree();
     }

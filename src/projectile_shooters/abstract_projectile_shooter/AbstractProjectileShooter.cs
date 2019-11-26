@@ -75,7 +75,7 @@ namespace tdws.projectile_shooters.projectile_shooter
     /// </summary>
     private void InitStandardValues()
     {
-      Projectile = ProjectileFactory.CreateHomingProjectile();
+      Projectile = ProjectileFactory.CreateBullet();
       _timer = GetNode("Timer") as Timer;
       SecondsBetweenShots = 0.4f;
       _canShoot = true;

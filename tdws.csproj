@@ -83,6 +83,7 @@
     <Compile Include="src\objects\projectiles\wonky_projectile\WonkyProjectile.cs" />
     <Compile Include="src\particles\DeathEffect.cs" />
     <Compile Include="src\projectile_shooters\abstract_projectile_shooter\AbstractProjectileShooter.cs" />
+    <Compile Include="src\projectile_shooters\alien_gun\AlienGun.cs" />
     <Compile Include="src\projectile_shooters\assault_rifle\AssaultRifle.cs" />
     <Compile Include="src\projectile_shooters\shotgun\Shotgun.cs" />
     <Compile Include="src\projectile_shooters\wonky_gun\WonkyGun.cs" />
