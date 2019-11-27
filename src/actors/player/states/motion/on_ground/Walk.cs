@@ -1,3 +1,5 @@
+using Godot;
+
 namespace tdws.actors.player.states.motion.on_ground
 {
   /// <summary>
@@ -6,6 +8,7 @@ namespace tdws.actors.player.states.motion.on_ground
   public sealed class Walk : OnGround
   {
     private const int MaxWalkSpeed = 125;
+    private const int MaxSprintSpeed = 175;
 
     public Walk(IMovable movable) : base(movable)
     {
@@ -23,7 +26,8 @@ namespace tdws.actors.player.states.motion.on_ground
     public override void Update(float delta)
     {
       var inputDirection = GetMovementInputVector();
-      Velocity = inputDirection * MaxWalkSpeed;
+      var speed = Input.IsActionPressed("sprint") ? MaxSprintSpeed : MaxWalkSpeed;
+      Velocity = inputDirection * speed;
       Movable.Move(Velocity);
     }
   }

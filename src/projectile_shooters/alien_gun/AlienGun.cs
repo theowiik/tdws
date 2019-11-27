@@ -8,7 +8,9 @@ namespace tdws.projectile_shooters.alien_gun
     protected override void OverrideProperties()
     {
       Projectile = ProjectileFactory.CreateHomingProjectile();
-      ProjectilesPerShot = 1;
+      ProjectilesPerShot = 2;
+      MaxOffsetAngle = 10;
+      SecondsBetweenShots = 0.7f;
     }
   }
 }
