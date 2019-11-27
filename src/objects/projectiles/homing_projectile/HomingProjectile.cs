@@ -17,7 +17,7 @@ namespace tdws.objects.projectiles.homing_projectile
 
     private Area2D _detectionArea;
     private bool _hasTarget;
-    private Vector2 _target;
+    private AbstractMonster _target;
 
     protected override void OverrideProperties()
     {
@@ -27,25 +27,24 @@ namespace tdws.objects.projectiles.homing_projectile
 
     public override void _Process(float delta)
     {
-      if (!_hasTarget) return;
+      if (_target == null) return;
 
-      var desiredDirection = _target - GetGlobalPosition();
+      var desiredDirection = _target.GetGlobalPosition() - GetGlobalPosition();
       Direction += desiredDirection.Normalized() * TurnMultiplier;
       Direction = Direction.Normalized();
+    }
 
-//      var rotationAmount = 0.1f;
-//      var angleToMonster = GetGlobalPosition().AngleTo(_target);
-//
-//      if (Direction.Angle() > angleToMonster) rotationAmount *= -1;
-//      Direction = Direction.Rotated(rotationAmount);
+    private void OnDetectionAreaBodyExited(object body)
+    {
+      if (body == _target)
+        _target = null;
     }
 
     public void OnDetectionAreaBodyEntered(object body)
     {
       if (body is AbstractMonster monster)
       {
-        _target = monster.GlobalPosition;
-        _hasTarget = true;
+        _target = monster;
       }
     }
   }
