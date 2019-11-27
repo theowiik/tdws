@@ -43,6 +43,17 @@ namespace tdws.utils
       foreach (var healthChangeListener in _healthChangeListeners)
         healthChangeListener.HealthChanged(amount);
     }
+
+    /// <summary>
+    ///   Adds a message to the chat.
+    /// </summary>
+    /// <param name="message">
+    ///   The message to add.
+    /// </param>
+    public void AddChat(string message)
+    {
+      // do something!
+    }
   }
 
   /// <summary>
