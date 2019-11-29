@@ -42,10 +42,7 @@ namespace tdws.objects.projectiles.homing_projectile
 
     public void OnDetectionAreaBodyEntered(object body)
     {
-      if (body is AbstractMonster monster)
-      {
-        _target = monster;
-      }
+      if (body is AbstractMonster monster) _target = monster;
     }
   }
 }

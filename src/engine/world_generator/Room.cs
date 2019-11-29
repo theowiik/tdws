@@ -5,7 +5,6 @@
   /// </summary>
   public class Room
   {
-
     /// <param name="x">
     ///   the x coordinate
     /// </param>
