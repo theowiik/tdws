@@ -18,9 +18,9 @@ margin_right = 278.0
 margin_bottom = 46.1855
 text = "x coins"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 1.63025
-margin_top = 90.7309
-margin_right = 147.63
-margin_bottom = 158.731
+[node name="Chat" type="RichTextLabel" parent="."]
+margin_left = 2.0
+margin_top = 91.0
+margin_right = 399.0
+margin_bottom = 159.0
 text = "something happened..."

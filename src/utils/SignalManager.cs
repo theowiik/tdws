@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Godot;
+using tdws.interfacee;
 
 namespace tdws.utils
 {
@@ -8,11 +10,13 @@ namespace tdws.utils
   public class SignalManager
   {
     private static SignalManager _instance;
+    private readonly List<IChatListener> _chatListeners;
     private readonly List<IHealthChangeListener> _healthChangeListeners;
 
     private SignalManager()
     {
       _healthChangeListeners = new List<IHealthChangeListener>();
+      _chatListeners = new List<IChatListener>();
     }
 
     /// <summary>
@@ -52,7 +56,15 @@ namespace tdws.utils
     /// </param>
     public void AddChat(string message)
     {
-      // do something!
+      foreach (var chatListener in _chatListeners)
+        chatListener.AddChat(message);
+    }
+
+    public void AddChatListener(IChatListener listener)
+    {
+      if (listener == null) return;
+
+      _chatListeners.Add(listener);
     }
   }
 
@@ -68,5 +80,24 @@ namespace tdws.utils
     ///   The new amount of health.
     /// </param>
     void HealthChanged(int amount);
+  }
+
+  /// <summary>
+  ///   Represents something that listens for chat events.
+  /// </summary>
+  public interface IChatListener
+  {
+    /// <summary>
+    ///   Adds a message to the chat.
+    /// </summary>
+    /// <param name="message">The message to add.</param>
+    void AddChat(string message);
+
+    /// <summary>
+    ///   Adds a message to the chat. Does nothing if the provided string is null.
+    /// </summary>
+    /// <param name="message">The message to add.</param>
+    /// <param name="color">The color of the chat message.</param>
+    void AddChat(string message, Color color);
   }
 }

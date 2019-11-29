@@ -145,7 +145,10 @@ namespace tdws.actors.player
     {
       UnequipProjectileShooters();
       var holding = _holster.GetHolding() as Node;
+      if (holding == null) return;
+
       _projectileShooterHolder.AddChild(holding);
+      SignalManager.GetInstance().AddChat("Equipped: " + holding.GetName());
     }
   }
 }

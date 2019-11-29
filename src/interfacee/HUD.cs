@@ -1,4 +1,5 @@
 using Godot;
+using tdws.actors.player;
 using tdws.utils;
 
 namespace tdws.interfacee
@@ -6,10 +7,24 @@ namespace tdws.interfacee
   /// <summary>
   ///   The heads up display. Displays health and amount of coins.
   /// </summary>
-  public class HUD : Control, IHealthChangeListener
+  public class HUD : Control, IHealthChangeListener, IChatListener
   {
+    private RichTextLabel _chat;
     private RichTextLabel _coins;
     private RichTextLabel _health;
+
+    public void AddChat(string message)
+    {
+      ClearChat();
+      AddChat(message, Colors.White);
+    }
+
+    public void AddChat(string message, Color color)
+    {
+      if (message == null) return;
+
+      _chat.AddText(message);
+    }
 
     public void HealthChanged(int amount)
     {
@@ -20,7 +35,12 @@ namespace tdws.interfacee
     {
       _coins = GetNode("Coins") as RichTextLabel;
       _health = GetNode("Health") as RichTextLabel;
-      SignalManager.GetInstance().AddHealthChangeListener(this);
+      _chat = GetNode("Chat") as RichTextLabel;
+
+      var signalManager = SignalManager.GetInstance();
+      signalManager.AddHealthChangeListener(this);
+      signalManager.AddChatListener(this);
+
       SetHealth(666);
       SetCoins(123);
     }
@@ -45,6 +65,14 @@ namespace tdws.interfacee
     private void SetCoins(int amount)
     {
       _coins.SetText(amount.ToString());
+    }
+
+    /// <summary>
+    ///   Clears the chat.
+    /// </summary>
+    private void ClearChat()
+    {
+      _chat.Clear();
     }
   }
 }
