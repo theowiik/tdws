@@ -1,5 +1,5 @@
 using tdws.objects.projectiles;
-using tdws.projectile_shooters.projectile_shooter;
+using tdws.projectile_shooters.abstract_projectile_shooter;
 
 namespace tdws.projectile_shooters.alien_gun
 {
@@ -11,6 +11,7 @@ namespace tdws.projectile_shooters.alien_gun
       ProjectilesPerShot = 2;
       MaxOffsetAngle = 10;
       SecondsBetweenShots = 0.7f;
+      ProjectileShooterName = "Alien Gun";
     }
   }
 }

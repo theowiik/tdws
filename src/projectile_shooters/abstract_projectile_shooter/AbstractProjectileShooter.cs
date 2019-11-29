@@ -3,7 +3,7 @@ using Godot;
 using tdws.objects.projectiles;
 using tdws.objects.projectiles.projectile;
 
-namespace tdws.projectile_shooters.projectile_shooter
+namespace tdws.projectile_shooters.abstract_projectile_shooter
 {
   /// <summary>
   ///   The ProjectileShooter class represents something that can shoot.

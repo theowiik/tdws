@@ -1,4 +1,4 @@
-using tdws.projectile_shooters.projectile_shooter;
+using tdws.projectile_shooters.abstract_projectile_shooter;
 
 namespace tdws.projectile_shooters.assault_rifle
 {
