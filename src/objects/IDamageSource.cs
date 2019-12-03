@@ -1,4 +1,6 @@
-﻿namespace tdws.objects
+﻿using tdws.actors.abstract_actor;
+
+namespace tdws.objects
 {
   /// <summary>
   ///   Represents something that can deal damage.
