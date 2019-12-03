@@ -3,7 +3,7 @@
 [ext_resource path="res://icon.png" type="Texture" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5.31873, 7.23997 )
+extents = Vector2( 7.56606, 8.61556 )
 
 [node name="AbstractActor" type="KinematicBody2D"]
 collision_mask = 29

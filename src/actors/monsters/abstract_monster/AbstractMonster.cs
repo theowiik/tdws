@@ -29,6 +29,20 @@ namespace tdws.actors.monsters.abstract_monster
     }
 
     /// <summary>
+    ///   Damages the thing that entered the monsters damage area.
+    /// </summary>
+    /// <param name="body">
+    ///   The body that entered the area.
+    /// </param>
+    public void OnDamageAreaBodyEntered(object body)
+    {
+      if (body is IDamageable damageable)
+      {
+        damageable.TakeDamage(this);
+      }
+    }
+
+    /// <summary>
     ///   Gets called when a body exits the detection area.
     /// </summary>
     /// <param name="body">
