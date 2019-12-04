@@ -98,5 +98,8 @@
   <ItemGroup>
     <Folder Include="src\actors\monsters\skeleton" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\todo" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

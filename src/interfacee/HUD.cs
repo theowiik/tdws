@@ -1,5 +1,4 @@
 using Godot;
-using tdws.actors.player;
 using tdws.utils;
 
 namespace tdws.interfacee
@@ -7,18 +6,33 @@ namespace tdws.interfacee
   /// <summary>
   ///   The heads up display. Displays health and amount of coins.
   /// </summary>
-  public class HUD : Control, IHealthChangeListener, IChatListener
+  public class HUD : Control, IChatListener
   {
     private RichTextLabel _chat;
     private RichTextLabel _coins;
     private RichTextLabel _health;
 
+    /// <summary>
+    ///   Adds a chat message in a new row. Does nothing if the provided message is null or empty.
+    /// </summary>
+    /// <param name="message">
+    ///   The message to add.
+    /// </param>
     public void AddChat(string message)
     {
-      ClearChat();
-      AddChat(message, Colors.White);
+      ClearChat(); // TODO: Remove. Only here during dev.
+      AddChat(message, Colors.White); // Ineffective since the color is a struct?
     }
 
+    /// <summary>
+    ///   Adds a chat message in a new row. Does nothing if the provided message is null or empty.
+    /// </summary>
+    /// <param name="message">
+    ///   The message to add.
+    /// </param>
+    /// <param name="color">
+    ///   The color of the message.
+    /// </param>
     public void AddChat(string message, Color color)
     {
       if (message == null) return;
@@ -26,6 +40,12 @@ namespace tdws.interfacee
       _chat.AddText(message);
     }
 
+    /// <summary>
+    ///   Gets called when the players health is changed.
+    /// </summary>
+    /// <param name="amount">
+    ///   The new amount of health.
+    /// </param>
     public void HealthChanged(int amount)
     {
       SetHealth(amount);
@@ -36,10 +56,6 @@ namespace tdws.interfacee
       _coins = GetNode("Coins") as RichTextLabel;
       _health = GetNode("Health") as RichTextLabel;
       _chat = GetNode("Chat") as RichTextLabel;
-
-      var signalManager = SignalManager.GetInstance();
-      signalManager.AddHealthChangeListener(this);
-      signalManager.AddChatListener(this);
 
       SetHealth(666);
       SetCoins(123);

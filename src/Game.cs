@@ -2,6 +2,9 @@ using System;
 using Godot;
 using tdws.actors.abstract_actor;
 using tdws.actors.monsters;
+using tdws.actors.monsters.abstract_monster;
+using tdws.actors.player;
+using tdws.interfacee;
 
 namespace tdws
 {
@@ -11,6 +14,7 @@ namespace tdws
   public class Game : Node2D
   {
     private Sprite _crosshair;
+    private HUD _hud;
     private AbstractActor _player;
 
     public override void _Ready()
@@ -23,13 +27,12 @@ namespace tdws
       // Hide the cursor
       Input.SetMouseMode(Input.MouseMode.Hidden);
 
-      // Test
+      // ...
       SpawnEnemy();
-
-      // Change scene
-//      GetTree().ChangeScene("res://src/levels/Arena.tscn");
-
       SpawnPlayer();
+
+      _hud = GetNode("HUD") as HUD;
+      _player.Connect(nameof(AbstractActor.HealthChanged), _hud, "HealthChanged");
     }
 
     /// <summary>

@@ -8,6 +8,9 @@ namespace tdws.actors.abstract_actor
   /// </summary>
   public abstract class AbstractActor : KinematicBody2D, IDamageable
   {
+    [Signal]
+    public delegate void HealthChanged();
+
     private readonly PackedScene _deathEffect;
     protected Stats Stats;
 
@@ -23,6 +26,7 @@ namespace tdws.actors.abstract_actor
     public void TakeDamage(IDamageSource damageSource)
     {
       Stats.TakeDamage(damageSource.GetDamage());
+      EmitHealthChanged();
 
       if (Stats.IsDead()) Die();
     }
@@ -36,6 +40,14 @@ namespace tdws.actors.abstract_actor
 
       particles.SetGlobalPosition(GetGlobalPosition());
       GetParent().AddChild(particles);
+    }
+
+    /// <summary>
+    ///   Emits the HealthChanged signal.
+    /// </summary>
+    private void EmitHealthChanged()
+    {
+      EmitSignal(nameof(HealthChanged), Stats.Hp);
     }
   }
 }

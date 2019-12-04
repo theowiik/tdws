@@ -11,11 +11,9 @@ namespace tdws.utils
   {
     private static SignalManager _instance;
     private readonly List<IChatListener> _chatListeners;
-    private readonly List<IHealthChangeListener> _healthChangeListeners;
 
     private SignalManager()
     {
-      _healthChangeListeners = new List<IHealthChangeListener>();
       _chatListeners = new List<IChatListener>();
     }
 
@@ -29,25 +27,7 @@ namespace tdws.utils
     {
       return _instance ?? (_instance = new SignalManager());
     }
-
-    public void AddHealthChangeListener(IHealthChangeListener healthChangeListener)
-    {
-      if (healthChangeListener != null)
-        _healthChangeListeners.Add(healthChangeListener);
-    }
-
-    /// <summary>
-    ///   Notifies all health change listeners that the amount of health has been changed.
-    /// </summary>
-    /// <param name="amount">
-    ///   The new amount of health.
-    /// </param>
-    public void NotifyHealthChanged(int amount)
-    {
-      foreach (var healthChangeListener in _healthChangeListeners)
-        healthChangeListener.HealthChanged(amount);
-    }
-
+    
     /// <summary>
     ///   Adds a message to the chat.
     /// </summary>
