@@ -12,4 +12,3 @@ script = ExtResource( 2 )
 
 [node name="Output" type="Position2D" parent="."]
 position = Vector2( 33, 0 )
-[connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]

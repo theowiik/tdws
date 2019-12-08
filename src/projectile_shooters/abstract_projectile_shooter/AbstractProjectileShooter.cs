@@ -10,7 +10,9 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
   /// </summary>
   public abstract class ProjectileShooter : Sprite, IProjectileShooter
   {
-    private bool _canShoot;
+//    [Signal]
+//    public delegate void Shoot(IProjectile projectile);
+
     private Position2D _output;
     private Timer _timer;
     protected int Ammo;
@@ -34,21 +36,23 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
     {
       for (var i = 0; i < ProjectilesPerShot; i++)
       {
-        var proj = Projectile.Instance() as Projectile;
-        if (proj == null) continue;
-
-        // TODO: How to fix this?
-        GetParent().GetParent().GetParent().AddChild(proj);
-        proj.SetPosition(_output.GlobalPosition);
-        proj.SetDirection(GetTrajectoryVector());
+        if (Projectile.Instance() is Projectile proj)
+        {
+          GetParent().GetParent().GetParent().AddChild(proj);
+          proj.SetPosition(_output.GlobalPosition);
+          proj.SetDirection(GetTrajectoryVector());
+//          EmitSignal(nameof(AppendProjectile), proj);
+        }
       }
     }
 
     public void Shoot()
     {
-      _canShoot = false;
-      AppendProjectile();
-      _timer.Start(SecondsBetweenShots);
+      if (_timer.IsStopped())
+      {
+        AppendProjectile();
+        _timer.Start(SecondsBetweenShots);
+      }
     }
 
     /// <summary>
@@ -77,8 +81,9 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
     {
       Projectile = ProjectileFactory.CreateBullet();
       _timer = GetNode("Timer") as Timer;
+      _timer.Autostart = false;
+      _timer.OneShot = true;
       SecondsBetweenShots = 0.4f;
-      _canShoot = true;
       MagSize = 20;
       Ammo = 300;
       ProjectilesPerShot = 8;
@@ -93,7 +98,7 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
 
     public override void _Process(float delta)
     {
-      if (Input.IsActionPressed("shoot") && _canShoot) Shoot();
+      if (Input.IsActionPressed("shoot")) Shoot();
       RotationLoop();
     }
 
@@ -111,14 +116,6 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
       var fourthQuadrant = radians >= -Math.PI && radians <= -Math.PI / 2;
 
       FlipV = thirdQuadrant || fourthQuadrant;
-    }
-
-    /// <summary>
-    ///   Gets called when the timer signifying that you cant shoot is done.
-    /// </summary>
-    public void OnTimerTimeout()
-    {
-      _canShoot = true;
     }
 
     /// <summary>
