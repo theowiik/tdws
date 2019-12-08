@@ -19,6 +19,16 @@ namespace tdws.actors.monsters.abstract_monster
       return 10;
     }
 
+    public AbstractActor GetActorSource()
+    {
+      return this;
+    }
+
+    public bool HasActorSource()
+    {
+      return true;
+    }
+
     /// <summary>
     ///   Gets called when a body enters the detection area.
     /// </summary>

@@ -1,6 +1,7 @@
 using System;
 using Godot;
 using tdws.actors;
+using tdws.actors.abstract_actor;
 
 namespace tdws.objects.projectiles.projectile
 {
@@ -11,10 +12,21 @@ namespace tdws.objects.projectiles.projectile
   {
     protected Vector2 Direction;
     protected int Speed;
+    public AbstractActor ActorSource { get; set; }
 
     public int GetDamage()
     {
       return 10;
+    }
+
+    public AbstractActor GetActorSource()
+    {
+      return ActorSource;
+    }
+
+    public bool HasActorSource()
+    {
+      return ActorSource != null;
     }
 
     // TODO: It is not implemented! Rethink some things.

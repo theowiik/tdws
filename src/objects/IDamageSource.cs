@@ -14,5 +14,19 @@ namespace tdws.objects
     ///   The amount of damage that the object deals.
     /// </returns>
     int GetDamage();
+
+    /// <summary>
+    ///   Gets the actor that conflicted the damage.
+    ///   Returns null if the actor source is ambiguous.
+    /// </summary>
+    /// <returns>
+    ///   The actor that conflicted the damage.
+    /// </returns>
+    AbstractActor GetActorSource();
+
+    /// <returns>
+    ///   True if the damage source has a actor that conflicted the damage.
+    /// </returns>
+    bool HasActorSource();
   }
 }
