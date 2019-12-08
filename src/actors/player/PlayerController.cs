@@ -133,11 +133,16 @@ namespace tdws.actors.player
     private void EquipHoldingProjectileShooter()
     {
       UnequipProjectileShooters();
-      var holding = _holster.GetHolding() as Node;
-      if (holding == null) return;
 
-      _projectileShooterHolder.AddChild(holding);
-      SignalManager.GetInstance().AddChat("Equipped: " + holding.GetName());
+      if (_holster.GetHolding() is Node holding)
+      {
+        _projectileShooterHolder.AddChild(holding);
+        EmitChatAdded(holding.GetName());
+      }
+      else
+      {
+        EmitChatAdded("Unequipped projectile shooter");
+      }
     }
   }
 }

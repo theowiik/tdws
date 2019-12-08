@@ -1,5 +1,4 @@
 using Godot;
-using tdws.actors.player;
 
 namespace tdws.objects.box
 {

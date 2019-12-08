@@ -4,6 +4,9 @@ using tdws.objects;
 
 namespace tdws.actors.monsters.abstract_monster
 {
+  /// <summary>
+  ///   The base monster all monsters inherit from.
+  /// </summary>
   public abstract class AbstractMonster : AbstractActor, IDamageSource
   {
     /// <summary>

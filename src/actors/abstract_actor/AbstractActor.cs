@@ -9,6 +9,9 @@ namespace tdws.actors.abstract_actor
   public abstract class AbstractActor : KinematicBody2D, IDamageable
   {
     [Signal]
+    public delegate void ChatAdded(string msg);
+
+    [Signal]
     public delegate void HealthChanged();
 
     private readonly PackedScene _deathEffect;
@@ -48,6 +51,19 @@ namespace tdws.actors.abstract_actor
     private void EmitHealthChanged()
     {
       EmitSignal(nameof(HealthChanged), Stats.Hp);
+    }
+
+    /// <summary>
+    ///   Emits the ChatAdded signal. Does nothing if the provided message is null.
+    /// </summary>
+    /// <param name="msg">
+    ///   The message to print.
+    /// </param>
+    protected void EmitChatAdded(string msg)
+    {
+      if (msg == null) return;
+
+      EmitSignal(nameof(ChatAdded), msg);
     }
   }
 }

@@ -90,7 +90,6 @@
     <Compile Include="src\projectile_shooters\wonky_gun\WonkyGun.cs" />
     <Compile Include="src\utils\Directions.cs" />
     <Compile Include="src\utils\DirectionService.cs" />
-    <Compile Include="src\utils\SignalManager.cs" />
     <Compile Include="src\utils\state\IState.cs" />
     <Compile Include="src\projectile_shooters\ProjectileShooterFactory.cs" />
     <Compile Include="src\projectile_shooters\IProjectileShooter.cs" />

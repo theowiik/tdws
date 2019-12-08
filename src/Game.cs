@@ -2,8 +2,6 @@ using System;
 using Godot;
 using tdws.actors.abstract_actor;
 using tdws.actors.monsters;
-using tdws.actors.monsters.abstract_monster;
-using tdws.actors.player;
 using tdws.interfacee;
 
 namespace tdws
@@ -13,12 +11,16 @@ namespace tdws
   /// </summary>
   public class Game : Node2D
   {
+    private Camera _camera;
     private Sprite _crosshair;
     private HUD _hud;
     private AbstractActor _player;
 
     public override void _Ready()
     {
+      // Camera
+      _camera = GetNode("Camera") as Camera;
+
       // Init crosshair
       var crosshairScene = GD.Load("res://src/Crosshair.tscn") as PackedScene;
       _crosshair = crosshairScene.Instance() as Sprite;
@@ -30,9 +32,11 @@ namespace tdws
       // ...
       SpawnEnemy();
       SpawnPlayer();
+      AddCameraToPlayer();
 
       _hud = GetNode("HUD") as HUD;
-      _player.Connect(nameof(AbstractActor.HealthChanged), _hud, "HealthChanged");
+      _player.Connect(nameof(AbstractActor.HealthChanged), _hud, nameof(HUD.HealthChanged));
+      _player.Connect(nameof(AbstractActor.ChatAdded), _hud, nameof(HUD.AddChat));
     }
 
     /// <summary>
@@ -44,6 +48,22 @@ namespace tdws
 
       _player.GlobalPosition = new Vector2(30, 30);
       AddChild(_player);
+    }
+
+    /// <summary>
+    ///   Add the camera to the player node. Player and camera must exist.
+    /// </summary>
+    /// <exception cref="NullReferenceException">
+    ///   If player or camera is null.
+    /// </exception>
+    private void AddCameraToPlayer()
+    {
+      if (_camera == null || _player == null)
+        throw new NullReferenceException("Camera and/or player is null");
+
+      _camera.GetParent().RemoveChild(_camera); // fix..
+      _player.AddChild(_camera);
+      _camera.SetGlobalPosition(Vector2.Zero);
     }
 
     /// <summary>

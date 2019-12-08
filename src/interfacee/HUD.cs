@@ -1,12 +1,11 @@
 using Godot;
-using tdws.utils;
 
 namespace tdws.interfacee
 {
   /// <summary>
   ///   The heads up display. Displays health and amount of coins.
   /// </summary>
-  public class HUD : Control, IChatListener
+  public class HUD : Control
   {
     private RichTextLabel _chat;
     private RichTextLabel _coins;
