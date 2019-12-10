@@ -1,6 +1,7 @@
 using Godot;
 using tdws.actors.abstract_actor;
 using tdws.actors.player.holster;
+using tdws.objects;
 using tdws.projectile_shooters;
 using tdws.utils;
 using tdws.utils.state;
@@ -66,6 +67,21 @@ namespace tdws.actors.player
     {
       HolsterLoop();
       AnimationLoop();
+      ShootLoop();
+    }
+
+    /// <summary>
+    ///   Checks if the player wants to shoot.
+    /// </summary>
+    private void ShootLoop()
+    {
+      if (Input.IsActionPressed("shoot"))
+      {
+        var p = _holster.GetHolding();
+        if (p == null) return;
+
+        p.Shoot(this);
+      }
     }
 
     /// <summary>
@@ -144,6 +160,11 @@ namespace tdws.actors.player
       {
         EmitChatAdded("Unequipped projectile shooter");
       }
+    }
+
+    protected override void HandleDamage(IDamageSource damageSource)
+    {
+      // Does the player need to do something special?
     }
   }
 }

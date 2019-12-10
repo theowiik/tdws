@@ -29,6 +29,7 @@ namespace tdws.actors.abstract_actor
     public void TakeDamage(IDamageSource damageSource)
     {
       Stats.TakeDamage(damageSource.GetDamage());
+      HandleDamage(damageSource);
       EmitHealthChanged();
 
       if (Stats.IsDead()) Die();
@@ -44,6 +45,15 @@ namespace tdws.actors.abstract_actor
       particles.SetGlobalPosition(GetGlobalPosition());
       GetParent().AddChild(particles);
     }
+
+    /// <summary>
+    ///   Handle class specific damage.
+    ///   TODO: How to avoid using this?
+    /// </summary>
+    /// <param name="damageSource">
+    ///   The damage source.
+    /// </param>
+    protected abstract void HandleDamage(IDamageSource damageSource);
 
     /// <summary>
     ///   Emits the HealthChanged signal.

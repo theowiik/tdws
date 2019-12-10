@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using tdws.actors.abstract_actor;
 using tdws.objects.projectiles;
 using tdws.objects.projectiles.abstract_projectile;
 
@@ -32,7 +33,7 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
     {
     }
 
-    public void AppendProjectile()
+    public void AppendProjectiles(AbstractActor actor = null)
     {
       for (var i = 0; i < ProjectilesPerShot; i++)
         if (Projectile.Instance() is AbstractProjectile proj)
@@ -40,17 +41,31 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
           GetParent().GetParent().GetParent().AddChild(proj);
           proj.SetPosition(_output.GlobalPosition);
           proj.SetDirection(GetTrajectoryVector());
+          proj.ActorSource = actor;
 //          EmitSignal(nameof(ProjectileAdded), proj);
         }
     }
 
-    public void Shoot()
+    public void Shoot(AbstractActor actorSource)
     {
-      if (_timer.IsStopped())
+      if (CanShoot())
       {
-        AppendProjectile();
+        AppendProjectiles(actorSource);
         _timer.Start(SecondsBetweenShots);
       }
+    }
+
+    public void Shoot()
+    {
+      Shoot(null);
+    }
+
+    /// <summary>
+    ///   Checks if the projectile shooter can shoot.
+    /// </summary>
+    private bool CanShoot()
+    {
+      return _timer?.IsStopped() ?? false;
     }
 
     /// <summary>
@@ -96,7 +111,6 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
 
     public override void _Process(float delta)
     {
-      if (Input.IsActionPressed("shoot")) Shoot();
       RotationLoop();
     }
 

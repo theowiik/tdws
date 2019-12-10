@@ -29,6 +29,12 @@ namespace tdws.actors.monsters.abstract_monster
       return true;
     }
 
+    protected override void HandleDamage(IDamageSource damageSource)
+    {
+      if (damageSource.HasActorSource())
+        _target = damageSource.GetActorSource();
+    }
+
     /// <summary>
     ///   Gets called when a body enters the detection area.
     /// </summary>
