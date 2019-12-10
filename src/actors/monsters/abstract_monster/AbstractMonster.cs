@@ -10,6 +10,13 @@ namespace tdws.actors.monsters.abstract_monster
   public abstract class AbstractMonster : AbstractActor, IDamageSource
   {
     /// <summary>
+    ///   The time the monsters will chase their target (in seconds).
+    /// </summary>
+    private const int ChaseTime = 3;
+
+    private Timer _chaseTimer;
+
+    /// <summary>
     ///   The target destination.
     /// </summary>
     private KinematicBody2D _target;
@@ -29,10 +36,28 @@ namespace tdws.actors.monsters.abstract_monster
       return true;
     }
 
+    public override void _Ready()
+    {
+      _chaseTimer = GetNode("ChaseTimer") as Timer;
+    }
+
+    /// <summary>
+    ///   Checks if the _chaseTimer is running.
+    /// </summary>
+    /// <returns>
+    ///   True if it is running. False otherwise.
+    /// </returns>
+    private bool IsChasing()
+    {
+      return !_chaseTimer.IsStopped();
+    }
+
     protected override void HandleDamage(IDamageSource damageSource)
     {
       if (damageSource.HasActorSource())
         _target = damageSource.GetActorSource();
+
+      _chaseTimer.Start(ChaseTime);
     }
 
     /// <summary>
@@ -45,6 +70,14 @@ namespace tdws.actors.monsters.abstract_monster
     {
       if (body == _target)
         _target = null;
+    }
+
+    /// <summary>
+    ///   Gets called when the chase timer runs out.
+    /// </summary>
+    public void OnChaseTimerTimeout()
+    {
+      _target = null;
     }
 
     /// <summary>
@@ -67,7 +100,10 @@ namespace tdws.actors.monsters.abstract_monster
     private void OnDetectionAreaEntered(object body)
     {
       if (body is KinematicBody2D body2D)
+      {
         _target = body2D;
+        _chaseTimer.Start(ChaseTime);
+      }
     }
 
     public override void _PhysicsProcess(float delta)
