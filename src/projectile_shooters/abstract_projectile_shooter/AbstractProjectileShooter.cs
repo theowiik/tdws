@@ -51,13 +51,21 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
       if (CanShoot())
       {
         AppendProjectiles(actorSource);
-        _timer.Start(SecondsBetweenShots);
+        StartShootDelay();
       }
     }
 
     public void Shoot()
     {
       Shoot(null);
+    }
+
+    /// <summary>
+    ///   Starts the timer with SecondsBetweenShots seconds.
+    /// </summary>
+    private void StartShootDelay()
+    {
+      _timer.Start(SecondsBetweenShots);
     }
 
     /// <summary>
