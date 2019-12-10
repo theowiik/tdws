@@ -99,7 +99,7 @@ namespace tdws.actors.monsters.abstract_monster
     /// </param>
     private void OnDetectionAreaEntered(object body)
     {
-      if (body is KinematicBody2D body2D)
+      if (body is AbstractActor body2D)
       {
         _target = body2D;
         _chaseTimer.Start(ChaseTime);
