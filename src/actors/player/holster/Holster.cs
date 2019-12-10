@@ -2,7 +2,7 @@ using System;
 using Godot;
 using tdws.projectile_shooters;
 
-namespace tdws.actors.player
+namespace tdws.actors.player.holster
 {
   /// <summary>
   ///   The Holster is used for managing the projectile shooters

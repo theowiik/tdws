@@ -1,12 +1,12 @@
 using Godot;
-using tdws.objects.projectiles.projectile;
+using tdws.objects.projectiles.abstract_projectile;
 
 namespace tdws.objects.projectiles.wonky_projectile
 {
   /// <summary>
   ///   A wonky projectile that travels in a weird and unpredictable way.
   /// </summary>
-  public class WonkyProjectile : Projectile
+  public class WonkyProjectile : AbstractProjectile
   {
     /// <summary>
     ///   The amount of time in seconds it takes for the projectile to change its direction.

@@ -76,10 +76,10 @@
     <Compile Include="src\objects\coin\IPickupable.cs" />
     <Compile Include="src\objects\crate\Crate.cs" />
     <Compile Include="src\objects\IDamageSource.cs" />
+    <Compile Include="src\objects\projectiles\abstract_projectile\AbstractProjectile.cs" />
     <Compile Include="src\objects\projectiles\bullet\Bullet.cs" />
     <Compile Include="src\objects\projectiles\homing_projectile\HomingProjectile.cs" />
     <Compile Include="src\objects\projectiles\ProjectileFactory.cs" />
-    <Compile Include="src\objects\projectiles\projectile\Projectile.cs" />
     <Compile Include="src\objects\projectiles\IProjectile.cs" />
     <Compile Include="src\objects\projectiles\wonky_projectile\WonkyProjectile.cs" />
     <Compile Include="src\particles\DeathEffect.cs" />
@@ -98,7 +98,6 @@
   <ItemGroup>
     <Folder Include="src\actors\monsters\skeleton" />
   </ItemGroup>
-  <ItemGroup>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

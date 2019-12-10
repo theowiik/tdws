@@ -3,7 +3,6 @@ using Godot;
 using tdws.actors.abstract_actor;
 using tdws.actors.monsters;
 using tdws.interfacee;
-using tdws.objects.projectiles.projectile;
 using tdws.projectile_shooters.abstract_projectile_shooter;
 
 namespace tdws

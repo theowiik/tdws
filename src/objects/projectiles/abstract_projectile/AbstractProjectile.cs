@@ -3,12 +3,12 @@ using Godot;
 using tdws.actors;
 using tdws.actors.abstract_actor;
 
-namespace tdws.objects.projectiles.projectile
+namespace tdws.objects.projectiles.abstract_projectile
 {
   /// <summary>
   ///   The Projectile class represents a abstract projectile.
   /// </summary>
-  public abstract class Projectile : Area2D, IProjectile
+  public abstract class AbstractProjectile : Area2D, IProjectile
   {
     protected Vector2 Direction;
     protected int Speed;

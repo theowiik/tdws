@@ -1,8 +1,8 @@
-using tdws.objects.projectiles.projectile;
+using tdws.objects.projectiles.abstract_projectile;
 
 namespace tdws.objects.projectiles.bullet
 {
-  public class Bullet : Projectile
+  public class Bullet : AbstractProjectile
   {
     protected override void OverrideProperties()
     {

@@ -1,7 +1,7 @@
 using System;
 using Godot;
 using tdws.objects.projectiles;
-using tdws.objects.projectiles.projectile;
+using tdws.objects.projectiles.abstract_projectile;
 
 namespace tdws.projectile_shooters.abstract_projectile_shooter
 {
@@ -36,7 +36,7 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
     {
       for (var i = 0; i < ProjectilesPerShot; i++)
       {
-        if (Projectile.Instance() is Projectile proj)
+        if (Projectile.Instance() is AbstractProjectile proj)
         {
           GetParent().GetParent().GetParent().AddChild(proj);
           proj.SetPosition(_output.GlobalPosition);

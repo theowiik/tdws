@@ -1,13 +1,13 @@
 using Godot;
 using tdws.actors.monsters.abstract_monster;
-using tdws.objects.projectiles.projectile;
+using tdws.objects.projectiles.abstract_projectile;
 
 namespace tdws.objects.projectiles.homing_projectile
 {
   /// <summary>
   ///   A homing projectile.
   /// </summary>
-  public class HomingProjectile : Projectile
+  public class HomingProjectile : AbstractProjectile
   {
     /// <summary>
     ///   This constant is multiplied when turning towards a target.

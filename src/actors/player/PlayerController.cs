@@ -1,5 +1,6 @@
 using Godot;
 using tdws.actors.abstract_actor;
+using tdws.actors.player.holster;
 using tdws.projectile_shooters;
 using tdws.utils;
 using tdws.utils.state;
