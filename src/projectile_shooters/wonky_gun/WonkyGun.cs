@@ -3,7 +3,7 @@ using tdws.projectile_shooters.abstract_projectile_shooter;
 
 namespace tdws.projectile_shooters.wonky_gun
 {
-  public class WonkyGun : ProjectileShooter
+  public class WonkyGun : AbstractProjectileShooter
   {
     protected override void OverrideProperties()
     {

@@ -5,7 +5,7 @@ namespace tdws.projectile_shooters.shotgun
   /// <summary>
   ///   A shotgun.
   /// </summary>
-  public class Shotgun : ProjectileShooter
+  public class Shotgun : AbstractProjectileShooter
   {
     protected override void OverrideProperties()
     {

@@ -8,7 +8,7 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
   /// <summary>
   ///   The ProjectileShooter class represents something that can shoot.
   /// </summary>
-  public abstract class ProjectileShooter : Sprite, IProjectileShooter
+  public abstract class AbstractProjectileShooter : Sprite, IProjectileShooter
   {
     [Signal]
     public delegate void ProjectileAdded(Node projectile);

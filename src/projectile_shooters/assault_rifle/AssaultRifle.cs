@@ -5,7 +5,7 @@ namespace tdws.projectile_shooters.assault_rifle
   /// <summary>
   ///   A assault rifle.
   /// </summary>
-  public class AssaultRifle : ProjectileShooter
+  public class AssaultRifle : AbstractProjectileShooter
   {
     protected override void OverrideProperties()
     {
