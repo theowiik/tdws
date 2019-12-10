@@ -10,8 +10,8 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
   /// </summary>
   public abstract class ProjectileShooter : Sprite, IProjectileShooter
   {
-//    [Signal]
-//    public delegate void Shoot(IProjectile projectile);
+    [Signal]
+    public delegate void ProjectileAdded(Node projectile);
 
     private Position2D _output;
     private Timer _timer;
@@ -41,7 +41,7 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
           GetParent().GetParent().GetParent().AddChild(proj);
           proj.SetPosition(_output.GlobalPosition);
           proj.SetDirection(GetTrajectoryVector());
-//          EmitSignal(nameof(AppendProjectile), proj);
+//          EmitSignal(nameof(ProjectileAdded), proj);
         }
       }
     }

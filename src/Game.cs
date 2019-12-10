@@ -3,6 +3,8 @@ using Godot;
 using tdws.actors.abstract_actor;
 using tdws.actors.monsters;
 using tdws.interfacee;
+using tdws.objects.projectiles.projectile;
+using tdws.projectile_shooters.abstract_projectile_shooter;
 
 namespace tdws
 {
@@ -34,9 +36,26 @@ namespace tdws
       SpawnPlayer();
       AddCameraToPlayer();
 
+      // HUD
       _hud = GetNode("HUD") as HUD;
       _player.Connect(nameof(AbstractActor.HealthChanged), _hud, nameof(HUD.HealthChanged));
       _player.Connect(nameof(AbstractActor.ChatAdded), _hud, nameof(HUD.AddChat));
+
+      // Projectile signal
+//      Connect(nameof(ProjectileShooter.ProjectileAdded), this, nameof(OnProjectileAdded));
+    }
+
+    /// <summary>
+    ///   Adds a projectile. Does nothing if the provided projectile is null.
+    /// </summary>
+    /// <param name="projectile">
+    ///   The projectile node.
+    /// </param>
+    private void OnProjectileAdded(Node projectile)
+    {
+      if (projectile == null) return;
+
+      AddChild(projectile);
     }
 
     /// <summary>
