@@ -49,10 +49,7 @@ namespace tdws.actors.monsters.abstract_monster
     /// </param>
     public void OnDamageAreaBodyEntered(object body)
     {
-      if (body is IDamageable damageable)
-      {
-        damageable.TakeDamage(this);
-      }
+      if (body is IDamageable damageable) damageable.TakeDamage(this);
     }
 
     /// <summary>

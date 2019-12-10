@@ -35,7 +35,6 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
     public void AppendProjectile()
     {
       for (var i = 0; i < ProjectilesPerShot; i++)
-      {
         if (Projectile.Instance() is AbstractProjectile proj)
         {
           GetParent().GetParent().GetParent().AddChild(proj);
@@ -43,7 +42,6 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
           proj.SetDirection(GetTrajectoryVector());
 //          EmitSignal(nameof(ProjectileAdded), proj);
         }
-      }
     }
 
     public void Shoot()
