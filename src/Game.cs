@@ -58,7 +58,14 @@ namespace tdws
     /// </param>
     private void OnProjectileShooterChanged(Object projectileShooter)
     {
-      projectileShooter?.Connect(
+      if (projectileShooter == null) return;
+
+      var alreadyConnected = projectileShooter.IsConnected(nameof(AbstractProjectileShooter.ProjectileAdded), this,
+        nameof(OnProjectileAdded));
+
+      if (alreadyConnected) return;
+
+      projectileShooter.Connect(
         nameof(AbstractProjectileShooter.ProjectileAdded),
         this,
         nameof(OnProjectileAdded)
