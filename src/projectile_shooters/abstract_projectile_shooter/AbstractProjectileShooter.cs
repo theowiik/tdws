@@ -39,8 +39,8 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
         if (Projectile.Instance() is AbstractProjectile projectile)
         {
           EmitSignal(nameof(ProjectileAdded), projectile);
-          projectile.SetPosition(_output.GlobalPosition);
-          projectile.SetDirection(GetTrajectoryVector());
+          projectile.GlobalPosition = _output.GlobalPosition;
+          projectile.Direction = GetTrajectoryVector();
           projectile.ActorSource = actor;
         }
     }

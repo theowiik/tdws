@@ -10,8 +10,8 @@ namespace tdws.objects.projectiles.abstract_projectile
   /// </summary>
   public abstract class AbstractProjectile : Area2D, IProjectile
   {
-    protected Vector2 Direction;
     protected int Speed;
+    public Vector2 Direction { get; set; }
     public AbstractActor ActorSource { get; set; }
 
     public int GetDamage()
@@ -75,22 +75,6 @@ namespace tdws.objects.projectiles.abstract_projectile
     }
 
     /// <summary>
-    ///   Sets the direction vector of the projectile.
-    /// </summary>
-    /// <param name="direction">
-    ///   The direction the projectile should have.
-    /// </param>
-    /// <exception cref="NullReferenceException">
-    ///   If the provided vector is null.
-    /// </exception>
-    public void SetDirection(Vector2 direction)
-    {
-      if (direction == null) throw new NullReferenceException("Direction cannot be null.");
-
-      Direction = direction.Normalized();
-    }
-
-    /// <summary>
     ///   Sets the speed of the projectile.
     /// </summary>
     /// <param name="speed">
@@ -130,6 +114,7 @@ namespace tdws.objects.projectiles.abstract_projectile
     /// </param>
     private void OnProjectileBodyEntered(object body)
     {
+      return;
       if (body is IDamageable damageable)
       {
         damageable.TakeDamage(this);
