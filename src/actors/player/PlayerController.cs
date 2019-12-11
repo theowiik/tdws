@@ -2,7 +2,9 @@ using Godot;
 using tdws.actors.abstract_actor;
 using tdws.actors.player.holster;
 using tdws.objects;
+using tdws.objects.projectiles;
 using tdws.projectile_shooters;
+using tdws.projectile_shooters.abstract_projectile_shooter;
 using tdws.utils;
 using tdws.utils.state;
 
@@ -13,6 +15,9 @@ namespace tdws.actors.player
   /// </summary>
   public sealed class PlayerController : AbstractActor, IMovable, ICanPickup
   {
+    [Signal]
+    public delegate void ProjectileShooterChanged(AbstractProjectileShooter projectileShooter);
+
     private AnimationPlayer _animationPlayer;
     private Holster _holster;
 
@@ -52,6 +57,15 @@ namespace tdws.actors.player
         var rigidBody = collider as RigidBody2D;
         rigidBody?.ApplyCentralImpulse(-collision.Normal * Inertia);
       }
+    }
+
+    /// <summary>
+    ///   Emits the projectile shooter changed signal.
+    /// </summary>
+    private void EmitProjectileShooterChanged()
+    {
+      // Create a new getter to get something that isn't the interface?
+      EmitSignal(nameof(ProjectileShooterChanged), _holster.GetHolding() as Object);
     }
 
     public override void _Ready()
@@ -132,7 +146,11 @@ namespace tdws.actors.player
       if (next) _holster.NextWeapon();
       if (previous) _holster.PreviousWeapon();
 
-      if (next || previous) EquipHoldingProjectileShooter();
+      if (next || previous)
+      {
+        EquipHoldingProjectileShooter();
+        EmitProjectileShooterChanged();
+      }
     }
 
     /// <summary>

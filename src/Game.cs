@@ -2,8 +2,12 @@ using System;
 using Godot;
 using tdws.actors.abstract_actor;
 using tdws.actors.monsters;
+using tdws.actors.player;
 using tdws.interfacee;
+using tdws.objects.projectiles.abstract_projectile;
+using tdws.projectile_shooters;
 using tdws.projectile_shooters.abstract_projectile_shooter;
+using Object = Godot.Object;
 
 namespace tdws
 {
@@ -41,7 +45,24 @@ namespace tdws
       _player.Connect(nameof(AbstractActor.ChatAdded), _hud, nameof(HUD.AddChat));
 
       // Projectile signal
-//      Connect(nameof(ProjectileShooter.ProjectileAdded), this, nameof(OnProjectileAdded));
+      _player.Connect(nameof(PlayerController.ProjectileShooterChanged), this, nameof(OnProjectileShooterChanged));
+    }
+
+    /// <summary>
+    ///   Gets called when the players projectile shooter has been changed.
+    ///   Connects the...
+    ///   Does nothing if the projectile shooter is null.
+    /// </summary>
+    /// <param name="projectileShooter">
+    ///   The new projectile shooter.
+    /// </param>
+    private void OnProjectileShooterChanged(Object projectileShooter)
+    {
+      projectileShooter?.Connect(
+        nameof(AbstractProjectileShooter.ProjectileAdded),
+        this,
+        nameof(OnProjectileAdded)
+      );
     }
 
     /// <summary>
@@ -50,7 +71,7 @@ namespace tdws
     /// <param name="projectile">
     ///   The projectile node.
     /// </param>
-    private void OnProjectileAdded(Node projectile)
+    private void OnProjectileAdded(AbstractProjectile projectile)
     {
       if (projectile == null) return;
 

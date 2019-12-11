@@ -85,7 +85,7 @@ namespace tdws.objects.projectiles.abstract_projectile
     /// </exception>
     public void SetDirection(Vector2 direction)
     {
-      if (direction == null) throw new NullReferenceException("Direction can not be null.");
+      if (direction == null) throw new NullReferenceException("Direction cannot be null.");
 
       Direction = direction.Normalized();
     }
