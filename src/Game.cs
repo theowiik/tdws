@@ -21,13 +21,15 @@ namespace tdws
     private Sprite _crosshair;
     private HUD _hud;
     private AbstractActor _player;
+    private Vector2 _spawnPoint;
 
     public override void _Ready()
     {
       // Dungeon
-      var world = WorldGenerator.GenerateWorld();
-      WorldGenerator.PrintDungeon(world);
-      WorldGenerator.WorldToScene(world, this);
+      var worldGenerator = new WorldGenerator();
+      var world = worldGenerator.GenerateWorld();
+      worldGenerator.WorldToScene(world, this);
+      _spawnPoint = worldGenerator.SpawnPoint;
 
       // Camera
       _camera = GetNode("Camera") as Camera;
@@ -98,7 +100,7 @@ namespace tdws
     {
       if (_player == null) _player = CreatePlayer();
 
-      _player.GlobalPosition = new Vector2(30, 30);
+      _player.GlobalPosition = _spawnPoint;
       AddChild(_player);
     }
 
@@ -115,7 +117,7 @@ namespace tdws
 
       _camera.GetParent().RemoveChild(_camera); // fix..
       _player.AddChild(_camera);
-      _camera.SetGlobalPosition(Vector2.Zero);
+      _camera.SetPosition(Vector2.Zero);
     }
 
     /// <summary>

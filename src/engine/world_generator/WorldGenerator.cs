@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Text;
 using Godot;
@@ -8,20 +7,27 @@ namespace tdws.engine.world_generator
   /// <summary>
   ///   Util methods for generating dungeons.
   /// </summary>
-  public static class WorldGenerator
+  public class WorldGenerator
   {
+    public WorldGenerator()
+    {
+      SpawnPoint = new Vector2();
+    }
+
+    public Vector2 SpawnPoint { get; private set; }
+
     /// <summary>
     ///   Generates a dungeon.
     /// </summary>
     /// <returns>
     ///   Returns the dungeon as a matrix.
     /// </returns>
-    public static IEnumerable<IEnumerable<Room>> GenerateWorld()
+    public IEnumerable<IEnumerable<Room>> GenerateWorld()
     {
       var dungeon = new List<List<Room>>();
 
       var firstRow = new List<Room> {new Room(), null, new Room(), null, null};
-      var secondRow = new List<Room> {new Room(), new Room()};
+      var secondRow = new List<Room> {new Room(), new Room(true)};
       var thirdRow = new List<Room> {null, null, new Room(), new Room()};
 
       dungeon.Add(firstRow);
@@ -41,7 +47,7 @@ namespace tdws.engine.world_generator
     /// <param name="parent">
     ///   The node that contains the dungeon.
     /// </param>
-    public static void WorldToScene(IEnumerable<IEnumerable<Room>> world, Node2D parent)
+    public void WorldToScene(IEnumerable<IEnumerable<Room>> world, Node2D parent)
     {
       var baseRoom = GD.Load("res://src/levels/Room.tscn") as PackedScene;
 
@@ -73,7 +79,7 @@ namespace tdws.engine.world_generator
     /// <param name="width">The width of the room in tiles.</param>
     /// <param name="height">The height of the room in tiles.</param>
     /// <param name="tileSizeWidth">The width of one tile in pixels.</param>
-    private static void AddRoom(Room room, PackedScene baseRoom, Node parent, int colIndex, int rowIndex,
+    private void AddRoom(Room room, PackedScene baseRoom, Node parent, int colIndex, int rowIndex,
       int tileSizeWidth,
       int width, int height)
     {
@@ -86,9 +92,16 @@ namespace tdws.engine.world_generator
       tileMap.SetGlobalPosition(new Vector2(x, y));
       parent.AddChild(tileMap);
       parent.MoveChild(tileMap, 0);
+
+      // Set spawn point
+      if (room.Spawn)
+      {
+        SpawnPoint = new Vector2(x, y);
+      }
     }
 
-    public static void PrintDungeon(IEnumerable<IEnumerable<Room>> rooms)
+
+    public void PrintDungeon(IEnumerable<IEnumerable<Room>> rooms)
     {
       foreach (var row in rooms)
       {
