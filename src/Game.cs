@@ -3,6 +3,7 @@ using Godot;
 using tdws.actors.abstract_actor;
 using tdws.actors.monsters;
 using tdws.actors.player;
+using tdws.engine.world_generator;
 using tdws.interfacee;
 using tdws.objects.projectiles.abstract_projectile;
 using tdws.projectile_shooters;
@@ -23,6 +24,11 @@ namespace tdws
 
     public override void _Ready()
     {
+      // Dungeon
+      var world = WorldGenerator.GenerateWorld();
+      WorldGenerator.PrintDungeon(world);
+      WorldGenerator.WorldToScene(world, this);
+
       // Camera
       _camera = GetNode("Camera") as Camera;
 

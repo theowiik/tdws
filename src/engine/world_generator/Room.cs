@@ -17,6 +17,11 @@
       Y = y;
     }
 
+    public Room()
+    {
+      new Room(1, 1);
+    }
+
     public Room RoomAbove { get; set; }
     public Room RoomRight { get; set; }
     public Room RoomDown { get; set; }
