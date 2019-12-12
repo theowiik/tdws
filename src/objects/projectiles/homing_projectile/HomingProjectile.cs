@@ -16,13 +16,11 @@ namespace tdws.objects.projectiles.homing_projectile
     private const float TurnMultiplier = 0.3f;
 
     private Area2D _detectionArea;
-    private bool _hasTarget;
     private AbstractMonster _target;
 
     protected override void OverrideProperties()
     {
       _detectionArea = GetNode("DetectionArea") as Area2D;
-      _hasTarget = false;
     }
 
     public override void _Process(float delta)
