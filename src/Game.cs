@@ -5,6 +5,7 @@ using tdws.actors.monsters;
 using tdws.actors.player;
 using tdws.engine.world_generator;
 using tdws.interfacee;
+using tdws.objects.coin;
 using tdws.objects.projectiles.abstract_projectile;
 using tdws.projectile_shooters;
 using tdws.projectile_shooters.abstract_projectile_shooter;
@@ -23,21 +24,28 @@ namespace tdws
     private AbstractActor _player;
     private Vector2 _spawnPoint;
 
-    public override void _Ready()
+    private void InitCrosshair()
     {
-      // Dungeon
+      var crosshairScene = GD.Load("res://src/Crosshair.tscn") as PackedScene;
+      _crosshair = crosshairScene.Instance() as Sprite;
+      AddChild(_crosshair);
+    }
+
+    private void GenerateWorld()
+    {
       var worldGenerator = new WorldGenerator();
       var world = worldGenerator.GenerateWorld();
       worldGenerator.WorldToScene(world, this);
       _spawnPoint = worldGenerator.SpawnPoint;
+    }
+
+    public override void _Ready()
+    {
+      GenerateWorld();
+      InitCrosshair();
 
       // Camera
       _camera = GetNode("Camera") as Camera;
-
-      // Init crosshair
-      var crosshairScene = GD.Load("res://src/Crosshair.tscn") as PackedScene;
-      _crosshair = crosshairScene.Instance() as Sprite;
-      AddChild(_crosshair);
 
       // Hide the cursor
       Input.SetMouseMode(Input.MouseMode.Hidden);
