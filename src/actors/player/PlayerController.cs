@@ -83,7 +83,7 @@ namespace tdws.actors.player
       AnimationLoop();
       ShootLoop();
 
-      if (Input.IsActionJustPressed("debug"))
+      if (Input.IsActionPressed("debug"))
       {
         EmitSignal(nameof(CoinDropped), 10);
       }

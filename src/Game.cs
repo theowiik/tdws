@@ -75,6 +75,14 @@ namespace tdws
       {
         AddChildNode(coin);
         coin.SetGlobalPosition(_player.GlobalPosition);
+        var randomVector = new Vector2(
+                             (float) GD.RandRange(-1, 1),
+                             (float) GD.RandRange(-1, 1)
+                           ).Normalized() * 100;
+
+        coin.ApplyImpulse(
+          Vector2.Zero, randomVector
+        );
       }
     }
 

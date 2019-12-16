@@ -6,7 +6,7 @@ namespace tdws.objects.coin
   /// <summary>
   ///   A coin. TODO: Make it implement something like pickupable.
   /// </summary>
-  public class Coin : Area2D
+  public class Coin : RigidBody2D
   {
     private const int Value = 100;
 
@@ -18,6 +18,8 @@ namespace tdws.objects.coin
     /// </param>
     private void OnBodyEntered(object body)
     {
+      return;
+
       if (body is ICanPickup pickup)
       {
         pickup.PickupCoins(Value);
