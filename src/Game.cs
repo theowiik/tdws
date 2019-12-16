@@ -52,8 +52,22 @@ namespace tdws
       _player.Connect(nameof(AbstractActor.HealthChanged), _hud, nameof(HUD.HealthChanged));
       _player.Connect(nameof(AbstractActor.ChatAdded), _hud, nameof(HUD.AddChat));
 
+      // Coins
+      _player.Connect(nameof(AbstractActor.CoinDropped), this, nameof(OnCoinDropped));
+
       // Projectile signal
       _player.Connect(nameof(PlayerController.ProjectileShooterChanged), this, nameof(OnProjectileShooterChanged));
+    }
+
+    private void OnCoinDropped(int amount)
+    {
+      var coinScene = GD.Load("res://src/objects/coin/Coin.tscn") as PackedScene;
+
+      if (coinScene?.Instance() is Coin coin)
+      {
+        AddChildNode(coin);
+        coin.SetGlobalPosition(_player.GlobalPosition);
+      }
     }
 
     /// <summary>

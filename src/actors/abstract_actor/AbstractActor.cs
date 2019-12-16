@@ -12,6 +12,9 @@ namespace tdws.actors.abstract_actor
     public delegate void ChatAdded(string msg);
 
     [Signal]
+    public delegate void CoinDropped(int amount);
+
+    [Signal]
     public delegate void HealthChanged(int hp);
 
     private readonly PackedScene _deathEffect;

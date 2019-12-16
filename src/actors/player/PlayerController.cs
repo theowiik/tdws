@@ -82,6 +82,11 @@ namespace tdws.actors.player
       HolsterLoop();
       AnimationLoop();
       ShootLoop();
+
+      if (Input.IsActionJustPressed("debug"))
+      {
+        EmitSignal(nameof(CoinDropped), 10);
+      }
     }
 
     /// <summary>
