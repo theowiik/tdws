@@ -14,6 +14,7 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
     [Signal]
     public delegate void ProjectileAdded(AbstractProjectile projectile);
 
+    private AudioStreamPlayer2D _audioPlayer;
     private Position2D _output;
     private Timer _timer;
     protected int Ammo;
@@ -35,6 +36,9 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
 
     public void AppendProjectiles(AbstractActor actor = null)
     {
+      _audioPlayer.Play(0);
+      GD.Print(_audioPlayer.Playing);
+
       for (var i = 0; i < ProjectilesPerShot; i++)
         if (Projectile.Instance() is AbstractProjectile projectile)
         {
@@ -90,6 +94,10 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
     public override void _Ready()
     {
       _output = GetNode("Output") as Position2D;
+      _audioPlayer = new AudioStreamPlayer2D();
+      var audioStream = GD.Load("res://assets/sfx/shoot.ogg") as AudioStream;
+      GD.Print(audioStream.GetLength());
+      _audioPlayer.SetStream(audioStream);
       InitStandardValues();
       OverrideProperties();
     }
