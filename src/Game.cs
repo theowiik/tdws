@@ -69,28 +69,15 @@ namespace tdws
       if (projectileShooter == null) return;
 
       var alreadyConnected = projectileShooter.IsConnected(nameof(AbstractProjectileShooter.ProjectileAdded), this,
-        nameof(OnProjectileAdded));
+        nameof(AddChildNode));
 
       if (alreadyConnected) return;
 
       projectileShooter.Connect(
         nameof(AbstractProjectileShooter.ProjectileAdded),
         this,
-        nameof(OnProjectileAdded)
+        nameof(AddChildNode)
       );
-    }
-
-    /// <summary>
-    ///   Adds a projectile. Does nothing if the provided projectile is null.
-    /// </summary>
-    /// <param name="projectile">
-    ///   The projectile node.
-    /// </param>
-    private void OnProjectileAdded(AbstractProjectile projectile)
-    {
-      if (projectile == null) return;
-
-      AddChild(projectile);
     }
 
     /// <summary>
@@ -163,6 +150,19 @@ namespace tdws
 
       if (@event.IsActionPressed("toggle_fullscreen"))
         ToggleFullscreen();
+    }
+
+    /// <summary>
+    ///   Adds a child to the game scene. Does nothing if the node is null.
+    /// </summary>
+    /// <param name="node">
+    ///   The node to add.
+    /// </param>
+    private void AddChildNode(Node node)
+    {
+      if (node == null) return;
+
+      AddChild(node);
     }
 
     /// <summary>
