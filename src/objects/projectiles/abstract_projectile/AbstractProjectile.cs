@@ -114,12 +114,13 @@ namespace tdws.objects.projectiles.abstract_projectile
     /// </param>
     private void OnProjectileBodyEntered(object body)
     {
-      return;
       if (body is IDamageable damageable)
-      {
         damageable.TakeDamage(this);
-        Destroy();
-      }
+
+      if (body is RigidBody2D pushable)
+        pushable.ApplyImpulse(Vector2.Zero, Direction * 50);
+
+      Destroy();
     }
   }
 }
