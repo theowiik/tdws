@@ -1,3 +1,4 @@
+using System.Media;
 using Godot;
 using tdws.objects;
 
@@ -40,13 +41,13 @@ namespace tdws.actors.abstract_actor
 
     public void Die()
     {
-      QueueFree();
+//      QueueFree();
 
-      if (!(_deathEffect.Instance() is Particles2D particles))
-        return;
-
-      particles.SetGlobalPosition(GetGlobalPosition());
-      GetParent().AddChild(particles);
+      if (_deathEffect.Instance() is Particles2D particles)
+      {
+        particles.SetGlobalPosition(GetGlobalPosition());
+        GetParent().AddChild(particles);
+      }
     }
 
     /// <summary>
