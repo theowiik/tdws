@@ -94,12 +94,8 @@ namespace tdws.engine.world_generator
       parent.MoveChild(tileMap, 0);
 
       // Set spawn point
-      if (room.Spawn)
-      {
-        SpawnPoint = new Vector2(x, y);
-      }
+      if (room.Spawn) SpawnPoint = new Vector2(x, y);
     }
-
 
     public void PrintDungeon(IEnumerable<IEnumerable<Room>> rooms)
     {
