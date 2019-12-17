@@ -12,19 +12,18 @@ namespace tdws.interfacee
     private RichTextLabel _health;
 
     /// <summary>
-    ///   Adds a chat message in a new row. Does nothing if the provided message is null or empty.
+    ///   Adds a chat message on a new row. Does nothing if the provided message is null or empty.
     /// </summary>
     /// <param name="message">
     ///   The message to add.
     /// </param>
     public void AddChat(string message)
     {
-      ClearChat(); // TODO: Remove. Only here during dev.
       AddChat(message, Colors.White); // Ineffective since the color is a struct?
     }
 
     /// <summary>
-    ///   Adds a chat message in a new row. Does nothing if the provided message is null or empty.
+    ///   Adds a chat message on a new row. Does nothing if the provided message is null or empty.
     /// </summary>
     /// <param name="message">
     ///   The message to add.
@@ -37,6 +36,7 @@ namespace tdws.interfacee
       if (message == null) return;
 
       _chat.AddText(message);
+      _chat.Newline();
     }
 
     /// <summary>
@@ -56,8 +56,9 @@ namespace tdws.interfacee
       _health = GetNode("Health") as RichTextLabel;
       _chat = GetNode("Chat") as RichTextLabel;
 
-      SetHealth(666);
-      SetCoins(123);
+      SetHealth(-100);
+      SetCoins(-100);
+      ClearChat();
     }
 
     /// <summary>
@@ -68,7 +69,7 @@ namespace tdws.interfacee
     /// </param>
     private void SetHealth(int amount)
     {
-      _health.SetText(amount.ToString());
+      _health.SetText(amount + " hp");
     }
 
     /// <summary>
@@ -79,7 +80,7 @@ namespace tdws.interfacee
     /// </param>
     private void SetCoins(int amount)
     {
-      _coins.SetText(amount.ToString());
+      _coins.SetText(amount + " coins");
     }
 
     /// <summary>
