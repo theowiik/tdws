@@ -80,8 +80,8 @@ tracks/0/keys = {
 "values": [ 6, 7 ]
 }
 
-[node name="Player" index="0" instance=ExtResource( 1 )]
-collision_mask = 28
+[node name="Player" instance=ExtResource( 1 )]
+collision_mask = 20
 script = ExtResource( 2 )
 
 [node name="Sprite" parent="." index="0"]
