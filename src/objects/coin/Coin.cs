@@ -18,8 +18,7 @@ namespace tdws.objects.coin
     /// </param>
     private void OnBodyEntered(object body)
     {
-      return;
-
+      GD.Print("ENTERED COIN");
       if (body is ICanPickup pickup)
       {
         pickup.PickupCoins(Value);

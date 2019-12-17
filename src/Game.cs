@@ -17,11 +17,11 @@ namespace tdws
   public class Game : Node2D
   {
     private Camera _camera;
+    private PackedScene _coinScene;
     private Sprite _crosshair;
     private HUD _hud;
     private AbstractActor _player;
     private Vector2 _spawnPoint;
-    private PackedScene _coinScene;
 
     /// <summary>
     ///   Loads the crosshair scene and adds it as a child.
@@ -80,18 +80,17 @@ namespace tdws
     /// <param name="amount">
     ///   The amount of coins to drop.
     /// </param>
-    private void OnCoinDropped(int amount)
+    /// <param name="position">
+    ///   The coordinate to drop the coins at.
+    /// </param>
+    private void OnCoinDropped(int amount, Vector2 position)
     {
-      GD.Print("DROPPING COINS");
-      return;
-
-      for (int i = 0; i < amount; i++)
+      for (var i = 0; i < amount; i++)
         if (_coinScene.Instance() is Coin coin)
         {
-          AddChildNode(coin);
-          coin.GlobalPosition = _player.GlobalPosition;
+          CallDeferred("add_child", coin); // Come on Godot.. >:(
+          coin.GlobalPosition = position;
           var randomVector = new Vector2((float) GD.RandRange(-1, 1), (float) GD.RandRange(-1, 1)).Normalized() * 100;
-
           coin.ApplyImpulse(Vector2.Zero, randomVector);
         }
     }

@@ -12,7 +12,7 @@ namespace tdws.actors.abstract_actor
     public delegate void ChatAdded(string msg);
 
     [Signal]
-    public delegate void CoinDropped(int amount);
+    public delegate void CoinDropped(int amount, Vector2 position);
 
     [Signal]
     public delegate void HealthChanged(int hp);
@@ -40,8 +40,8 @@ namespace tdws.actors.abstract_actor
 
     public void Die()
     {
-      EmitSignal(nameof(CoinDropped), 3);
-//      QueueFree();
+      EmitSignal(nameof(CoinDropped), 3, GlobalPosition);
+      QueueFree();
 
 //      if (_deathEffect.Instance() is Particles2D particles)
 //      {
