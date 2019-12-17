@@ -1,3 +1,7 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using tdws.actors.abstract_actor;
 using tdws.actors.player.holster;
@@ -6,6 +10,7 @@ using tdws.projectile_shooters;
 using tdws.projectile_shooters.abstract_projectile_shooter;
 using tdws.utils;
 using tdws.utils.state;
+using Object = Godot.Object;
 
 namespace tdws.actors.player
 {
@@ -19,6 +24,12 @@ namespace tdws.actors.player
 
     private AnimationPlayer _animationPlayer;
     private Holster _holster;
+
+    /// <summary>
+    ///   Contains a list of tuples where index 0 contains the key scan code. And index 1 contains the corresponding
+    ///   inventory index.
+    /// </summary>
+    private List<Tuple<int, int>> _keyboardIndex;
 
     /// <summary>
     ///   The node that projectiles should be attached to.
@@ -74,6 +85,13 @@ namespace tdws.actors.player
       _holster = GetNode("Holster") as Holster;
       _stateMachine = GetNode("PlayerStateMachine") as StateMachine;
       _stateMachine.Start();
+      _keyboardIndex = new List<Tuple<int, int>>
+      {
+        new Tuple<int, int>((int) KeyList.Key1, 0),
+        new Tuple<int, int>((int) KeyList.Key2, 1),
+        new Tuple<int, int>((int) KeyList.Key3, 2),
+        new Tuple<int, int>((int) KeyList.Key4, 3),
+      };
     }
 
     public override void _Process(float delta)
@@ -141,13 +159,28 @@ namespace tdws.actors.player
     /// </summary>
     private void HolsterLoop()
     {
-      var next = Input.IsActionJustReleased("weapon_next");
-      var previous = Input.IsActionJustReleased("weapon_previous");
+      var change = false;
 
-      if (next) _holster.NextWeapon();
-      if (previous) _holster.PreviousWeapon();
+      if (Input.IsActionJustReleased("weapon_next"))
+      {
+        _holster.NextWeapon();
+        change = true;
+      }
+      else if (Input.IsActionJustReleased("weapon_previous"))
+      {
+        _holster.PreviousWeapon();
+        change = true;
+      }
+      else
+      {
+        foreach (var tuple in _keyboardIndex.Where(tuple => Input.IsKeyPressed(tuple.Item1)))
+        {
+          _holster.Select(tuple.Item2);
+          change = true;
+        }
+      }
 
-      if (next || previous)
+      if (change)
       {
         EquipHoldingProjectileShooter();
         EmitProjectileShooterChanged();

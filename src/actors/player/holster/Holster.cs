@@ -11,6 +11,7 @@ namespace tdws.actors.player.holster
   public class Holster : Node
   {
     private int _inventoryIndex;
+    private int _lastEquippedIndex;
     private int _maxInventorySize;
     private IProjectileShooter[] _projectileShooters;
 
@@ -24,6 +25,19 @@ namespace tdws.actors.player.holster
       Add(ProjectileShooterFactory.CreateAssaultRifle());
       Add(ProjectileShooterFactory.CreateShotgun());
       Add(ProjectileShooterFactory.CreateWonkyGun());
+    }
+
+    /// <summary>
+    ///   Sets the _inventoryIndex to the given index.
+    ///   Makes sure it is in a legal range.
+    /// </summary>
+    /// <param name="i">
+    ///   The index to select.
+    /// </param>
+    public void Select(int i)
+    {
+      _inventoryIndex = i;
+      SetClosestLegalInventoryIndex();
     }
 
     /// <summary>
