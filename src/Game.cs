@@ -21,6 +21,7 @@ namespace tdws
     private HUD _hud;
     private AbstractActor _player;
     private Vector2 _spawnPoint;
+    private PackedScene _coinScene;
 
     /// <summary>
     ///   Loads the crosshair scene and adds it as a child.
@@ -66,6 +67,7 @@ namespace tdws
 
       // Coins
       _player.Connect(nameof(AbstractActor.CoinDropped), this, nameof(OnCoinDropped));
+      _coinScene = GD.Load("res://src/objects/coin/Coin.tscn") as PackedScene;
 
       // Projectile signal
       _player.Connect(nameof(PlayerController.ProjectileShooterChanged), this, nameof(OnProjectileShooterChanged));
@@ -80,16 +82,18 @@ namespace tdws
     /// </param>
     private void OnCoinDropped(int amount)
     {
-      var coinScene = GD.Load("res://src/objects/coin/Coin.tscn") as PackedScene;
+      GD.Print("DROPPING COINS");
+      return;
 
-      if (coinScene?.Instance() is Coin coin)
-      {
-        AddChildNode(coin);
-        coin.SetGlobalPosition(_player.GlobalPosition);
-        var randomVector = new Vector2((float) GD.RandRange(-1, 1), (float) GD.RandRange(-1, 1)).Normalized() * 100;
+      for (int i = 0; i < amount; i++)
+        if (_coinScene.Instance() is Coin coin)
+        {
+          AddChildNode(coin);
+          coin.GlobalPosition = _player.GlobalPosition;
+          var randomVector = new Vector2((float) GD.RandRange(-1, 1), (float) GD.RandRange(-1, 1)).Normalized() * 100;
 
-        coin.ApplyImpulse(Vector2.Zero, randomVector);
-      }
+          coin.ApplyImpulse(Vector2.Zero, randomVector);
+        }
     }
 
     /// <summary>
@@ -216,7 +220,8 @@ namespace tdws
     {
       var skeleton = MonsterFactory.CreateSkeleton();
       AddChild(skeleton);
-      skeleton.SetGlobalPosition(new Vector2(10, 10));
+      skeleton.SetGlobalPosition(new Vector2(20, 20));
+      skeleton.Connect(nameof(AbstractActor.CoinDropped), this, nameof(OnCoinDropped));
     }
   }
 }
