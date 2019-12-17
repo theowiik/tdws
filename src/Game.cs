@@ -6,8 +6,6 @@ using tdws.actors.player;
 using tdws.engine.world_generator;
 using tdws.interfacee;
 using tdws.objects.coin;
-using tdws.objects.projectiles.abstract_projectile;
-using tdws.projectile_shooters;
 using tdws.projectile_shooters.abstract_projectile_shooter;
 using Object = Godot.Object;
 
@@ -43,6 +41,7 @@ namespace tdws
     {
       GenerateWorld();
       InitCrosshair();
+      _hud = GetNode("CanvasLayer/HUD") as HUD;
 
       // Camera
       _camera = GetNode("Camera") as Camera;
@@ -56,7 +55,6 @@ namespace tdws
       AddCameraToPlayer();
 
       // HUD
-      _hud = GetNode("HUD") as HUD;
       _player.Connect(nameof(AbstractActor.HealthChanged), _hud, nameof(HUD.HealthChanged));
       _player.Connect(nameof(AbstractActor.ChatAdded), _hud, nameof(HUD.AddChat));
 
