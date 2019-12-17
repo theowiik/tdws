@@ -40,13 +40,14 @@ namespace tdws.actors.abstract_actor
 
     public void Die()
     {
+      EmitSignal(nameof(CoinDropped), 3);
 //      QueueFree();
 
-      if (_deathEffect.Instance() is Particles2D particles)
-      {
-        particles.SetGlobalPosition(GetGlobalPosition());
-        GetParent().AddChild(particles);
-      }
+//      if (_deathEffect.Instance() is Particles2D particles)
+//      {
+//        particles.SetGlobalPosition(GetGlobalPosition());
+//        GetParent().AddChild(particles);
+//      }
     }
 
     /// <summary>
