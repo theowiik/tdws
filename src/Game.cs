@@ -22,6 +22,9 @@ namespace tdws
     private AbstractActor _player;
     private Vector2 _spawnPoint;
 
+    /// <summary>
+    ///   Loads the crosshair scene and adds it as a child.
+    /// </summary>
     private void InitCrosshair()
     {
       var crosshairScene = GD.Load("res://src/Crosshair.tscn") as PackedScene;
@@ -29,6 +32,9 @@ namespace tdws
       AddChild(_crosshair);
     }
 
+    /// <summary>
+    ///   Generates the world.
+    /// </summary>
     private void GenerateWorld()
     {
       var worldGenerator = new WorldGenerator();
@@ -65,6 +71,13 @@ namespace tdws
       _player.Connect(nameof(PlayerController.ProjectileShooterChanged), this, nameof(OnProjectileShooterChanged));
     }
 
+    /// <summary>
+    ///   Gets called when coins are dropped.
+    ///   Adds coins to the scene and shoots them out at a random direction.
+    /// </summary>
+    /// <param name="amount">
+    ///   The amount of coins to drop.
+    /// </param>
     private void OnCoinDropped(int amount)
     {
       var coinScene = GD.Load("res://src/objects/coin/Coin.tscn") as PackedScene;
@@ -73,14 +86,9 @@ namespace tdws
       {
         AddChildNode(coin);
         coin.SetGlobalPosition(_player.GlobalPosition);
-        var randomVector = new Vector2(
-                             (float) GD.RandRange(-1, 1),
-                             (float) GD.RandRange(-1, 1)
-                           ).Normalized() * 100;
+        var randomVector = new Vector2((float) GD.RandRange(-1, 1), (float) GD.RandRange(-1, 1)).Normalized() * 100;
 
-        coin.ApplyImpulse(
-          Vector2.Zero, randomVector
-        );
+        coin.ApplyImpulse(Vector2.Zero, randomVector);
       }
     }
 
