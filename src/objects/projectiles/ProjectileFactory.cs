@@ -2,7 +2,7 @@
 
 namespace tdws.objects.projectiles
 {
-  public class ProjectileFactory
+  public static class ProjectileFactory
   {
     /// <summary>
     ///   Creates and returns a standard bullet.
