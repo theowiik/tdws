@@ -8,7 +8,6 @@ namespace tdws.actors
   public class Stats : ILiving
   {
     private readonly int _maxHp;
-    public int Hp { get; private set; }
 
 
     /// <param name="hp">The health points.</param>
@@ -18,6 +17,8 @@ namespace tdws.actors
       Hp = hp;
       _maxHp = maxHp;
     }
+
+    public int Hp { get; private set; }
 
     public int Coins { get; set; }
 

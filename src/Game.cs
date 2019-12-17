@@ -122,7 +122,7 @@ namespace tdws
     /// <summary>
     ///   Add the camera to the player node. Player and camera must exist.
     /// </summary>
-    /// <exception cref="NullReferenceException">
+    /// <exception cref="System.NullReferenceException">
     ///   If player or camera is null.
     /// </exception>
     private void AddCameraToPlayer()
@@ -141,10 +141,10 @@ namespace tdws
     /// <returns>
     ///   The player.
     /// </returns>
-    /// <exception cref="Exception">
+    /// <exception cref="System.Exception">
     ///   If the player scene could not be found.
     /// </exception>
-    /// <exception cref="Exception">
+    /// <exception cref="System.Exception">
     ///   If the player scene is a not a actor.
     /// </exception>
     private AbstractActor CreatePlayer()

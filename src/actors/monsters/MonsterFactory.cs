@@ -1,5 +1,5 @@
-﻿using tdws.actors.monsters.abstract_monster;
-using Godot;
+﻿using Godot;
+using tdws.actors.monsters.abstract_monster;
 
 namespace tdws.actors.monsters
 {

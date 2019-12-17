@@ -36,7 +36,7 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
 
     public void AppendProjectiles(AbstractActor actor = null)
     {
-      _audioPlayer.Play(0);
+      _audioPlayer.Play();
       GD.Print(_audioPlayer.Playing);
 
       for (var i = 0; i < ProjectilesPerShot; i++)

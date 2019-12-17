@@ -2,7 +2,6 @@ using Godot;
 using tdws.actors.abstract_actor;
 using tdws.actors.player.holster;
 using tdws.objects;
-using tdws.objects.projectiles;
 using tdws.projectile_shooters;
 using tdws.projectile_shooters.abstract_projectile_shooter;
 using tdws.utils;
@@ -83,10 +82,7 @@ namespace tdws.actors.player
       AnimationLoop();
       ShootLoop();
 
-      if (Input.IsActionPressed("debug"))
-      {
-        EmitSignal(nameof(CoinDropped), 10);
-      }
+      if (Input.IsActionPressed("debug")) EmitSignal(nameof(CoinDropped), 10);
     }
 
     /// <summary>
