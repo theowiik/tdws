@@ -48,6 +48,7 @@ namespace tdws.actors.player
     {
       if (projectileShooter == null) return;
       _holster.Add(projectileShooter);
+      EmitChatAdded("Picked up " + projectileShooter.GetProjectileShooterName());
     }
 
     public void PickupCoins(int amount)

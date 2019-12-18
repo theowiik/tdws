@@ -36,6 +36,11 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
       PrintAmmo();
     }
 
+    public string GetProjectileShooterName()
+    {
+      return "test";
+    }
+
     public void AppendProjectiles(AbstractActor actor = null)
     {
       _audioPlayer.Play();

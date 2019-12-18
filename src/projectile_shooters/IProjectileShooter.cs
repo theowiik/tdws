@@ -25,5 +25,13 @@ namespace tdws.projectile_shooters
     ///   Reload the projectile shooter.
     /// </summary>
     void Reload();
+
+    /// <summary>
+    ///   Returns the name of the projectile shooter.
+    /// </summary>
+    /// <returns>
+    ///   The name of the projectile shooter.
+    /// </returns>
+    string GetProjectileShooterName();
   }
 }
