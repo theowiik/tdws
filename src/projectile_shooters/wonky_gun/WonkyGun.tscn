@@ -9,8 +9,8 @@ scale = Vector2( 1, 1 )
 texture = ExtResource( 2 )
 vframes = 6
 hframes = 8
-frame = 40
+frame = 36
 script = ExtResource( 3 )
 
 [node name="Output" parent="." index="1"]
-position = Vector2( 2.6982, 0 )
+position = Vector2( 8.23823, -0.384726 )
