@@ -165,8 +165,8 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
       var mousePos = GetGlobalMousePosition();
 
       return new Vector2(
-        mousePos.x - _output.GlobalPosition.x,
-        mousePos.y - _output.GlobalPosition.y
+        mousePos.x - GlobalPosition.x,
+        mousePos.y - GlobalPosition.y
       ).Normalized();
     }
   }
