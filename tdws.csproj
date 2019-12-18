@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C6565ACC-049C-45E0-AB6A-E7FD50DCE4F3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <OutputPath>.mono\temp\bin\$(Configuration)</OutputPath>
+    <RootNamespace>tdws</RootNamespace>
+    <AssemblyName>tdws</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <BaseIntermediateOutputPath>.mono\temp\obj</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\$(Configuration)</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>portable</DebugType>
+    <Optimize>true</Optimize>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Tools|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TOOLS;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GodotSharp">
+      <HintPath>$(ProjectDir)\.mono\assemblies\GodotSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GodotSharpEditor" Condition=" '$(Configuration)' == 'Tools' ">
+      <HintPath>$(ProjectDir)\.mono\assemblies\GodotSharpEditor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\actors\abstract_actor\AbstractActor.cs" />
+    <Compile Include="src\actors\monsters\abstract_monster\AbstractMonster.cs" />
+    <Compile Include="src\actors\ICanPickup.cs" />
+    <Compile Include="src\actors\IDamageable.cs" />
+    <Compile Include="src\actors\ILiving.cs" />
+    <Compile Include="src\actors\monsters\MonsterFactory.cs" />
+    <Compile Include="src\actors\player\holster\Holster.cs" />
+    <Compile Include="src\actors\player\IMovable.cs" />
+    <Compile Include="src\actors\player\PlayerController.cs" />
+    <Compile Include="src\actors\player\PlayerStateMachine.cs" />
+    <Compile Include="src\actors\player\states\motion\in_air\Jump.cs" />
+    <Compile Include="src\actors\player\states\motion\Motion.cs" />
+    <Compile Include="src\actors\player\states\motion\on_ground\OnGround.cs" />
+    <Compile Include="src\actors\player\states\motion\on_ground\Walk.cs" />
+    <Compile Include="src\actors\Stats.cs" />
+    <Compile Include="src\Camera.cs" />
+    <Compile Include="src\engine\ILevel.cs" />
+    <Compile Include="src\engine\IObjectPool.cs" />
+    <Compile Include="src\engine\ProjectilePool.cs" />
+    <Compile Include="src\engine\world_generator\Room.cs" />
+    <Compile Include="src\engine\world_generator\WorldGenerator.cs" />
+    <Compile Include="src\Game.cs" />
+    <Compile Include="src\interfacee\HUD.cs" />
+    <Compile Include="src\objects\box\Box.cs" />
+    <Compile Include="src\objects\coin\Coin.cs" />
+    <Compile Include="src\objects\coin\IPickupable.cs" />
+    <Compile Include="src\objects\crate\Crate.cs" />
+    <Compile Include="src\objects\IDamageSource.cs" />
+    <Compile Include="src\objects\projectiles\abstract_projectile\AbstractProjectile.cs" />
+    <Compile Include="src\objects\projectiles\bullet\Bullet.cs" />
+    <Compile Include="src\objects\projectiles\homing_projectile\HomingProjectile.cs" />
+    <Compile Include="src\objects\projectiles\ProjectileFactory.cs" />
+    <Compile Include="src\objects\projectiles\IProjectile.cs" />
+    <Compile Include="src\objects\projectiles\wonky_projectile\WonkyProjectile.cs" />
+    <Compile Include="src\particles\DeathEffect.cs" />
+    <Compile Include="src\projectile_shooters\abstract_projectile_shooter\AbstractProjectileShooter.cs" />
+    <Compile Include="src\projectile_shooters\alien_gun\AlienGun.cs" />
+    <Compile Include="src\projectile_shooters\assault_rifle\AssaultRifle.cs" />
+    <Compile Include="src\projectile_shooters\shotgun\Shotgun.cs" />
+    <Compile Include="src\projectile_shooters\wonky_gun\WonkyGun.cs" />
+    <Compile Include="src\utils\Directions.cs" />
+    <Compile Include="src\utils\DirectionService.cs" />
+    <Compile Include="src\utils\state\IState.cs" />
+    <Compile Include="src\projectile_shooters\ProjectileShooterFactory.cs" />
+    <Compile Include="src\projectile_shooters\IProjectileShooter.cs" />
+    <Compile Include="src\utils\state\StateMachine.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\actors\monsters\skeleton" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
