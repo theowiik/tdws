@@ -104,16 +104,20 @@ namespace tdws.actors.player
     }
 
     /// <summary>
-    ///   Checks if the player wants to shoot.
+    ///   Checks if the player wants to shoot and/or reload.
     /// </summary>
     private void ShootLoop()
     {
       if (Input.IsActionPressed("shoot"))
       {
         var p = _holster.GetHolding();
-        if (p == null) return;
+        p?.Shoot(this);
+      }
 
-        p.Shoot(this);
+      if (Input.IsActionPressed("reload"))
+      {
+        var p = _holster.GetHolding();
+        p?.Reload();
       }
     }
 
@@ -124,6 +128,8 @@ namespace tdws.actors.player
     {
       var direction = DirectionService.VelocityToDirection(_velocity);
       PlayAnimation(direction);
+
+      List<int> hello = new List<int>();
     }
 
     /// <summary>

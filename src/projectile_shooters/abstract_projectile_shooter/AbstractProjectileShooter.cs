@@ -32,6 +32,8 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
 
     public void Reload()
     {
+      Ammo = MagSize; // infinite ammo atm.
+      PrintAmmo();
     }
 
     public void AppendProjectiles(AbstractActor actor = null)
@@ -48,18 +50,15 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
         }
     }
 
-    public void Shoot(AbstractActor actorSource)
+    public void Shoot(AbstractActor actorSource = null)
     {
       if (CanShoot())
       {
         AppendProjectiles(actorSource);
         StartShootDelay();
+        Ammo--;
+        PrintAmmo();
       }
-    }
-
-    public void Shoot()
-    {
-      Shoot(null);
     }
 
     /// <summary>
@@ -75,7 +74,8 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
     /// </summary>
     private bool CanShoot()
     {
-      return _timer?.IsStopped() ?? false;
+      var timerIsStopped = _timer?.IsStopped() ?? false;
+      return timerIsStopped && Ammo > 0;
     }
 
     /// <summary>
@@ -111,7 +111,7 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
       _timer.OneShot = true;
       SecondsBetweenShots = 0.4f;
       MagSize = 20;
-      Ammo = 300;
+      Ammo = MagSize;
       ProjectilesPerShot = 8;
       ProjectileShooterName = "Abstract Projectile Shooter";
       MaxOffsetAngle = 3;
@@ -125,6 +125,11 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
     public override void _Process(float delta)
     {
       RotationLoop();
+    }
+
+    private void PrintAmmo()
+    {
+      GD.Print(Ammo + "/" + MagSize);
     }
 
     /// <summary>

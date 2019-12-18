@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using Godot;
 using tdws.actors.abstract_actor;
 using tdws.actors.monsters;
@@ -205,6 +206,14 @@ namespace tdws
     }
 
     /// <summary>
+    ///   Gets called when a enemy dies.
+    /// </summary>
+    private void OnDied()
+    {
+      SpawnEnemy();
+    }
+
+    /// <summary>
     ///   Toggles the fullscreen.
     /// </summary>
     private static void ToggleFullscreen()
@@ -218,9 +227,10 @@ namespace tdws
     private void SpawnEnemy()
     {
       var skeleton = MonsterFactory.CreateSkeleton();
-      AddChild(skeleton);
+      CallDeferred("add_child", skeleton);
       skeleton.SetGlobalPosition(new Vector2(20, 20));
       skeleton.Connect(nameof(AbstractActor.CoinDropped), this, nameof(OnCoinDropped));
+      skeleton.Connect(nameof(AbstractActor.Died), this, nameof(OnDied));
     }
   }
 }

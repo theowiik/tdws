@@ -10,12 +10,7 @@ namespace tdws.projectile_shooters
     /// <param name="actorSource">
     ///   The actor that is responsible for the projectile shot.
     /// </param>
-    void Shoot(AbstractActor actorSource);
-
-    /// <summary>
-    ///   Shoots a projectile and decreases ammo and other relevant stuff.
-    /// </summary>
-    void Shoot();
+    void Shoot(AbstractActor actorSource = null);
 
     /// <summary>
     ///   Adds projectiles.

@@ -16,7 +16,7 @@ namespace tdws.objects.coin
     /// <param name="body">
     ///   The body that entered the coin.
     /// </param>
-    private void OnBodyEntered(object body)
+    private void OnPickupAreaBodyEntered(object body)
     {
       GD.Print("ENTERED COIN");
       if (body is ICanPickup pickup)

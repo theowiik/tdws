@@ -15,6 +15,9 @@ namespace tdws.actors.abstract_actor
     public delegate void CoinDropped(int amount, Vector2 position);
 
     [Signal]
+    public delegate void Died();
+
+    [Signal]
     public delegate void HealthChanged(int hp);
 
     private readonly PackedScene _deathEffect;
@@ -41,6 +44,7 @@ namespace tdws.actors.abstract_actor
     public void Die()
     {
       EmitSignal(nameof(CoinDropped), 3, GlobalPosition);
+      EmitSignal(nameof(Died));
       QueueFree();
 
 //      if (_deathEffect.Instance() is Particles2D particles)
