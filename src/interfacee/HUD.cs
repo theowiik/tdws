@@ -11,6 +11,11 @@ namespace tdws.interfacee
     private RichTextLabel _coins;
     private RichTextLabel _health;
 
+    public void OnCoinsChanged(int amount)
+    {
+      SetCoins(amount);
+    }
+
     /// <summary>
     ///   Adds a chat message on a new row. Does nothing if the provided message is null or empty.
     /// </summary>

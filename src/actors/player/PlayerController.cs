@@ -53,6 +53,7 @@ namespace tdws.actors.player
     public void PickupCoins(int amount)
     {
       Stats.Coins += amount;
+      EmitSignal(nameof(AbstractActor.CoinsChanged), Stats.Coins);
     }
 
     void IMovable.Move(Vector2 velocity)

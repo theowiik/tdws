@@ -8,7 +8,7 @@ namespace tdws.objects.coin
   /// </summary>
   public class Coin : RigidBody2D
   {
-    private const int Value = 100;
+    private const int Value = 10;
 
     /// <summary>
     ///   Is called when a body enters the coin.
@@ -18,7 +18,6 @@ namespace tdws.objects.coin
     /// </param>
     private void OnPickupAreaBodyEntered(object body)
     {
-      GD.Print("ENTERED COIN");
       if (body is ICanPickup pickup)
       {
         pickup.PickupCoins(Value);

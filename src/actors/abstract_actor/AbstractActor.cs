@@ -20,6 +20,9 @@ namespace tdws.actors.abstract_actor
     [Signal]
     public delegate void HealthChanged(int hp);
 
+    [Signal]
+    public delegate void CoinsChanged(int coins);
+
     private readonly PackedScene _deathEffect;
     protected Stats Stats;
 

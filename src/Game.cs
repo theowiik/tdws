@@ -68,6 +68,7 @@ namespace tdws
 
       // Coins
       _player.Connect(nameof(AbstractActor.CoinDropped), this, nameof(OnCoinDropped));
+      _player.Connect(nameof(AbstractActor.CoinsChanged), _hud, nameof(HUD.OnCoinsChanged));
       _coinScene = GD.Load("res://src/objects/coin/Coin.tscn") as PackedScene;
 
       // Projectile signal
