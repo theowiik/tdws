@@ -10,7 +10,7 @@ namespace tdws.actors.monsters.abstract_monster
   public abstract class AbstractMonster : AbstractActor, IDamageSource
   {
     /// <summary>
-    ///   The time the monsters will chase their target (in seconds).
+    ///   The time the monsters will chase their target (in seconds) while they are outside their range.
     /// </summary>
     private const int ChaseTime = 3;
 

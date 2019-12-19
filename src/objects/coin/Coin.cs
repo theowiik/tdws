@@ -9,6 +9,7 @@ namespace tdws.objects.coin
   public class Coin : RigidBody2D
   {
     private const int Value = 10;
+    private bool _pickupable = true;
 
     /// <summary>
     ///   Is called when a body enters the coin.
@@ -18,11 +19,31 @@ namespace tdws.objects.coin
     /// </param>
     private void OnPickupAreaBodyEntered(object body)
     {
+      if (!_pickupable) return;
+
       if (body is ICanPickup pickup)
       {
+        _pickupable = false;
         pickup.PickupCoins(Value);
-        QueueFree();
+        ((AudioStreamPlayer) GetNode("PickupPlayer")).Play();
+        Hide();
       }
+    }
+
+    /// <summary>
+    ///   Remove the coin only when the audio is finished playing.
+    /// </summary>
+    public void OnPickupPlayerFinished()
+    {
+      QueueFree();
+    }
+
+    /// <summary>
+    ///   Hides the coins.
+    /// </summary>
+    private void Hide()
+    {
+      GetNode("Sprite").QueueFree();
     }
   }
 }
