@@ -37,6 +37,8 @@ namespace tdws.actors.abstract_actor
 
     public void TakeDamage(IDamageSource damageSource)
     {
+      if (Stats.IsDead()) return;
+
       Stats.TakeDamage(damageSource.GetDamage());
       HandleDamage(damageSource);
       EmitHealthChanged();
