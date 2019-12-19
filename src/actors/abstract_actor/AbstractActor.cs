@@ -15,13 +15,13 @@ namespace tdws.actors.abstract_actor
     public delegate void CoinDropped(int amount, Vector2 position);
 
     [Signal]
+    public delegate void CoinsChanged(int coins);
+
+    [Signal]
     public delegate void Died();
 
     [Signal]
     public delegate void HealthChanged(int hp);
-
-    [Signal]
-    public delegate void CoinsChanged(int coins);
 
     private readonly PackedScene _deathEffect;
     protected Stats Stats;
