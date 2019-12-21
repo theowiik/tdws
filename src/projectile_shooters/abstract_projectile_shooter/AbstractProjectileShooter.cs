@@ -18,6 +18,7 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
     private AudioStreamPlayer _shootPlayer;
     private Timer _timer;
     protected int Ammo;
+    protected int KnockbackForce;
     protected int MagSize;
 
     /// <summary>
@@ -60,9 +61,24 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
       if (CanShoot())
       {
         AppendProjectiles(actorSource);
+        KnockbackHolder();
         StartShootDelay();
         Ammo--;
         PrintAmmo();
+      }
+    }
+
+    /// <summary>
+    ///   Knockbacks the holder.
+    /// </summary>
+    private void KnockbackHolder()
+    {
+      // Cheat fix :)
+      // TODO: Implement in a better way.
+      if (GetParent().GetParent() is KinematicBody2D owner)
+      {
+        GD.Print("knocking back!");
+        owner.Translate(-ToMouseVec() * KnockbackForce);
       }
     }
 
@@ -118,6 +134,7 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
       ProjectilesPerShot = 8;
       ProjectileShooterName = "Abstract Projectile Shooter";
       MaxOffsetAngle = 3;
+      KnockbackForce = 1;
     }
 
     /// <summary>
