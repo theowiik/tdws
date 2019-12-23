@@ -1,17 +1,111 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/tdws_spritesheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/sfx/hit.wav" type="AudioStream" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.84417, 7.70579 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle_down"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "move_down"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 24, 25 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "move_left"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 20, 21 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "move_right"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 18, 19 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "move_up"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 22, 23 ]
+}
 
 [node name="AbstractActor" type="KinematicBody2D"]
 collision_mask = 29
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
+vframes = 6
+hframes = 8
+frame = 1
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/idle_down = SubResource( 2 )
+anims/move_down = SubResource( 3 )
+anims/move_left = SubResource( 4 )
+anims/move_right = SubResource( 5 )
+anims/move_up = SubResource( 6 )
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="DamagePlayer" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 2 )

@@ -36,7 +36,7 @@ namespace tdws.actors.monsters.abstract_monster
       return true;
     }
 
-    public override void _Ready()
+    protected override void GetNodes()
     {
       _chaseTimer = GetNode("ChaseTimer") as Timer;
     }

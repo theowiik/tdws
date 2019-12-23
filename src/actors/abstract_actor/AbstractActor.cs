@@ -24,6 +24,8 @@ namespace tdws.actors.abstract_actor
     public delegate void HealthChanged(int hp);
 
     private readonly PackedScene _deathEffect;
+    private AudioStreamPlayer _damagePlayer;
+    protected AnimationPlayer AnimationPlayer;
     protected Stats Stats;
 
     protected AbstractActor()
@@ -42,6 +44,7 @@ namespace tdws.actors.abstract_actor
       Stats.TakeDamage(damageSource.GetDamage());
       HandleDamage(damageSource);
       EmitHealthChanged();
+      _damagePlayer.Play();
 
       if (Stats.IsDead()) Die();
     }
@@ -58,6 +61,18 @@ namespace tdws.actors.abstract_actor
 //        GetParent().AddChild(particles);
 //      }
     }
+
+    public override void _Ready()
+    {
+      AnimationPlayer = GetNode("AnimationPlayer") as AnimationPlayer;
+      _damagePlayer = GetNode("Audio/DamagePlayer") as AudioStreamPlayer;
+      GetNodes();
+    }
+
+    /// <summary>
+    ///   Retrieve child nodes for specific implementations of a actor.
+    /// </summary>
+    protected abstract void GetNodes();
 
     /// <summary>
     ///   Handle class specific damage.

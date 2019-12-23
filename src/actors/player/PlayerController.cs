@@ -22,7 +22,6 @@ namespace tdws.actors.player
     [Signal]
     public delegate void ProjectileShooterChanged(AbstractProjectileShooter projectileShooter);
 
-    private AnimationPlayer _animationPlayer;
     private Holster _holster;
 
     /// <summary>
@@ -43,6 +42,17 @@ namespace tdws.actors.player
     ///   Used for playing the correct animation.
     /// </summary>
     private Vector2 _velocity;
+
+    public PlayerController()
+    {
+      _keyboardIndex = new List<Tuple<int, int>>
+      {
+        new Tuple<int, int>((int) KeyList.Key1, 0),
+        new Tuple<int, int>((int) KeyList.Key2, 1),
+        new Tuple<int, int>((int) KeyList.Key3, 2),
+        new Tuple<int, int>((int) KeyList.Key4, 3),
+      };
+    }
 
     public void PickupProjectileShooter(IProjectileShooter projectileShooter)
     {
@@ -80,20 +90,12 @@ namespace tdws.actors.player
       EmitSignal(nameof(ProjectileShooterChanged), _holster.GetHolding() as Object);
     }
 
-    public override void _Ready()
+    protected override void GetNodes()
     {
       _projectileShooterHolder = GetNode("ProjectileShooterHolder") as Node2D;
-      _animationPlayer = GetNode("AnimationPlayer") as AnimationPlayer;
       _holster = GetNode("Holster") as Holster;
       _stateMachine = GetNode("PlayerStateMachine") as StateMachine;
       _stateMachine.Start();
-      _keyboardIndex = new List<Tuple<int, int>>
-      {
-        new Tuple<int, int>((int) KeyList.Key1, 0),
-        new Tuple<int, int>((int) KeyList.Key2, 1),
-        new Tuple<int, int>((int) KeyList.Key3, 2),
-        new Tuple<int, int>((int) KeyList.Key4, 3),
-      };
     }
 
     public override void _Process(float delta)
@@ -145,19 +147,19 @@ namespace tdws.actors.player
       switch (direction)
       {
         case Directions.Up:
-          _animationPlayer.Play("walk_up");
+          AnimationPlayer.Play("walk_up");
           break;
         case Directions.Right:
-          _animationPlayer.Play("walk_right");
+          AnimationPlayer.Play("walk_right");
           break;
         case Directions.Down:
-          _animationPlayer.Play("walk_down");
+          AnimationPlayer.Play("walk_down");
           break;
         case Directions.Left:
-          _animationPlayer.Play("walk_left");
+          AnimationPlayer.Play("walk_left");
           break;
         default:
-          _animationPlayer.Play("idle_down");
+          AnimationPlayer.Play("idle_down");
           break;
       }
     }
