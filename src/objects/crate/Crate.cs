@@ -9,21 +9,47 @@ namespace tdws.objects.crate
   /// </summary>
   public class Crate : Area2D
   {
-    public IProjectileShooter ProjectileShooter { get; private set; }
+    private AudioStreamPlayer _lootPlayer;
+    private bool _pickedUp;
+
+    public Crate()
+    {
+      _pickedUp = false;
+    }
+
+    private IProjectileShooter ProjectileShooter { get; set; }
 
     public override void _Ready()
     {
       ProjectileShooter = ProjectileShooterFactory.CreateShotgun();
+      _lootPlayer = GetNode("LootPlayer") as AudioStreamPlayer;
+    }
+
+    private void OnLootPlayerFinished()
+    {
+      QueueFree();
+    }
+
+    /// <summary>
+    ///   Hides the crate.
+    /// </summary>
+    private void Hide()
+    {
+      GetNode("Sprite").QueueFree();
     }
 
     public void OnBodyEntered(object body)
     {
-      // Find this hard to read. But the formatter wants it this way.
-      if (!(body is ICanPickup canPickup)) return;
+      if (_pickedUp) return;
 
-      var projectileShooter = ProjectileShooterFactory.CreateAlienGun();
-      canPickup.PickupProjectileShooter(projectileShooter);
-      QueueFree();
+      if (body is ICanPickup canPickup)
+      {
+        _pickedUp = true;
+        var projectileShooter = ProjectileShooterFactory.CreateAlienGun();
+        canPickup.PickupProjectileShooter(projectileShooter);
+        ((AudioStreamPlayer) GetNode("LootPlayer")).Play();
+        Hide();
+      }
     }
   }
 }
