@@ -78,7 +78,7 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
       if (GetParent().GetParent() is KinematicBody2D owner)
       {
         GD.Print("knocking back!");
-        owner.Translate(-ToMouseVec() * KnockbackForce);
+        owner.MoveAndSlide(-ToMouseVec() * KnockbackForce);
       }
     }
 
@@ -134,7 +134,7 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
       ProjectilesPerShot = 8;
       ProjectileShooterName = "Abstract Projectile Shooter";
       MaxOffsetAngle = 3;
-      KnockbackForce = 1;
+      KnockbackForce = 50;
     }
 
     /// <summary>
