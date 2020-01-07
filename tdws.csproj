@@ -77,6 +77,7 @@
     <Compile Include="src\objects\coin\Coin.cs" />
     <Compile Include="src\objects\coin\IPickupable.cs" />
     <Compile Include="src\objects\crate\Crate.cs" />
+    <Compile Include="src\objects\door\Door.cs" />
     <Compile Include="src\objects\IDamageSource.cs" />
     <Compile Include="src\objects\projectiles\abstract_projectile\AbstractProjectile.cs" />
     <Compile Include="src\objects\projectiles\bullet\Bullet.cs" />
