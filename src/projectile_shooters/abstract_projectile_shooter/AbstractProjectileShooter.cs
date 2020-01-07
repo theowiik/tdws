@@ -44,8 +44,6 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
 
     public void AppendProjectiles(AbstractActor actor = null)
     {
-      _shootPlayer.Play();
-
       for (var i = 0; i < ProjectilesPerShot; i++)
         if (Projectile.Instance() is AbstractProjectile projectile)
         {
@@ -65,6 +63,7 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
         StartShootDelay();
         Ammo--;
         PrintAmmo();
+        _shootPlayer.Play();
       }
     }
 
