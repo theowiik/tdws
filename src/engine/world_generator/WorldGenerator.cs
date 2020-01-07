@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Godot;
+using tdws.objects.door;
 
 namespace tdws.engine.world_generator
 {
@@ -72,14 +73,19 @@ namespace tdws.engine.world_generator
 
     /// <summary>Adds a room.</summary>
     /// <param name="room">The room to add</param>
-    /// <param name="baseRoom">The room to add.</param>
+    /// <param name="baseRoom">The scene of the room to add.</param>
     /// <param name="parent">The parent to add the rooms to.</param>
     /// <param name="colIndex">The column index.</param>
     /// <param name="rowIndex">The row index.</param>
     /// <param name="width">The width of the room in tiles.</param>
     /// <param name="height">The height of the room in tiles.</param>
     /// <param name="tileSizeWidth">The width of one tile in pixels.</param>
-    private void AddRoom(Room room, PackedScene baseRoom, Node parent, int colIndex, int rowIndex,
+    private void AddRoom(
+      Room room,
+      PackedScene baseRoom,
+      Node parent,
+      int colIndex,
+      int rowIndex,
       int tileSizeWidth,
       int width, int height)
     {
@@ -89,12 +95,28 @@ namespace tdws.engine.world_generator
       var y = rowIndex * tileSizeWidth * height;
 
       var tileMap = baseRoom.Instance() as TileMap;
+      AddDoorsToRoomScene(tileMap);
       tileMap.SetGlobalPosition(new Vector2(x, y));
       parent.AddChild(tileMap);
       parent.MoveChild(tileMap, 0);
 
       // Set spawn point
       if (room.Spawn) SpawnPoint = new Vector2(x, y);
+    }
+
+    /// <summary>
+    ///   Adds doors to the room.
+    ///   TODO: Place the doors in a sensible way.
+    /// </summary>
+    /// <param name="room">
+    ///   The room to add doors in.
+    /// </param>
+    private void AddDoorsToRoomScene(Node room)
+    {
+      var doorScene = GD.Load("res://src/objects/door/Door.tscn") as PackedScene;
+      var doorInstance = doorScene.Instance() as Door;
+      room.AddChild(doorInstance);
+      doorInstance.SetPosition(new Vector2(30, 30));
     }
 
     public void PrintDungeon(IEnumerable<IEnumerable<Room>> rooms)
