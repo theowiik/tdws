@@ -17,11 +17,8 @@ namespace tdws.core
       _player = GetNode<PlayerController>("Player");
     }
 
-    public void nextRoom()
+    public void NextRoom()
     {
-      // do something
-      var room = ...;
-      AddChild(room);
     }
 
     /// <summary>
@@ -30,7 +27,7 @@ namespace tdws.core
     /// <returns>
     ///   a list of the doors on the current room.
     /// </returns>
-    public List<Door> getDoors()
+    public List<Door> GetDoors()
     {
       return new List<Door>();
     }
