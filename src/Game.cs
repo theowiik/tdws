@@ -50,7 +50,7 @@ namespace tdws
 
     public override void _Ready()
     {
-      GenerateWorld();
+//      GenerateWorld();
       InitCrosshair();
       _hud = GetNode("CanvasLayer/HUD") as HUD;
 
@@ -78,6 +78,7 @@ namespace tdws
       _player.Connect(nameof(PlayerController.ProjectileShooterChanged), this, nameof(OnProjectileShooterChanged));
 
       _roomLoader = GetNode("RoomLoader") as RoomLoader;
+      _roomLoader.NextRoom();
     }
 
     public void NextRoom()

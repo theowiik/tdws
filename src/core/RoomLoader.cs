@@ -14,11 +14,31 @@ namespace tdws.core
 
     public override void _Ready()
     {
-      _player = GetNode<PlayerController>("Player");
+//      _player = GetNode("Player");
     }
 
     public void NextRoom()
     {
+      GD.Print("indsaiaasdoid");
+      RemoveAllChildren();
+
+      var roomScene = GD.Load("res://src/levels/Room.tscn") as PackedScene;
+      var room = roomScene.Instance() as TileMap;
+      AddChild(room);
+
+      room.SetGlobalPosition(
+        new Vector2(
+          (float) GD.RandRange(0, 30),
+          (float) GD.RandRange(0, 30))
+      );
+    }
+
+    private void RemoveAllChildren()
+    {
+      foreach (Node child in GetChildren())
+      {
+        child.QueueFree();
+      }
     }
 
     /// <summary>
