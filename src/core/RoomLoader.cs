@@ -8,7 +8,7 @@ namespace tdws.core
   /// <summary>
   ///   Manages rooms and levels.
   /// </summary>
-  public class LevelLoader : Node
+  public class RoomLoader : Node
   {
     private PlayerController _player;
 

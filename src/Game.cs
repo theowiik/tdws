@@ -23,7 +23,7 @@ namespace tdws
     private PackedScene _coinScene;
     private Sprite _crosshair;
     private HUD _hud;
-    private LevelLoader _levelLoader;
+    private RoomLoader _roomLoader;
     private AbstractActor _player;
     private Vector2 _spawnPoint;
 
@@ -77,14 +77,14 @@ namespace tdws
       // Projectile signal
       _player.Connect(nameof(PlayerController.ProjectileShooterChanged), this, nameof(OnProjectileShooterChanged));
 
-      _levelLoader = GetNode("LevelLoader") as LevelLoader;
+      _roomLoader = GetNode("RoomLoader") as RoomLoader;
     }
 
     public void NextRoom()
     {
       // ...
 
-      foreach (var door in _levelLoader.GetDoors())
+      foreach (var door in _roomLoader.GetDoors())
       {
         door.Connect("DoorEntered", this, nameof(OnDoorEntered));
       }
