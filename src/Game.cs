@@ -4,9 +4,11 @@ using Godot;
 using tdws.actors.abstract_actor;
 using tdws.actors.monsters;
 using tdws.actors.player;
+using tdws.core;
 using tdws.engine.world_generator;
 using tdws.interfacee;
 using tdws.objects.coin;
+using tdws.objects.door;
 using tdws.projectile_shooters.abstract_projectile_shooter;
 using Object = Godot.Object;
 
@@ -21,6 +23,7 @@ namespace tdws
     private PackedScene _coinScene;
     private Sprite _crosshair;
     private HUD _hud;
+    private LevelLoader _levelLoader;
     private AbstractActor _player;
     private Vector2 _spawnPoint;
 
@@ -73,6 +76,23 @@ namespace tdws
 
       // Projectile signal
       _player.Connect(nameof(PlayerController.ProjectileShooterChanged), this, nameof(OnProjectileShooterChanged));
+
+      _levelLoader = GetNode("LevelLoader") as LevelLoader;
+    }
+
+    public void NextRoom()
+    {
+      // ...
+
+      foreach (var door in _levelLoader.GetDoors())
+      {
+        door.Connect("DoorEntered", this, nameof(OnDoorEntered));
+      }
+    }
+
+    private void OnDoorEntered()
+    {
+      NextRoom();
     }
 
     /// <summary>
