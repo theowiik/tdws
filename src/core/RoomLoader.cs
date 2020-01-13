@@ -19,18 +19,24 @@ namespace tdws.core
 
     public void NextRoom()
     {
-      GD.Print("indsaiaasdoid");
       RemoveAllChildren();
 
       var roomScene = GD.Load("res://src/levels/Room.tscn") as PackedScene;
       var room = roomScene.Instance() as TileMap;
       AddChild(room);
 
-      room.SetGlobalPosition(
-        new Vector2(
-          (float) GD.RandRange(0, 30),
-          (float) GD.RandRange(0, 30))
-      );
+      // add doors START
+      var possibleDoorPositions = room.GetNode("PossibleDoorPositions").GetChildren();
+      var doorScene = GD.Load("res://src/objects/door/Door.tscn") as PackedScene;
+      foreach (Position2D doorPosition in possibleDoorPositions)
+      {
+        var door = doorScene.Instance() as Node2D;
+        AddChild(door);
+        var instancePos = room.WorldToMap(doorPosition.GlobalPosition);
+        door.SetGlobalPosition(instancePos);
+      }
+
+      // add doors END
     }
 
     private void RemoveAllChildren()
