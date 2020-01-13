@@ -75,10 +75,7 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
       // Cheat fix :)
       // TODO: Implement in a better way.
       if (GetParent().GetParent() is KinematicBody2D owner)
-      {
-        GD.Print("knocking back!");
         owner.MoveAndSlide(-ToMouseVec() * KnockbackForce);
-      }
     }
 
     /// <summary>
@@ -148,7 +145,7 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
 
     private void PrintAmmo()
     {
-      GD.Print(Ammo + "/" + MagSize);
+//      GD.Print(Ammo + "/" + MagSize);
     }
 
     /// <summary>
