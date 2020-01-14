@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 using tdws.actors.player;
 using tdws.objects.door;
@@ -21,22 +22,29 @@ namespace tdws.core
     {
       RemoveAllChildren();
 
+      // Add room
       var roomScene = GD.Load("res://src/levels/Room.tscn") as PackedScene;
       var room = roomScene.Instance() as TileMap;
       AddChild(room);
 
-      // add doors START
+      // Add doors
+      // ----- add doors START
       var possibleDoorPositions = room.GetNode("PossibleDoorPositions").GetChildren();
       var doorScene = GD.Load("res://src/objects/door/Door.tscn") as PackedScene;
       foreach (Position2D doorPosition in possibleDoorPositions)
       {
         var door = doorScene.Instance() as Node2D;
         AddChild(door);
-        var instancePos = room.WorldToMap(doorPosition.GlobalPosition);
+        var tileCoordinate = room.WorldToMap(doorPosition.GlobalPosition);
+        var instancePos = room.MapToWorld(tileCoordinate);
+        // TODO: How to get the width of a tile in code.
+        instancePos.x += 8;
+        instancePos.y += 8;
         door.SetGlobalPosition(instancePos);
+        GD.Print("door pos: " + instancePos);
       }
 
-      // add doors END
+      // ----- add doors END
     }
 
     private void RemoveAllChildren()
