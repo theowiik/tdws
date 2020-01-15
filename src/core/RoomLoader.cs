@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Godot;
 using tdws.actors.player;
 using tdws.objects.door;
+using Array = Godot.Collections.Array;
 
 namespace tdws.core
 {
@@ -28,9 +29,11 @@ namespace tdws.core
       AddChild(room);
 
       // Add doors
-      var possibleDoorPositions = room.GetNode("PossibleDoorPositions").GetChildren();
       var doorScene = GD.Load("res://src/objects/door/Door.tscn") as PackedScene;
-      foreach (Position2D doorPosition in possibleDoorPositions)
+      var possibleDoorPositions = room.GetNode("PossibleDoorPositions").GetChildren();
+      var doorPositions = SelectRandomPositions(possibleDoorPositions, 3);
+
+      foreach (Position2D doorPosition in doorPositions)
       {
         var door = doorScene.Instance() as Node2D;
         AddChild(door);
@@ -42,6 +45,46 @@ namespace tdws.core
         instancePos.y += 8;
         door.SetGlobalPosition(instancePos);
       }
+    }
+
+    private IEnumerable<object> SelectRandomPositions(Array possibleDoorPositions, int amount)
+    {
+      var shuffledList = ShuffleList(possibleDoorPositions);
+      var nSelected = 0;
+      var output = new List<object>();
+      foreach (var doorPos in shuffledList)
+      {
+        output.Add(doorPos);
+        nSelected++;
+
+        if (nSelected >= amount)
+          break;
+      }
+
+      // TODO: Throw error if nSelected != amount?
+
+      return output;
+    }
+
+    /// <summary>
+    ///   Shuffles a list.
+    /// </summary>
+    /// <param name="inputList">The list to shuffle.</param>
+    /// <typeparam name="TE">The type of objects the list contains.</typeparam>
+    /// <returns>A shuffled list.</returns>
+    private static IList<TE> ShuffleList<TE>(IList<TE> inputList)
+    {
+      var randomList = new List<TE>();
+
+      var r = new Random();
+      while (inputList.Count > 0)
+      {
+        var randomIndex = r.Next(0, inputList.Count);
+        randomList.Add(inputList[randomIndex]);
+        inputList.RemoveAt(randomIndex);
+      }
+
+      return randomList;
     }
 
     private void RemoveAllChildren()
