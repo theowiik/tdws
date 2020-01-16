@@ -87,6 +87,7 @@ tracks/0/keys = {
 }
 
 [node name="AbstractActor" type="KinematicBody2D"]
+z_index = 1
 collision_mask = 29
 
 [node name="Sprite" type="Sprite" parent="."]

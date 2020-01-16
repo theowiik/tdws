@@ -6,6 +6,7 @@
 
 [node name="ProjectileShooter" type="Sprite"]
 scale = Vector2( 1.12003, 0.0725207 )
+z_index = 1
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 
