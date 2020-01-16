@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel;
 using Godot;
 using tdws.actors.abstract_actor;
 using tdws.actors.monsters;
@@ -8,7 +7,6 @@ using tdws.core;
 using tdws.engine.world_generator;
 using tdws.interfacee;
 using tdws.objects.coin;
-using tdws.objects.door;
 using tdws.projectile_shooters.abstract_projectile_shooter;
 using Object = Godot.Object;
 
@@ -23,8 +21,8 @@ namespace tdws
     private PackedScene _coinScene;
     private Sprite _crosshair;
     private HUD _hud;
-    private RoomLoader _roomLoader;
     private AbstractActor _player;
+    private RoomLoader _roomLoader;
     private Vector2 _spawnPoint;
 
     /// <summary>
@@ -85,10 +83,7 @@ namespace tdws
     {
       // ...
 
-      foreach (var door in _roomLoader.GetDoors())
-      {
-        door.Connect("DoorEntered", this, nameof(OnDoorEntered));
-      }
+      foreach (var door in _roomLoader.GetDoors()) door.Connect("DoorEntered", this, nameof(OnDoorEntered));
     }
 
     private void OnDoorEntered()

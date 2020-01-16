@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -28,7 +27,7 @@ namespace tdws.actors.player
     ///   Contains a list of tuples where index 0 contains the key scan code. And index 1 contains the corresponding
     ///   inventory index.
     /// </summary>
-    private List<Tuple<int, int>> _keyboardIndex;
+    private readonly List<Tuple<int, int>> _keyboardIndex;
 
     /// <summary>
     ///   The node that projectiles should be attached to.
@@ -50,7 +49,7 @@ namespace tdws.actors.player
         new Tuple<int, int>((int) KeyList.Key1, 0),
         new Tuple<int, int>((int) KeyList.Key2, 1),
         new Tuple<int, int>((int) KeyList.Key3, 2),
-        new Tuple<int, int>((int) KeyList.Key4, 3),
+        new Tuple<int, int>((int) KeyList.Key4, 3)
       };
     }
 
@@ -64,7 +63,7 @@ namespace tdws.actors.player
     public void PickupCoins(int amount)
     {
       Stats.Coins += amount;
-      EmitSignal(nameof(AbstractActor.CoinsChanged), Stats.Coins);
+      EmitSignal(nameof(CoinsChanged), Stats.Coins);
     }
 
     void IMovable.Move(Vector2 velocity)
@@ -133,7 +132,7 @@ namespace tdws.actors.player
       var direction = DirectionService.VelocityToDirection(_velocity);
       PlayAnimation(direction);
 
-      List<int> hello = new List<int>();
+      var hello = new List<int>();
     }
 
     /// <summary>

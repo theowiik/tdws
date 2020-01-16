@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Godot;
 using tdws.actors.player;
 using tdws.objects.door;
 using tdws.services;
-using Array = Godot.Collections.Array;
 
 namespace tdws.core
 {
@@ -50,10 +48,7 @@ namespace tdws.core
 
     private void RemoveAllChildren()
     {
-      foreach (Node child in GetChildren())
-      {
-        child.QueueFree();
-      }
+      foreach (Node child in GetChildren()) child.QueueFree();
     }
 
     /// <summary>
