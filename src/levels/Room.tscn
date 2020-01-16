@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/tilesets/dungeon.tres" type="TileSet" id=1]
+[ext_resource path="res://src/objects/box/Box.tscn" type="PackedScene" id=2]
 
 [node name="Room" type="TileMap"]
 tile_set = ExtResource( 1 )
@@ -41,3 +42,12 @@ position = Vector2( 185.963, 9.83818 )
 
 [node name="Position2D10" type="Position2D" parent="PossibleDoorPositions"]
 position = Vector2( 201.897, 7.93558 )
+
+[node name="Box" parent="." instance=ExtResource( 2 )]
+position = Vector2( 176, 128 )
+
+[node name="Box2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 160, 96 )
+
+[node name="Box3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 144, 112 )
