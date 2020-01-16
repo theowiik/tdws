@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/Game.cs" type="Script" id=1]
 [ext_resource path="res://src/core/RoomLoader.cs" type="Script" id=2]
 [ext_resource path="res://src/Camera.cs" type="Script" id=3]
-[ext_resource path="res://src/objects/box/Box.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/interfacee/HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/interfacee/HUD.tscn" type="PackedScene" id=4]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -16,9 +15,6 @@ script = ExtResource( 2 )
 position = Vector2( 144, 64 )
 script = ExtResource( 3 )
 
-[node name="Box" parent="." instance=ExtResource( 4 )]
-position = Vector2( 121.919, -35.1127 )
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HUD" parent="CanvasLayer" instance=ExtResource( 5 )]
+[node name="HUD" parent="CanvasLayer" instance=ExtResource( 4 )]
