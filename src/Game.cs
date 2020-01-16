@@ -76,13 +76,12 @@ namespace tdws
       _player.Connect(nameof(PlayerController.ProjectileShooterChanged), this, nameof(OnProjectileShooterChanged));
 
       _roomLoader = GetNode("RoomLoader") as RoomLoader;
-      _roomLoader.NextRoom();
+      NextRoom();
     }
 
     public void NextRoom()
     {
-      // ...
-
+      _roomLoader.NextRoom();
       foreach (var door in _roomLoader.GetDoors()) door.Connect("DoorEntered", this, nameof(OnDoorEntered));
     }
 

@@ -11,21 +11,25 @@ namespace tdws.core
   /// </summary>
   public class RoomLoader : Node
   {
+    private IList<Door> _doors;
     private PlayerController _player;
 
     public override void _Ready()
     {
 //      _player = GetNode("Player");
+      _doors = new List<Door>();
     }
 
     public void NextRoom()
     {
       RemoveAllChildren();
+      _doors.Clear();
 
       // Add room
       var roomScene = GD.Load("res://src/levels/Room.tscn") as PackedScene;
       var room = roomScene.Instance() as TileMap;
       AddChild(room);
+      room.SetGlobalPosition(new Vector2((float) GD.RandRange(0, 30), (float) GD.RandRange(0, 30)));
 
       // Add doors
       var doorScene = GD.Load("res://src/objects/door/Door.tscn") as PackedScene;
@@ -34,7 +38,8 @@ namespace tdws.core
 
       foreach (Position2D doorPosition in doorPositions)
       {
-        var door = doorScene.Instance() as Node2D;
+        var door = doorScene.Instance() as Door;
+        _doors.Add(door);
         AddChild(door);
 
         var tileCoordinate = room.WorldToMap(doorPosition.GlobalPosition);
@@ -55,11 +60,11 @@ namespace tdws.core
     ///   Returns a list of the doors on the current room.
     /// </summary>
     /// <returns>
-    ///   a list of the doors on the current room.
+    ///   A list of the doors on the current room.
     /// </returns>
-    public List<Door> GetDoors()
+    public IList<Door> GetDoors()
     {
-      return new List<Door>();
+      return _doors;
     }
   }
 }
