@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/objects/door/Door.cs" type="Script" id=1]
 [ext_resource path="res://assets/sprites/world.png" type="Texture" id=2]
+[ext_resource path="res://assets/fonts/half_eighties/HalfEighties.tres" type="DynamicFont" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8.04084, 12.2491 )
@@ -25,6 +26,7 @@ margin_left = -16.8857
 margin_top = -26.8744
 margin_right = 23.1143
 margin_bottom = 13.1256
+custom_fonts/normal_font = ExtResource( 3 )
 text = "Enter"
 [connection signal="body_entered" from="." to="." method="OnDoorEntered"]
 [connection signal="body_exited" from="." to="." method="OnDoorBodyExited"]
