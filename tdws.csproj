@@ -92,6 +92,7 @@
     <Compile Include="src\projectile_shooters\assault_rifle\AssaultRifle.cs" />
     <Compile Include="src\projectile_shooters\shotgun\Shotgun.cs" />
     <Compile Include="src\projectile_shooters\wonky_gun\WonkyGun.cs" />
+    <Compile Include="src\services\ListService.cs" />
     <Compile Include="src\utils\Directions.cs" />
     <Compile Include="src\utils\DirectionService.cs" />
     <Compile Include="src\utils\state\IState.cs" />
