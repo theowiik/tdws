@@ -36,10 +36,7 @@ namespace tdws.core
       var roomScene = GD.Load("res://src/levels/Room.tscn") as PackedScene;
       var room = roomScene.Instance() as TileMap;
       AddChild(room);
-      room.SetGlobalPosition(new Vector2((float) GD.RandRange(0, 30), (float) GD.RandRange(0, 30)));
-
       AddDoors(room);
-
       AddEnemies(room);
     }
 
