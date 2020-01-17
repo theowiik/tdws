@@ -31,7 +31,17 @@ namespace tdws.core
       AddChild(room);
       room.SetGlobalPosition(new Vector2((float) GD.RandRange(0, 30), (float) GD.RandRange(0, 30)));
 
-      // Add doors
+      AddDoors(room);
+    }
+
+    /// <summary>
+    ///   Adds door scenes to some of the possible door positions of the rooms scene.
+    /// </summary>
+    /// <param name="room">
+    ///   The room to add doors to.
+    /// </param>
+    private void AddDoors(TileMap room)
+    {
       var doorScene = GD.Load("res://src/objects/door/Door.tscn") as PackedScene;
       var possibleDoorPositions = room.GetNode("PossibleDoorPositions").GetChildren();
       var doorPositions = ListService.SelectNRandom(possibleDoorPositions, 3);
