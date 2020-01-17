@@ -20,6 +20,8 @@ namespace tdws
     private Camera _camera;
     private PackedScene _coinScene;
     private Sprite _crosshair;
+
+    private int _enemiesKilled = 0;
     private HUD _hud;
     private AbstractActor _player;
     private RoomLoader _roomLoader;
@@ -186,6 +188,12 @@ namespace tdws
       return p;
     }
 
+    private void AllEnemiesKilled()
+    {
+      foreach (var door in _roomLoader.GetDoors())
+        door.Enterable();
+    }
+
     public override void _Process(float delta)
     {
       CrosshairLoop();
@@ -227,6 +235,11 @@ namespace tdws
     private void OnDied()
     {
       SpawnEnemy();
+
+      _enemiesKilled++;
+
+      if (_enemiesKilled >= 2)
+        AllEnemiesKilled();
     }
 
     /// <summary>

@@ -10,39 +10,54 @@ namespace tdws.objects.door
     [Signal]
     public delegate void DoorEntered();
 
+    private AnimationPlayer _animationPlayer;
     private bool _atDoor;
-
+    private bool _enterable;
     private RichTextLabel _enterText;
 
     public override void _Ready()
     {
+      _enterable = false;
       _enterText = GetNode("EnterText") as RichTextLabel;
       _enterText.Visible = false;
+      _animationPlayer = GetNode("AnimationPlayer") as AnimationPlayer;
+      _animationPlayer.Play("locked");
       _atDoor = false;
     }
 
     public override void _Input(InputEvent @event)
     {
-      if (_atDoor && @event.IsActionPressed("open_door"))
+      if (_enterable && _atDoor && @event.IsActionPressed("open_door"))
         EmitSignal(nameof(DoorEntered));
+    }
+
+    /// <summary>
+    ///   Makes the door enterable.
+    /// </summary>
+    public void Enterable()
+    {
+      _enterable = true;
+      _animationPlayer.Play("unlocked");
     }
 
     private void OnDoorEntered(object body)
     {
-      if (body is KinematicBody2D kinematicBody2D)
+      _atDoor = true;
+
+      if (_enterable)
       {
-        _atDoor = true;
         _enterText.Visible = true;
+        _animationPlayer.Play("open");
       }
     }
 
     private void OnDoorBodyExited(object body)
     {
-      if (body is KinematicBody2D kinematicBody2D)
-      {
-        _atDoor = false;
-        _enterText.Visible = false;
-      }
+      _atDoor = false;
+      _enterText.Visible = false;
+
+      if (_enterable)
+        _animationPlayer.Play("unlocked");
     }
   }
 }
