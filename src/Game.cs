@@ -61,7 +61,7 @@ namespace tdws
       Input.SetMouseMode(Input.MouseMode.Hidden);
 
       // ...
-      SpawnEnemy();
+//      SpawnEnemy();
       SpawnPlayer();
       AddCameraToPlayer();
 
@@ -84,7 +84,17 @@ namespace tdws
     public void NextRoom()
     {
       _roomLoader.NextRoom();
-      foreach (var door in _roomLoader.GetDoors()) door.Connect("DoorEntered", this, nameof(OnDoorEntered));
+
+      foreach (var door in _roomLoader.GetDoors())
+      {
+        door.Connect("DoorEntered", this, nameof(OnDoorEntered));
+      }
+
+      foreach (var monster in _roomLoader.GetEnemies())
+      {
+        monster.Connect(nameof(AbstractActor.CoinDropped), this, nameof(OnCoinDropped));
+        monster.Connect(nameof(AbstractActor.Died), this, nameof(OnDied));
+      }
     }
 
     private void OnDoorEntered()
@@ -234,8 +244,6 @@ namespace tdws
     /// </summary>
     private void OnDied()
     {
-      SpawnEnemy();
-
       _enemiesKilled++;
 
       if (_enemiesKilled >= 2)

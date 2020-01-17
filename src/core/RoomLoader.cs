@@ -1,5 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Godot;
+using tdws.actors.abstract_actor;
+using tdws.actors.monsters;
+using tdws.actors.monsters.abstract_monster;
 using tdws.actors.player;
 using tdws.objects.door;
 using tdws.services;
@@ -12,18 +16,21 @@ namespace tdws.core
   public class RoomLoader : Node
   {
     private IList<Door> _doors;
+    private IList<AbstractMonster> _enemies;
     private PlayerController _player;
 
     public override void _Ready()
     {
 //      _player = GetNode("Player");
       _doors = new List<Door>();
+      _enemies = new List<AbstractMonster>();
     }
 
     public void NextRoom()
     {
       RemoveAllChildren();
       _doors.Clear();
+      _enemies.Clear();
 
       // Add room
       var roomScene = GD.Load("res://src/levels/Room.tscn") as PackedScene;
@@ -32,6 +39,21 @@ namespace tdws.core
       room.SetGlobalPosition(new Vector2((float) GD.RandRange(0, 30), (float) GD.RandRange(0, 30)));
 
       AddDoors(room);
+
+      AddEnemies(room);
+    }
+
+    private void AddEnemies(TileMap room)
+    {
+      var possibleEnemyPositions = room.GetNode("PossibleEnemyPositions").GetChildren();
+      var enemyPositions = ListService.SelectNRandom(possibleEnemyPositions, 3);
+      foreach (Position2D enemyPosition in enemyPositions)
+      {
+        var skeleton = MonsterFactory.CreateSkeleton();
+        _enemies.Add(skeleton);
+        CallDeferred("add_child", skeleton);
+        skeleton.SetPosition(enemyPosition.Position);
+      }
     }
 
     /// <summary>
@@ -61,6 +83,11 @@ namespace tdws.core
       }
     }
 
+    public IEnumerable<AbstractMonster> GetEnemies()
+    {
+      return _enemies;
+    }
+
     private void RemoveAllChildren()
     {
       foreach (Node child in GetChildren()) child.QueueFree();
@@ -72,7 +99,7 @@ namespace tdws.core
     /// <returns>
     ///   A list of the doors on the current room.
     /// </returns>
-    public IList<Door> GetDoors()
+    public IEnumerable<Door> GetDoors()
     {
       return _doors;
     }
