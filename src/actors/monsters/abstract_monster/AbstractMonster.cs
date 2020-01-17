@@ -69,7 +69,7 @@ namespace tdws.actors.monsters.abstract_monster
     private void OnDetectionAreaExited(object body)
     {
       if (body == _target)
-        _target = null;
+        _chaseTimer.Start(ChaseTime);
     }
 
     /// <summary>
@@ -101,8 +101,8 @@ namespace tdws.actors.monsters.abstract_monster
     {
       if (body is AbstractActor body2D)
       {
+        _chaseTimer.Stop();
         _target = body2D;
-        _chaseTimer.Start(ChaseTime);
       }
     }
 

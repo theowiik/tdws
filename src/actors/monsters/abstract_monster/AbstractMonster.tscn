@@ -9,7 +9,7 @@ radius = 68.5443
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 7.06652, 9.11768 )
 
-[node name="AbstractMonster" instance=ExtResource( 1 )]
+[node name="AbstractMonster" index="0" instance=ExtResource( 1 )]
 position = Vector2( 0, 1 )
 collision_layer = 4
 script = ExtResource( 2 )
