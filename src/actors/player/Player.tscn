@@ -80,6 +80,7 @@ tracks/0/keys = {
 }
 
 [node name="Player" instance=ExtResource( 1 )]
+collision_layer = 1
 collision_mask = 20
 script = ExtResource( 2 )
 

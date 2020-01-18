@@ -21,6 +21,7 @@ collision_layer = 0
 shape = SubResource( 1 )
 
 [node name="DamageArea" type="Area2D" parent="." index="4"]
+collision_layer = 0
 
 [node name="DamageShape" type="CollisionShape2D" parent="DamageArea" index="0"]
 shape = SubResource( 2 )
