@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using Godot;
 using tdws.actors.abstract_actor;
 using tdws.actors.monsters;
 using tdws.actors.monsters.abstract_monster;
-using tdws.actors.player;
 using tdws.objects.door;
 using tdws.services;
 

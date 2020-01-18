@@ -19,12 +19,12 @@ namespace tdws
     private Camera _camera;
     private PackedScene _coinScene;
     private Sprite _crosshair;
-
     private int _enemiesKilled = 0;
     private HUD _hud;
     private AbstractActor _player;
     private RoomLoader _roomLoader;
     private Vector2 _spawnPoint;
+    private Sprite _transitionSprite;
 
     /// <summary>
     ///   Loads the crosshair scene and adds it as a child.
@@ -62,13 +62,29 @@ namespace tdws
       // Projectile signal
       _player.Connect(nameof(PlayerController.ProjectileShooterChanged), this, nameof(OnProjectileShooterChanged));
 
+      _transitionSprite = GetNode("TransitionSprite") as Sprite;
+
       _roomLoader = GetNode("RoomLoader") as RoomLoader;
       _roomLoader.SetPlayer(_player);
       NextRoom();
     }
 
-    public void NextRoom()
+    private void RoomLoadStarted()
     {
+      _transitionSprite.Visible = true;
+    }
+
+    private void RoomLoadFinished()
+    {
+      _transitionSprite.Visible = false;
+    }
+
+    /// <summary>
+    ///   Loads the next room.
+    /// </summary>
+    private void NextRoom()
+    {
+      RoomLoadStarted();
       _roomLoader.NextRoom();
 
       foreach (var door in _roomLoader.GetDoors())
@@ -81,6 +97,8 @@ namespace tdws
         monster.Connect(nameof(AbstractActor.CoinDropped), this, nameof(OnCoinDropped));
         monster.Connect(nameof(AbstractActor.Died), this, nameof(OnDied));
       }
+
+      RoomLoadFinished();
     }
 
     private void OnDoorEntered()
