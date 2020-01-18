@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Godot;
 using tdws.actors.abstract_actor;
@@ -17,13 +18,17 @@ namespace tdws.core
   {
     private IList<Door> _doors;
     private IList<AbstractMonster> _enemies;
-    private PlayerController _player;
+    private AbstractActor _player;
 
     public override void _Ready()
     {
-//      _player = GetNode("Player");
       _doors = new List<Door>();
       _enemies = new List<AbstractMonster>();
+    }
+
+    public void SetPlayer(AbstractActor player)
+    {
+      _player = player ?? throw new ArgumentNullException(nameof(player), "Player can not be null");
     }
 
     public void NextRoom()
@@ -38,6 +43,8 @@ namespace tdws.core
       AddChild(room);
       AddDoors(room);
       AddEnemies(room);
+      var spawnPoint = room.GetNode("Spawn") as Position2D;
+      _player.SetGlobalPosition(spawnPoint.Position);
     }
 
     private void AddEnemies(TileMap room)

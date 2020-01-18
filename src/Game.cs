@@ -78,6 +78,7 @@ namespace tdws
       _player.Connect(nameof(PlayerController.ProjectileShooterChanged), this, nameof(OnProjectileShooterChanged));
 
       _roomLoader = GetNode("RoomLoader") as RoomLoader;
+      _roomLoader.SetPlayer(_player);
       NextRoom();
     }
 
