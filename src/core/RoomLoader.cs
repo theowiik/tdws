@@ -38,7 +38,7 @@ namespace tdws.core
       _enemies.Clear();
 
       // Add room
-      var roomScene = GD.Load("res://src/levels/Room.tscn") as PackedScene;
+      var roomScene = GD.Load("res://src/levels/RoomTemplate.tscn") as PackedScene;
       var room = roomScene.Instance() as TileMap;
       AddChild(room);
       AddDoors(room);

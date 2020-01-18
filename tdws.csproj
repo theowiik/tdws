@@ -70,8 +70,6 @@
     <Compile Include="src\engine\ILevel.cs" />
     <Compile Include="src\engine\IObjectPool.cs" />
     <Compile Include="src\engine\ProjectilePool.cs" />
-    <Compile Include="src\engine\world_generator\Room.cs" />
-    <Compile Include="src\engine\world_generator\WorldGenerator.cs" />
     <Compile Include="src\Game.cs" />
     <Compile Include="src\interfacee\HUD.cs" />
     <Compile Include="src\objects\box\Box.cs" />

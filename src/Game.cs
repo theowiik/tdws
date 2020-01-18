@@ -4,7 +4,6 @@ using tdws.actors.abstract_actor;
 using tdws.actors.monsters;
 using tdws.actors.player;
 using tdws.core;
-using tdws.engine.world_generator;
 using tdws.interfacee;
 using tdws.objects.coin;
 using tdws.projectile_shooters.abstract_projectile_shooter;
@@ -37,20 +36,8 @@ namespace tdws
       AddChild(_crosshair);
     }
 
-    /// <summary>
-    ///   Generates the world.
-    /// </summary>
-    private void GenerateWorld()
-    {
-      var worldGenerator = new WorldGenerator();
-      var world = worldGenerator.GenerateWorld();
-      worldGenerator.WorldToScene(world, this);
-      _spawnPoint = worldGenerator.SpawnPoint;
-    }
-
     public override void _Ready()
     {
-//      GenerateWorld();
       InitCrosshair();
       _hud = GetNode("CanvasLayer/HUD") as HUD;
 
@@ -60,8 +47,6 @@ namespace tdws
       // Hide the cursor
       Input.SetMouseMode(Input.MouseMode.Hidden);
 
-      // ...
-//      SpawnEnemy();
       SpawnPlayer();
       AddCameraToPlayer();
 
