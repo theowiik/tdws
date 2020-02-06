@@ -19,7 +19,7 @@ namespace tdws
     private Camera _camera;
     private PackedScene _coinScene;
     private Sprite _crosshair;
-    private int _enemiesKilled = 0;
+    private int _enemiesKilled;
     private HUD _hud;
     private AbstractActor _player;
     private RoomLoader _roomLoader;
@@ -87,10 +87,7 @@ namespace tdws
       RoomLoadStarted();
       _roomLoader.NextRoom();
 
-      foreach (var door in _roomLoader.GetDoors())
-      {
-        door.Connect("DoorEntered", this, nameof(OnDoorEntered));
-      }
+      foreach (var door in _roomLoader.GetDoors()) door.Connect("DoorEntered", this, nameof(OnDoorEntered));
 
       foreach (var monster in _roomLoader.GetEnemies())
       {
