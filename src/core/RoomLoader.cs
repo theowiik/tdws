@@ -50,7 +50,7 @@ namespace tdws.core
     {
       var possibleEnemyPositions = room.GetNode("PossibleEnemyPositions").GetChildren().Cast<Position2D>().ToList();
       var enemyPositions = ListService.SelectNRandom(possibleEnemyPositions, 3);
-      foreach (Position2D enemyPosition in enemyPositions)
+      foreach (var enemyPosition in enemyPositions)
       {
         var skeleton = MonsterFactory.CreateSkeleton();
         _enemies.Add(skeleton);
@@ -71,7 +71,7 @@ namespace tdws.core
       var possibleDoorPositions = room.GetNode("PossibleDoorPositions").GetChildren().Cast<Position2D>().ToList();
       var doorPositions = ListService.SelectNRandom(possibleDoorPositions, 3);
 
-      foreach (Position2D doorPosition in doorPositions)
+      foreach (var doorPosition in doorPositions)
       {
         var door = doorScene.Instance() as Door;
         _doors.Add(door);

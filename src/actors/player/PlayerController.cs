@@ -21,13 +21,13 @@ namespace tdws.actors.player
     [Signal]
     public delegate void ProjectileShooterChanged(AbstractProjectileShooter projectileShooter);
 
-    private Holster _holster;
-
     /// <summary>
     ///   Contains a list of tuples where index 0 contains the key scan code. And index 1 contains the corresponding
     ///   inventory index.
     /// </summary>
     private readonly List<Tuple<int, int>> _keyboardIndex;
+
+    private Holster _holster;
 
     /// <summary>
     ///   The node that projectiles should be attached to.
