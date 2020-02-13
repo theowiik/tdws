@@ -2,12 +2,12 @@
 
 importer="ogg_vorbis"
 type="AudioStreamOGGVorbis"
-path="res://.import/shoot.ogg-98ea13e4a3cc90ec85eca77ad13cce88.oggstr"
+path="res://.import/shoot.ogg-98b9a62d521248811a19ab5fa42b95b1.oggstr"
 
 [deps]
 
-source_file="res://assets/sfx/shoot.ogg"
-dest_files=[ "res://.import/shoot.ogg-98ea13e4a3cc90ec85eca77ad13cce88.oggstr" ]
+source_file="res://Assets/sfx/shoot.ogg"
+dest_files=[ "res://.import/shoot.ogg-98b9a62d521248811a19ab5fa42b95b1.oggstr" ]
 
 [params]
 

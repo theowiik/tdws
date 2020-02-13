@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hp_bg.png-ed56e9c71d4a0376f210c02389dcd3e4.stex"
+path="res://.import/hp_bg.png-bc9a7f1a0c92ca76cd4ce3630a4403a9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/HUD/hp_bg.png"
-dest_files=[ "res://.import/hp_bg.png-ed56e9c71d4a0376f210c02389dcd3e4.stex" ]
+source_file="res://Assets/HUD/hp_bg.png"
+dest_files=[ "res://.import/hp_bg.png-bc9a7f1a0c92ca76cd4ce3630a4403a9.stex" ]
 
 [params]
 
