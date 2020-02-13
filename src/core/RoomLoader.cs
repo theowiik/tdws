@@ -5,6 +5,7 @@ using Godot;
 using tdws.actors.abstract_actor;
 using tdws.actors.monsters;
 using tdws.actors.monsters.abstract_monster;
+using tdws.levels;
 using tdws.objects.door;
 using tdws.services;
 
@@ -15,6 +16,7 @@ namespace tdws.core
   /// </summary>
   public class RoomLoader : Node
   {
+    private ILevel _level;
     private IList<Door> _doors;
     private IList<AbstractMonster> _enemies;
     private AbstractActor _player;
@@ -37,13 +39,19 @@ namespace tdws.core
       _enemies.Clear();
 
       // Add room
-      var roomScene = GD.Load("res://src/levels/RoomTemplate.tscn") as PackedScene;
+      var roomScene = GD.Load("res://src/levels/dungeon/Dungeon1.tscn") as PackedScene;
       var room = roomScene.Instance() as TileMap;
       AddChild(room);
       AddDoors(room);
       AddEnemies(room);
       var spawnPoint = room.GetNode("Spawn") as Position2D;
       _player.GlobalPosition = spawnPoint.Position;
+    }
+
+    private IRoom GetRandomRoom()
+    {
+
+      return null;
     }
 
     private void AddEnemies(TileMap room)

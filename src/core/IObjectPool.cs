@@ -1,4 +1,4 @@
-﻿namespace tdws.engine
+﻿namespace tdws.core
 {
   /// <summary>
   ///   A representation of a object pool.

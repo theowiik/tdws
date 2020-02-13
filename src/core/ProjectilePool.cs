@@ -2,7 +2,7 @@
 using tdws.objects.projectiles;
 using tdws.objects.projectiles.abstract_projectile;
 
-namespace tdws.engine
+namespace tdws.core
 {
   /// <summary>
   ///   A pool containing projectiles.

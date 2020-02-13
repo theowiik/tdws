@@ -3,14 +3,22 @@ using Godot;
 using tdws.actors.monsters.abstract_monster;
 using tdws.objects.door;
 
-namespace tdws.core
+namespace tdws.levels
 {
   public interface IRoom
   {
+    /// <summary>
+    ///   Returns a list of the possible 
+    /// </summary>
+    /// <returns></returns>
     IList<Door> GetDoors();
 
     IList<AbstractMonster> GetEnemies();
 
+    /// <summary>
+    ///   Returns the spawn point.
+    /// </summary>
+    /// <returns>The spawn point.</returns>
     Vector2 GetSpawnPoint();
   }
 }

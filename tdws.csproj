@@ -68,11 +68,11 @@
     <Compile Include="src\actors\player\states\motion\on_ground\Walk.cs" />
     <Compile Include="src\actors\Stats.cs" />
     <Compile Include="src\Camera.cs" />
-    <Compile Include="src\core\IRoom.cs" />
     <Compile Include="src\core\RoomLoader.cs" />
-    <Compile Include="src\engine\ILevel.cs" />
-    <Compile Include="src\engine\IObjectPool.cs" />
-    <Compile Include="src\engine\ProjectilePool.cs" />
+    <Compile Include="src\levels\IRoom.cs" />
+    <Compile Include="src\levels\ILevel.cs" />
+    <Compile Include="src\core\IObjectPool.cs" />
+    <Compile Include="src\core\ProjectilePool.cs" />
     <Compile Include="src\Game.cs" />
     <Compile Include="src\interfacee\HUD.cs" />
     <Compile Include="src\objects\box\Box.cs" />
