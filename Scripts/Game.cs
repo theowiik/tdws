@@ -1,15 +1,10 @@
 using System;
 using Godot;
-using tdws.actors.abstract_actor;
-using tdws.actors.monsters;
-using tdws.actors.player;
-using tdws.core;
-using tdws.interfacee;
 using tdws.objects.coin;
-using tdws.projectile_shooters.abstract_projectile_shooter;
+using tdws.Scripts.ProjectileShooters;
 using Object = Godot.Object;
 
-namespace tdws
+namespace tdws.Scripts
 {
   /// <summary>
   ///   The Game class is the main class.
