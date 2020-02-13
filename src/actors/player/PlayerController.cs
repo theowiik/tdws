@@ -215,7 +215,7 @@ namespace tdws.actors.player
       if (_holster.GetHolding() is Node holding)
       {
         _projectileShooterHolder.AddChild(holding);
-        EmitChatAdded(holding.GetName());
+        EmitChatAdded(holding.Name);
       }
       else
       {

@@ -27,7 +27,7 @@ namespace tdws.objects.projectiles.homing_projectile
     {
       if (_target == null) return;
 
-      var desiredDirection = _target.GetGlobalPosition() - GetGlobalPosition();
+      var desiredDirection = _target.GlobalPosition - GlobalPosition;
       Direction += desiredDirection.Normalized() * TurnMultiplier;
       Direction = Direction.Normalized();
     }

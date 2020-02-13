@@ -43,7 +43,7 @@ namespace tdws.core
       AddDoors(room);
       AddEnemies(room);
       var spawnPoint = room.GetNode("Spawn") as Position2D;
-      _player.SetGlobalPosition(spawnPoint.Position);
+      _player.GlobalPosition = spawnPoint.Position;
     }
 
     private void AddEnemies(TileMap room)
@@ -55,7 +55,7 @@ namespace tdws.core
         var skeleton = MonsterFactory.CreateSkeleton();
         _enemies.Add(skeleton);
         CallDeferred("add_child", skeleton);
-        skeleton.SetPosition(enemyPosition.Position);
+        skeleton.Position = enemyPosition.Position;
       }
     }
 
@@ -82,7 +82,7 @@ namespace tdws.core
         // TODO: How to get the width of a tile in code.
         instancePos.x += 8;
         instancePos.y += 8;
-        door.SetGlobalPosition(instancePos);
+        door.GlobalPosition = instancePos;
       }
     }
 

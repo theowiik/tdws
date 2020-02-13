@@ -176,7 +176,7 @@ namespace tdws
 
       _camera.GetParent().RemoveChild(_camera); // fix..
       _player.AddChild(_camera);
-      _camera.SetPosition(Vector2.Zero);
+      _camera.Position = Vector2.Zero;
     }
 
     /// <summary>
@@ -218,7 +218,7 @@ namespace tdws
     /// </summary>
     private void CrosshairLoop()
     {
-      _crosshair.SetGlobalPosition(GetGlobalMousePosition());
+      _crosshair.GlobalPosition = GetGlobalMousePosition();
     }
 
     public override void _Input(InputEvent @event)
@@ -259,7 +259,7 @@ namespace tdws
     /// </summary>
     private static void ToggleFullscreen()
     {
-      OS.WindowFullscreen = !OS.IsWindowFullscreen();
+      OS.WindowFullscreen = !OS.WindowFullscreen;
     }
 
     /// <summary>
@@ -269,7 +269,7 @@ namespace tdws
     {
       var skeleton = MonsterFactory.CreateSkeleton();
       CallDeferred("add_child", skeleton);
-      skeleton.SetGlobalPosition(new Vector2(20, 20));
+      skeleton.GlobalPosition = new Vector2(20, 20);
       skeleton.Connect(nameof(AbstractActor.CoinDropped), this, nameof(OnCoinDropped));
       skeleton.Connect(nameof(AbstractActor.Died), this, nameof(OnDied));
     }

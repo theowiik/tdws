@@ -38,7 +38,7 @@ namespace tdws.objects.projectiles.wonky_projectile
 
       var transform = Transform;
       transform.origin += Direction * Speed * delta;
-      SetTransform(transform);
+      Transform = transform;
     }
 
     /// <summary>

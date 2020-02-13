@@ -154,7 +154,7 @@ namespace tdws.projectile_shooters.abstract_projectile_shooter
     private void RotationLoop()
     {
       var radians = ToMouseVec().Angle();
-      SetGlobalRotation(radians);
+      GlobalRotation = radians;
 
       var firstQuadrant = radians >= -Math.PI / 2 && radians <= 0;
       var secondQuadrant = radians <= Math.PI / 2 && radians >= 0;

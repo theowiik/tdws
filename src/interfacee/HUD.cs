@@ -74,7 +74,7 @@ namespace tdws.interfacee
     /// </param>
     private void SetHealth(int amount)
     {
-      _health.SetText(amount + " hp");
+      _health.Text = amount + " hp";
     }
 
     /// <summary>
@@ -85,7 +85,7 @@ namespace tdws.interfacee
     /// </param>
     private void SetCoins(int amount)
     {
-      _coins.SetText(amount + " coins");
+      _coins.Text = amount + " coins";
     }
 
     /// <summary>

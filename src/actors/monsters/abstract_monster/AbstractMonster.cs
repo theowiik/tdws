@@ -110,7 +110,7 @@ namespace tdws.actors.monsters.abstract_monster
     {
       if (_target == null) return;
 
-      var toTarget = GetGlobalPosition().DirectionTo(_target.GetGlobalPosition());
+      var toTarget = GlobalPosition.DirectionTo(_target.GlobalPosition);
       MoveAndSlide(toTarget.Normalized() * 100);
     }
   }
