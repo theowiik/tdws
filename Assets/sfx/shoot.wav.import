@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/shoot.wav-4a969f16b08b4fec69c20ebd753a6e19.sample"
+path="res://.import/shoot.wav-40e24fbd97ce891c91f89924f830eaae.sample"
 
 [deps]
 
-source_file="res://Assets/sfx/shoot.wav"
-dest_files=[ "res://.import/shoot.wav-4a969f16b08b4fec69c20ebd753a6e19.sample" ]
+source_file="res://Assets/SFX/shoot.wav"
+dest_files=[ "res://.import/shoot.wav-40e24fbd97ce891c91f89924f830eaae.sample" ]
 
 [params]
 
@@ -15,7 +15,7 @@ force/8_bit=false
 force/mono=false
 force/max_rate=false
 force/max_rate_hz=44100
-edit/trim=true
-edit/normalize=true
+edit/trim=false
+edit/normalize=false
 edit/loop=false
 compress/mode=0
