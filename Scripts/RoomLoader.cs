@@ -15,13 +15,13 @@ namespace tdws.Scripts
   {
     private ILevel _level;
     private IList<Door> _doors;
-    private IList<AbstractMonster> _enemies;
+    private IList<AbstractEnemy> _enemies;
     private AbstractActor _player;
 
     public override void _Ready()
     {
       _doors = new List<Door>();
-      _enemies = new List<AbstractMonster>();
+      _enemies = new List<AbstractEnemy>();
     }
 
     public void SetPlayer(AbstractActor player)
@@ -57,7 +57,7 @@ namespace tdws.Scripts
       var enemyPositions = ListService.SelectNRandom(possibleEnemyPositions, 3);
       foreach (Position2D enemyPosition in enemyPositions)
       {
-        var skeleton = MonsterFactory.CreateSkeleton();
+        var skeleton = ActorFactory.CreateSkeleton();
         _enemies.Add(skeleton);
         CallDeferred("add_child", skeleton);
         skeleton.Position = enemyPosition.Position;
@@ -91,7 +91,7 @@ namespace tdws.Scripts
       }
     }
 
-    public IEnumerable<AbstractMonster> GetEnemies()
+    public IEnumerable<AbstractEnemy> GetEnemies()
     {
       return _enemies;
     }

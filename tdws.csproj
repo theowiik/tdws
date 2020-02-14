@@ -52,15 +52,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scripts\AbstractActor.cs" />
-    <Compile Include="Scripts\AbstractMonster.cs" />
+    <Compile Include="Scripts\Actors\AbstractActor.cs" />
+    <Compile Include="Scripts\Actors\AbstractEnemy.cs" />
+    <Compile Include="Scripts\Actors\ActorFactory.cs" />
+    <Compile Include="Scripts\Actors\Player.cs" />
     <Compile Include="Scripts\Box.cs" />
     <Compile Include="Scripts\Camera.cs" />
     <Compile Include="Scripts\Coin.cs" />
     <Compile Include="Scripts\Crate.cs" />
     <Compile Include="Scripts\DeathEffect.cs" />
     <Compile Include="Scripts\Directions.cs" />
-    <Compile Include="Scripts\DirectionService.cs" />
     <Compile Include="Scripts\Door.cs" />
     <Compile Include="Scripts\Game.cs" />
     <Compile Include="Scripts\Holster.cs" />
@@ -70,17 +71,10 @@
     <Compile Include="Scripts\IDamageSource.cs" />
     <Compile Include="Scripts\ILevel.cs" />
     <Compile Include="Scripts\ILiving.cs" />
-    <Compile Include="Scripts\IMovable.cs" />
     <Compile Include="Scripts\IObjectPool.cs" />
     <Compile Include="Scripts\IPickupable.cs" />
     <Compile Include="Scripts\IRoom.cs" />
     <Compile Include="Scripts\IState.cs" />
-    <Compile Include="Scripts\Jump.cs" />
-    <Compile Include="Scripts\MonsterFactory.cs" />
-    <Compile Include="Scripts\Motion.cs" />
-    <Compile Include="Scripts\OnGround.cs" />
-    <Compile Include="Scripts\PlayerController.cs" />
-    <Compile Include="Scripts\PlayerStateMachine.cs" />
     <Compile Include="Scripts\ProjectilePool.cs" />
     <Compile Include="Scripts\ProjectileShooters\AbstractProjectileShooter.cs" />
     <Compile Include="Scripts\ProjectileShooters\AlienGun.cs" />
@@ -96,10 +90,11 @@
     <Compile Include="Scripts\Projectiles\ProjectileFactory.cs" />
     <Compile Include="Scripts\Projectiles\WonkyProjectile.cs" />
     <Compile Include="Scripts\RoomLoader.cs" />
+    <Compile Include="Scripts\Services\DirectionService.cs" />
     <Compile Include="Scripts\Services\ListService.cs" />
-    <Compile Include="Scripts\StateMachine.cs" />
+    <Compile Include="Scripts\Services\NodeService.cs" />
+    <Compile Include="Scripts\Services\Objects.cs" />
     <Compile Include="Scripts\Stats.cs" />
-    <Compile Include="Scripts\Walk.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Materials\blood.tres" />

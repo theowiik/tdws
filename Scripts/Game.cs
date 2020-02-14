@@ -9,41 +9,27 @@ namespace tdws.Scripts
   /// <summary>
   ///   The Game class is the main class.
   /// </summary>
-  public class Game : Node2D
+  public sealed class Game : Node2D
   {
-    private Camera _camera;
+    private Camera2D _camera;
     private PackedScene _coinScene;
     private Sprite _crosshair;
-    private int _enemiesKilled = 0;
+    private int _enemiesKilled;
     private HUD _hud;
     private AbstractActor _player;
     private RoomLoader _roomLoader;
-    private Vector2 _spawnPoint;
-    private Sprite _transitionSprite;
-
-    /// <summary>
-    ///   Loads the crosshair scene and adds it as a child.
-    /// </summary>
-    private void InitCrosshair()
-    {
-      var crosshairScene = GD.Load("res://src/Crosshair.tscn") as PackedScene;
-      _crosshair = crosshairScene.Instance() as Sprite;
-      AddChild(_crosshair);
-    }
 
     public override void _Ready()
     {
-      InitCrosshair();
-      _hud = GetNode("CanvasLayer/HUD") as HUD;
-
-      // Camera
-      _camera = GetNode("Camera") as Camera;
+      _crosshair = GetNode<Sprite>("Crosshair");
+      _hud = GetNode<HUD>("CanvasLayer/HUD");
+      _camera = GetNode<Camera2D>("Camera");
 
       // Hide the cursor
       Input.SetMouseMode(Input.MouseMode.Hidden);
 
+      // Player
       SpawnPlayer();
-      AddCameraToPlayer();
 
       // HUD
       _player.Connect(nameof(AbstractActor.HealthChanged), _hud, nameof(HUD.HealthChanged));
@@ -55,10 +41,9 @@ namespace tdws.Scripts
       _coinScene = GD.Load("res://src/objects/coin/Coin.tscn") as PackedScene;
 
       // Projectile signal
-      _player.Connect(nameof(PlayerController.ProjectileShooterChanged), this, nameof(OnProjectileShooterChanged));
+      _player.Connect(nameof(Player.ProjectileShooterChanged), this, nameof(OnProjectileShooterChanged));
 
-      _transitionSprite = GetNode("TransitionSprite") as Sprite;
-
+      // Room loader
       _roomLoader = GetNode("RoomLoader") as RoomLoader;
       _roomLoader.SetPlayer(_player);
       NextRoom();
@@ -66,12 +51,12 @@ namespace tdws.Scripts
 
     private void RoomLoadStarted()
     {
-      _transitionSprite.Visible = true;
+      // show transition sprite
     }
 
     private void RoomLoadFinished()
     {
-      _transitionSprite.Visible = false;
+      // hide transition sprite
     }
 
     /// <summary>
@@ -83,9 +68,7 @@ namespace tdws.Scripts
       _roomLoader.NextRoom();
 
       foreach (var door in _roomLoader.GetDoors())
-      {
         door.Connect("DoorEntered", this, nameof(OnDoorEntered));
-      }
 
       foreach (var monster in _roomLoader.GetEnemies())
       {
@@ -152,49 +135,24 @@ namespace tdws.Scripts
     /// </summary>
     private void SpawnPlayer()
     {
-      if (_player == null) _player = CreatePlayer();
+      _player = CreatePlayer();
 
-      _player.GlobalPosition = _spawnPoint;
       AddChild(_player);
     }
 
     /// <summary>
-    ///   Add the camera to the player node. Player and camera must exist.
+    ///   Create a 
     /// </summary>
-    /// <exception cref="System.NullReferenceException">
-    ///   If player or camera is null.
-    /// </exception>
-    private void AddCameraToPlayer()
-    {
-      if (_camera == null || _player == null)
-        throw new NullReferenceException("Camera and/or player is null");
-
-      _camera.GetParent().RemoveChild(_camera); // fix..
-      _player.AddChild(_camera);
-      _camera.Position = Vector2.Zero;
-    }
-
-    /// <summary>
-    ///   Creates a new player.
-    /// </summary>
-    /// <returns>
-    ///   The player.
-    /// </returns>
-    /// <exception cref="System.Exception">
-    ///   If the player scene could not be found.
-    /// </exception>
-    /// <exception cref="System.Exception">
-    ///   If the player scene is a not a actor.
-    /// </exception>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     private AbstractActor CreatePlayer()
     {
-      var player = GD.Load("res://src/actors/player/Player.tscn") as PackedScene;
-      if (player == null) throw new Exception("Player scene could not be loaded.");
+      var player = GD.Load<PackedScene>("res://Scenes/Actors/Player.tscn").Instance() as AbstractActor;
 
-      var p = player.Instance() as AbstractActor;
-      if (p == null) throw new Exception("Player scene is not a actor.");
+      if (player == null)
+        throw new Exception("player scene could not be loaded.");
 
-      return p;
+      return player;
     }
 
     private void AllEnemiesKilled()
@@ -262,7 +220,7 @@ namespace tdws.Scripts
     /// </summary>
     private void SpawnEnemy()
     {
-      var skeleton = MonsterFactory.CreateSkeleton();
+      var skeleton = ActorFactory.CreateSkeleton();
       CallDeferred("add_child", skeleton);
       skeleton.GlobalPosition = new Vector2(20, 20);
       skeleton.Connect(nameof(AbstractActor.CoinDropped), this, nameof(OnCoinDropped));

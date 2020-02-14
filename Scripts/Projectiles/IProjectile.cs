@@ -2,7 +2,7 @@ using tdws.Scripts;
 
 namespace tdws.objects.projectiles
 {
-  public interface IProjectile : IMovable, IDamageSource
+  public interface IProjectile : IDamageSource
   {
     /// <summary>
     ///   Destroys the projectile.

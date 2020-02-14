@@ -10,12 +10,13 @@ namespace tdws.Scripts
   /// <summary>
   ///   The Player character.
   /// </summary>
-  public sealed class PlayerController : AbstractActor, IMovable, ICanPickup
+  public sealed class Player : AbstractActor, ICanPickup
   {
     [Signal]
     public delegate void ProjectileShooterChanged(AbstractProjectileShooter projectileShooter);
 
-    private Holster _holster;
+    private const int MaxWalkSpeed = 125;
+    private const int MaxSprintSpeed = 175;
 
     /// <summary>
     ///   Contains a list of tuples where index 0 contains the key scan code. And index 1 contains the corresponding
@@ -23,20 +24,16 @@ namespace tdws.Scripts
     /// </summary>
     private readonly List<Tuple<int, int>> _keyboardIndex;
 
+    private Holster _holster;
+
     /// <summary>
     ///   The node that projectiles should be attached to.
     /// </summary>
     private Node2D _projectileShooterHolder;
 
-    private StateMachine _stateMachine;
-
-    /// <summary>
-    ///   The latest velocity the player had.
-    ///   Used for playing the correct animation.
-    /// </summary>
     private Vector2 _velocity;
 
-    public PlayerController()
+    public Player()
     {
       _keyboardIndex = new List<Tuple<int, int>>
       {
@@ -60,10 +57,16 @@ namespace tdws.Scripts
       EmitSignal(nameof(CoinsChanged), Stats.Coins);
     }
 
-    void IMovable.Move(Vector2 velocity)
+    public void Move()
     {
-      _velocity = MoveAndSlide(velocity, Vector2.Zero, false, 4, 0, false);
+      var inputDirection = GetMovementInputVector();
+      var speed = Input.IsActionPressed("sprint") ? MaxSprintSpeed : MaxWalkSpeed;
+      _velocity = inputDirection * speed;
 
+      // Move
+      _velocity = MoveAndSlide(_velocity, Vector2.Zero, false, 4, 0, false);
+
+      // Collisions
       for (var i = 0; i < GetSlideCount(); i++)
       {
         var collision = GetSlideCollision(i);
@@ -72,6 +75,25 @@ namespace tdws.Scripts
         var rigidBody = collider as RigidBody2D;
         rigidBody?.ApplyCentralImpulse(-collision.Normal * Inertia);
       }
+    }
+
+    /// <summary>
+    ///   Returns the unit vector of the input direction from the user.
+    /// </summary>
+    /// <returns>
+    ///   The unit vector of the input direction.
+    /// </returns>
+    private static Vector2 GetMovementInputVector()
+    {
+      const int composant = 1;
+      var inputVector = new Vector2();
+
+      if (Input.IsActionPressed("up")) inputVector.y -= composant;
+      if (Input.IsActionPressed("down")) inputVector.y += composant;
+      if (Input.IsActionPressed("right")) inputVector.x += composant;
+      if (Input.IsActionPressed("left")) inputVector.x -= composant;
+
+      return inputVector.Normalized();
     }
 
     /// <summary>
@@ -85,10 +107,8 @@ namespace tdws.Scripts
 
     protected override void GetNodes()
     {
-      _projectileShooterHolder = GetNode("ProjectileShooterHolder") as Node2D;
-      _holster = GetNode("Holster") as Holster;
-      _stateMachine = GetNode("PlayerStateMachine") as StateMachine;
-      _stateMachine.Start();
+      _projectileShooterHolder = GetNode<Node2D>("ProjectileShooterHolder");
+      _holster = GetNode<Holster>("Holster");
     }
 
     public override void _Process(float delta)
@@ -125,8 +145,6 @@ namespace tdws.Scripts
     {
       var direction = DirectionService.VelocityToDirection(_velocity);
       PlayAnimation(direction);
-
-      var hello = new List<int>();
     }
 
     /// <summary>

@@ -28,12 +28,6 @@ namespace tdws.objects.projectiles.abstract_projectile
       return ActorSource != null;
     }
 
-    // TODO: It is not implemented! Rethink some things.
-    public void Move(Vector2 velocity)
-    {
-      throw new NotImplementedException();
-    }
-
     public void Destroy()
     {
       QueueFree();

@@ -16,7 +16,7 @@ namespace tdws.objects.projectiles.homing_projectile
     private const float TurnMultiplier = 0.3f;
 
     private Area2D _detectionArea;
-    private AbstractMonster _target;
+    private AbstractEnemy _target;
 
     protected override void OverrideProperties()
     {
@@ -40,7 +40,7 @@ namespace tdws.objects.projectiles.homing_projectile
 
     public void OnDetectionAreaBodyEntered(object body)
     {
-      if (body is AbstractMonster monster) _target = monster;
+      if (body is AbstractEnemy monster) _target = monster;
     }
   }
 }

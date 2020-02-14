@@ -1,5 +1,5 @@
 # tdws
-![demo](readme/demo_2019-12-18.gif)
+![demo](Readme/demo_2019-12-18.gif)
 
 ## Naming Conventions
 |Type|Naming|

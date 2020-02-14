@@ -13,7 +13,7 @@ namespace tdws.levels
     /// <returns></returns>
     IList<Door> GetDoors();
 
-    IList<AbstractMonster> GetEnemies();
+    IList<AbstractEnemy> GetEnemies();
 
     /// <summary>
     ///   Returns the spawn point.

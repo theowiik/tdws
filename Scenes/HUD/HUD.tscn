@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/HUD.cs" type="Script" id=1]
+
+[node name="HUD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 0.418121
+margin_bottom = 0.418121
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Health" type="RichTextLabel" parent="."]
+margin_left = 19.0
+margin_top = 22.0
+margin_right = 222.0
+margin_bottom = 105.0
+text = "put hp here"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Coins" type="RichTextLabel" parent="."]
+margin_left = 323.488
+margin_top = 20.2925
+margin_right = 488.488
+margin_bottom = 119.292
+text = "put coins here"
+
+[node name="Chat" type="RichTextLabel" parent="."]
+margin_left = 22.805
+margin_top = 168.293
+margin_right = 368.805
+margin_bottom = 268.293
+custom_colors/default_color = Color( 1, 1, 1, 0.392157 )
+text = "put logs here"
+scroll_active = false
+scroll_following = true
+override_selected_font_color = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

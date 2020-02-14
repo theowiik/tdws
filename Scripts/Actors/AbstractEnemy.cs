@@ -5,7 +5,7 @@ namespace tdws.Scripts
   /// <summary>
   ///   The base monster all monsters inherit from.
   /// </summary>
-  public abstract class AbstractMonster : AbstractActor, IDamageSource
+  public abstract class AbstractEnemy : AbstractActor, IDamageSource
   {
     /// <summary>
     ///   The time the monsters will chase their target (in seconds) while they are outside their range.
