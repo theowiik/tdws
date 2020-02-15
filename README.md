@@ -4,11 +4,12 @@
 ## Naming Conventions
 |Type|Naming|
 |-|-|
-|Folders|PascalCase|
+|Folders|PascalCase<br>or CAPS for abbreveations, like "HUD"|
 |Nodes|PascalCase|
-|C# files|C# standards (PascalCase)|
+|C# files|PascalCase (C# standards)<br>Same name as Node it is attached to|
 |.tscn|Same as root node|
 |Binaries|snake_case|
+|.tres|snake_case|
 
 ## Requirements
 * C# 7.1 or higher
