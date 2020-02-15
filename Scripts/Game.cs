@@ -2,6 +2,7 @@ using System;
 using Godot;
 using tdws.objects.coin;
 using tdws.Scripts.ProjectileShooters;
+using tdws.Scripts.Services;
 using Object = Godot.Object;
 
 namespace tdws.Scripts
@@ -38,13 +39,13 @@ namespace tdws.Scripts
       // Coins
       _player.Connect(nameof(AbstractActor.CoinDropped), this, nameof(OnCoinDropped));
       _player.Connect(nameof(AbstractActor.CoinsChanged), _hud, nameof(HUD.OnCoinsChanged));
-      _coinScene = GD.Load("res://src/objects/coin/Coin.tscn") as PackedScene;
+      _coinScene = NodeService.LoadNotNull<PackedScene>("res://Scenes/Objects/Coin.tscn");
 
       // Projectile signal
       _player.Connect(nameof(Player.ProjectileShooterChanged), this, nameof(OnProjectileShooterChanged));
 
       // Room loader
-      _roomLoader = GetNode("RoomLoader") as RoomLoader;
+      _roomLoader = GetNode<RoomLoader>("RoomLoader");
       _roomLoader.SetPlayer(_player);
       NextRoom();
     }

@@ -11,9 +11,9 @@ namespace tdws.levels
     ///   Returns a list of the possible 
     /// </summary>
     /// <returns></returns>
-    IList<Door> GetDoors();
+    IEnumerable<Door> GetDoors();
 
-    IList<AbstractEnemy> GetEnemies();
+    IEnumerable<AbstractEnemy> GetEnemies();
 
     /// <summary>
     ///   Returns the spawn point.

@@ -17,7 +17,7 @@ namespace tdws.Scripts.ProjectileShooters
     private AudioStreamPlayer _shootPlayer;
     private Timer _timer;
     protected int Ammo;
-    protected int KnockbackForce;
+    private int _knockbackForce;
     protected int MagSize;
 
     /// <summary>
@@ -74,7 +74,7 @@ namespace tdws.Scripts.ProjectileShooters
       // Cheat fix :)
       // TODO: Implement in a better way.
       if (GetParent().GetParent() is KinematicBody2D owner)
-        owner.MoveAndSlide(-ToMouseVec() * KnockbackForce);
+        owner.MoveAndSlide(-ToMouseVec() * _knockbackForce);
     }
 
     /// <summary>
@@ -129,7 +129,7 @@ namespace tdws.Scripts.ProjectileShooters
       ProjectilesPerShot = 8;
       ProjectileShooterName = "Abstract Projectile Shooter";
       MaxOffsetAngle = 3;
-      KnockbackForce = 50;
+      _knockbackForce = 50;
     }
 
     /// <summary>

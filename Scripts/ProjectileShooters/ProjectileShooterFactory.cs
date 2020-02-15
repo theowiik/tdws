@@ -11,22 +11,22 @@ namespace tdws.Scripts.ProjectileShooters
   {
     public static IProjectileShooter CreateAssaultRifle()
     {
-      return NodeService.InstanceNotNull<AbstractProjectileShooter>("res://Scenes/ProjectileShoters/AssaultRifle.tscn");
+      return NodeService.InstanceNotNull<AbstractProjectileShooter>("res://Scenes/ProjectileShooters/AssaultRifle.tscn");
     }
 
     public static IProjectileShooter CreateShotgun()
     {
-      return NodeService.InstanceNotNull<AbstractProjectileShooter>("res://Scenes/ProjectileShoters/Shotgun.tscn");
+      return NodeService.InstanceNotNull<AbstractProjectileShooter>("res://Scenes/ProjectileShooters/Shotgun.tscn");
     }
 
     public static IProjectileShooter CreateWonkyGun()
     {
-      return NodeService.InstanceNotNull<AbstractProjectileShooter>("res://Scenes/ProjectileShoters/WonkyGun.tscn");
+      return NodeService.InstanceNotNull<AbstractProjectileShooter>("res://Scenes/ProjectileShooters/WonkyGun.tscn");
     }
 
     public static IProjectileShooter CreateAlienGun()
     {
-      return NodeService.InstanceNotNull<AbstractProjectileShooter>("res://Scenes/ProjectileShoters/AlienGun.tscn");
+      return NodeService.InstanceNotNull<AbstractProjectileShooter>("res://Scenes/ProjectileShooters/AlienGun.tscn");
     }
   }
 }

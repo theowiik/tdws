@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/ProjectileShooters/AbstractProjectileShooter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/ProjectileShooters/AssaultRifle.cs" type="Script" id=2]
+[ext_resource path="res://Assets/Sprites/tdws_spritesheet.png" type="Texture" id=3]
+
+[node name="AssaultRifle" instance=ExtResource( 1 )]
+texture = ExtResource( 3 )
+vframes = 6
+hframes = 8
+frame = 33
+script = ExtResource( 2 )
+
+[node name="Output" parent="." index="1"]
+position = Vector2( 7.75844, -0.426287 )

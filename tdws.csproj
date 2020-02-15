@@ -90,6 +90,7 @@
     <Compile Include="Scripts\Projectiles\IProjectile.cs" />
     <Compile Include="Scripts\Projectiles\ProjectileFactory.cs" />
     <Compile Include="Scripts\Projectiles\WonkyProjectile.cs" />
+    <Compile Include="Scripts\Room.cs" />
     <Compile Include="Scripts\RoomLoader.cs" />
     <Compile Include="Scripts\Services\DirectionService.cs" />
     <Compile Include="Scripts\Services\ListService.cs" />
