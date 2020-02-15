@@ -135,24 +135,8 @@ namespace tdws.Scripts
     /// </summary>
     private void SpawnPlayer()
     {
-      _player = CreatePlayer();
-
+      _player = ActorFactory.CreatePlayer();
       AddChild(_player);
-    }
-
-    /// <summary>
-    ///   Create a 
-    /// </summary>
-    /// <returns></returns>
-    /// <exception cref="Exception"></exception>
-    private AbstractActor CreatePlayer()
-    {
-      var player = GD.Load<PackedScene>("res://Scenes/Actors/Player.tscn").Instance() as AbstractActor;
-
-      if (player == null)
-        throw new Exception("player scene could not be loaded.");
-
-      return player;
     }
 
     private void AllEnemiesKilled()

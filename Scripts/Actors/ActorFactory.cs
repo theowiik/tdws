@@ -1,4 +1,4 @@
-﻿using Godot;
+using tdws.Scripts.Services;
 
 namespace tdws.Scripts
 {
@@ -10,14 +10,15 @@ namespace tdws.Scripts
     /// <summary>
     ///   Creates and returns a skeleton.
     /// </summary>
-    /// <returns>
-    ///   A skeleton.
-    /// </returns>
+    /// <returns>A skeleton.</returns>
     public static AbstractEnemy CreateSkeleton()
     {
-      var packedScene = GD.Load<AbstractEnemy>("res://src/actors/monsters/skeleton/Skeleton.tscn");
-      var skeleton = packedScene.Instance() as AbstractEnemy;
-      return skeleton;
+      return NodeService.InstanceNotNull<AbstractEnemy>("res://Scenes/Actors/Skeleton.tscn");
+    }
+
+    public static Player CreatePlayer()
+    {
+      return NodeService.InstanceNotNull<Player>("res://Scenes/Actors/Player.tscn");
     }
   }
 }

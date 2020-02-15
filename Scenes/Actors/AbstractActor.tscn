@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/Sprites/tdws_spritesheet.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Actors/AbstractActor.cs" type="Script" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 6.29634
 height = 4.36372
 
 [node name="AbstractActor" type="KinematicBody2D"]
+script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -17,3 +19,5 @@ hframes = 8
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="DamagePlayer" type="AudioStreamPlayer" parent="."]

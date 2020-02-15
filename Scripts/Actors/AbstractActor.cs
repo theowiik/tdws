@@ -21,8 +21,7 @@ namespace tdws.Scripts
 
     [Signal]
     public delegate void HealthChanged(int hp);
-
-    private readonly PackedScene _deathEffect;
+    
     private AudioStreamPlayer _damagePlayer;
     protected AnimationPlayer AnimationPlayer;
     protected Stats Stats;
@@ -31,7 +30,6 @@ namespace tdws.Scripts
     {
       Inertia = 10;
       Stats = new Stats(100, 100);
-      _deathEffect = GD.Load("res://src/particles/DeathEffect.tscn") as PackedScene;
     }
 
     protected int Inertia { get; }
@@ -53,18 +51,12 @@ namespace tdws.Scripts
       EmitSignal(nameof(CoinDropped), 3, GlobalPosition);
       EmitSignal(nameof(Died));
       QueueFree();
-
-//      if (_deathEffect.Instance() is Particles2D particles)
-//      {
-//        particles.SetGlobalPosition(GetGlobalPosition());
-//        GetParent().AddChild(particles);
-//      }
     }
 
     public override void _Ready()
     {
-      AnimationPlayer = GetNode("AnimationPlayer") as AnimationPlayer;
-      _damagePlayer = GetNode("Audio/DamagePlayer") as AudioStreamPlayer;
+      AnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+      _damagePlayer = GetNode<AudioStreamPlayer>("DamagePlayer");
       GetNodes();
     }
 

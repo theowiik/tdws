@@ -24,12 +24,12 @@ namespace tdws.Scripts
     /// </summary>
     private readonly List<Tuple<int, int>> _keyboardIndex;
 
-    private Holster _holster;
+    private readonly Holster _holster;
 
     /// <summary>
     ///   The node that projectiles should be attached to.
     /// </summary>
-    private Node2D _projectileShooterHolder;
+    private Position2D _projectileShooterHolder;
 
     private Vector2 _velocity;
 
@@ -42,6 +42,8 @@ namespace tdws.Scripts
         new Tuple<int, int>((int) KeyList.Key3, 2),
         new Tuple<int, int>((int) KeyList.Key4, 3)
       };
+
+      _holster = new Holster();
     }
 
     public void PickupProjectileShooter(IProjectileShooter projectileShooter)
@@ -107,8 +109,7 @@ namespace tdws.Scripts
 
     protected override void GetNodes()
     {
-      _projectileShooterHolder = GetNode<Node2D>("ProjectileShooterHolder");
-      _holster = GetNode<Holster>("Holster");
+      _projectileShooterHolder = GetNode<Position2D>("ProjectileShooterHolder");
     }
 
     public override void _Process(float delta)

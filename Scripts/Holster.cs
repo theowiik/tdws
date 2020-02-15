@@ -5,26 +5,24 @@ using tdws.Scripts.ProjectileShooters;
 namespace tdws.Scripts
 {
   /// <summary>
-  ///   The Holster is used for managing the projectile shooters
-  ///   the player is holding.
+  ///   The Holster is used for managing the projectile shooters the player is holding.
   /// </summary>
-  public class Holster : Node
+  public class Holster
   {
+    private const int MaxInventorySize = 5;
+    private readonly IProjectileShooter[] _projectileShooters;
     private int _inventoryIndex;
-    private int _lastEquippedIndex;
-    private int _maxInventorySize;
-    private IProjectileShooter[] _projectileShooters;
 
-    public override void _Ready()
+    public Holster()
     {
       _inventoryIndex = 0;
-      _maxInventorySize = 5;
-      _projectileShooters = new IProjectileShooter[_maxInventorySize];
+      _projectileShooters = new IProjectileShooter[MaxInventorySize];
 
       // Add a weapons at the start...
       Add(ProjectileShooterFactory.CreateAssaultRifle());
       Add(ProjectileShooterFactory.CreateShotgun());
       Add(ProjectileShooterFactory.CreateWonkyGun());
+      Add(ProjectileShooterFactory.CreateAlienGun());
     }
 
     /// <summary>
@@ -67,9 +65,9 @@ namespace tdws.Scripts
     private void SetClosestLegalInventoryIndex()
     {
       if (_inventoryIndex < 0)
-        _inventoryIndex = _maxInventorySize - 1;
+        _inventoryIndex = MaxInventorySize - 1;
 
-      if (_inventoryIndex >= _maxInventorySize)
+      if (_inventoryIndex >= MaxInventorySize)
         _inventoryIndex = 0;
     }
 
