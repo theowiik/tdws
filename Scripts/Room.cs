@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using tdws.levels;
-using tdws.objects.door;
+using tdws.Scripts.Actors;
 using tdws.Scripts.Services;
 
 namespace tdws.Scripts

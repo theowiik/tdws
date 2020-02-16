@@ -1,6 +1,6 @@
 using Godot;
 
-namespace tdws.Scripts
+namespace tdws.Scripts.Actors
 {
   /// <summary>
   ///   The base monster all monsters inherit from.
