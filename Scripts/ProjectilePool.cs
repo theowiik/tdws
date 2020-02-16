@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-using tdws.objects.projectiles;
-using tdws.objects.projectiles.abstract_projectile;
+using tdws.Scripts.Projectiles;
 
 namespace tdws.Scripts
 {

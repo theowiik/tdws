@@ -1,6 +1,4 @@
-using tdws.Scripts;
-
-namespace tdws.objects.projectiles
+namespace tdws.Scripts.Projectiles
 {
   public interface IProjectile : IDamageSource
   {

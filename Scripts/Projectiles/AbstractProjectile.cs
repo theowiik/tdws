@@ -1,8 +1,7 @@
-using System;
 using Godot;
-using tdws.Scripts;
+using tdws.Scripts.Actors;
 
-namespace tdws.objects.projectiles.abstract_projectile
+namespace tdws.Scripts.Projectiles
 {
   /// <summary>
   ///   The Projectile class represents a abstract projectile.

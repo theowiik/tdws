@@ -1,3 +1,5 @@
+using tdws.Scripts.Actors;
+
 namespace tdws.Scripts.ProjectileShooters
 {
   public interface IProjectileShooter

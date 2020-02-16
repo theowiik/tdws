@@ -1,4 +1,6 @@
-﻿namespace tdws.Scripts
+﻿using tdws.Scripts.Actors;
+
+namespace tdws.Scripts
 {
   /// <summary>
   ///   Represents something that can deal damage.

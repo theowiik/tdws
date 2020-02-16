@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using tdws.Scripts.ProjectileShooters;
+using tdws.Scripts.Services;
 using Object = Godot.Object;
 
-namespace tdws.Scripts
+namespace tdws.Scripts.Actors
 {
   /// <summary>
   ///   The Player character.

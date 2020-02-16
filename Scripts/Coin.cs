@@ -1,7 +1,6 @@
 using Godot;
-using tdws.Scripts;
 
-namespace tdws.objects.coin
+namespace tdws.Scripts
 {
   /// <summary>
   ///   A coin. TODO: Make it implement something like pickupable.

@@ -1,7 +1,6 @@
 using Godot;
-using tdws.Scripts.ProjectileShooters;
 
-namespace tdws.Scripts.Services
+namespace tdws.Scripts.ProjectileShooters
 {
   public class WonkyGun : AbstractProjectileShooter
   {

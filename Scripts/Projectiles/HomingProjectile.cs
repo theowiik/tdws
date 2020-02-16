@@ -1,8 +1,7 @@
 using Godot;
-using tdws.objects.projectiles.abstract_projectile;
-using tdws.Scripts;
+using tdws.Scripts.Actors;
 
-namespace tdws.objects.projectiles.homing_projectile
+namespace tdws.Scripts.Projectiles
 {
   /// <summary>
   ///   A homing projectile.

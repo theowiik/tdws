@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using Godot;
-using tdws.objects.door;
-using tdws.Scripts;
+using tdws.Scripts.Actors;
 
-namespace tdws.levels
+namespace tdws.Scripts
 {
   /// <summary>
   ///   Represents a room.

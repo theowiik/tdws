@@ -1,6 +1,6 @@
 using Godot;
 
-namespace tdws.objects.door
+namespace tdws.Scripts
 {
   /// <summary>
   ///   A door that can be entered.

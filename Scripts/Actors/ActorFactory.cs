@@ -1,6 +1,6 @@
 using tdws.Scripts.Services;
 
-namespace tdws.Scripts
+namespace tdws.Scripts.Actors
 {
   /// <summary>
   ///   Creates monsters

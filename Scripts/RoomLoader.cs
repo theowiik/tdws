@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using tdws.levels;
-using tdws.objects.door;
+using tdws.Scripts.Actors;
 using tdws.Scripts.Services;
 
 namespace tdws.Scripts
@@ -26,7 +25,7 @@ namespace tdws.Scripts
       RemoveAllChildren();
       _room = GetRandomRoom();
 
-      AddChild(room);
+      AddChild((Room) _room); // Hmm...
       _player.GlobalPosition = _room.GetSpawnPoint();
     }
 

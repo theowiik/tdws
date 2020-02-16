@@ -1,8 +1,7 @@
 using Godot;
-using tdws.Scripts;
 using tdws.Scripts.ProjectileShooters;
 
-namespace tdws.objects.crate
+namespace tdws.Scripts
 {
   /// <summary>
   ///   The Crate class holds a projectile shooter.

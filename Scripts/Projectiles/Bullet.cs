@@ -1,6 +1,4 @@
-using tdws.objects.projectiles.abstract_projectile;
-
-namespace tdws.objects.projectiles.bullet
+namespace tdws.Scripts.Projectiles
 {
   public class Bullet : AbstractProjectile
   {

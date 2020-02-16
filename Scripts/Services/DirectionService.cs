@@ -1,7 +1,7 @@
 ﻿using System;
 using Godot;
 
-namespace tdws.Scripts
+namespace tdws.Scripts.Services
 {
   /// <summary>
   ///   Direction related services.

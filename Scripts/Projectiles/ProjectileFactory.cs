@@ -1,6 +1,6 @@
 using Godot;
 
-namespace tdws.objects.projectiles
+namespace tdws.Scripts.Projectiles
 {
   public static class ProjectileFactory
   {

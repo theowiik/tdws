@@ -1,4 +1,4 @@
-using tdws.objects.projectiles;
+using tdws.Scripts.Projectiles;
 
 namespace tdws.Scripts.ProjectileShooters
 {

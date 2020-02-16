@@ -1,4 +1,4 @@
-﻿namespace tdws.objects.coin
+﻿namespace tdws.Scripts
 {
   /// <summary>
   ///   Represents something that can be picked up.

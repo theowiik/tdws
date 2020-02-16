@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-namespace tdws.levels
+
+namespace tdws.Scripts
 {
   /// <summary>
   ///   A game level. Like "Dungeon", "Forest" or "Hell".

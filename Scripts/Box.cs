@@ -1,6 +1,6 @@
 using Godot;
 
-namespace tdws.objects.box
+namespace tdws.Scripts
 {
   /// <summary>
   ///   A pushable box.

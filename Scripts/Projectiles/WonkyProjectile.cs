@@ -1,7 +1,6 @@
 using Godot;
-using tdws.objects.projectiles.abstract_projectile;
 
-namespace tdws.objects.projectiles.wonky_projectile
+namespace tdws.Scripts.Projectiles
 {
   /// <summary>
   ///   A wonky projectile that travels in a weird and unpredictable way.
