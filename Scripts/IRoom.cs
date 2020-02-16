@@ -5,14 +5,21 @@ using tdws.Scripts;
 
 namespace tdws.levels
 {
+  /// <summary>
+  ///   Represents a room.
+  /// </summary>
   public interface IRoom
   {
     /// <summary>
-    ///   Returns a list of the possible 
+    ///   Returns a list of the rooms doors.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>A list of the rooms doors.</returns>
     IEnumerable<Door> GetDoors();
 
+    /// <summary>
+    ///   Returns a list of the rooms enemies.
+    /// </summary>
+    /// <returns>A list of the rooms enemies.</returns>
     IEnumerable<AbstractEnemy> GetEnemies();
 
     /// <summary>

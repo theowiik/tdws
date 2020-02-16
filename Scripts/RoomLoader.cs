@@ -13,16 +13,8 @@ namespace tdws.Scripts
   /// </summary>
   public class RoomLoader : Node
   {
-    private ILevel _level;
-    private IList<Door> _doors;
-    private IList<AbstractEnemy> _enemies;
     private AbstractActor _player;
-
-    public override void _Ready()
-    {
-      _doors = new List<Door>();
-      _enemies = new List<AbstractEnemy>();
-    }
+    private IRoom _room;
 
     public void SetPlayer(AbstractActor player)
     {
@@ -32,26 +24,20 @@ namespace tdws.Scripts
     public void NextRoom()
     {
       RemoveAllChildren();
-      _doors.Clear();
-      _enemies.Clear();
+      _room = GetRandomRoom();
 
-      // Add room
-      var roomScene = GD.Load("res://Scenes/Rooms/Dungeons/Dungeon1.tscn") as PackedScene;
-      var room = roomScene.Instance() as TileMap;
       AddChild(room);
-      var spawnPoint = room.GetNode("Spawn") as Position2D;
-      _player.GlobalPosition = spawnPoint.Position;
+      _player.GlobalPosition = _room.GetSpawnPoint();
     }
 
-    private IRoom GetRandomRoom()
+    private static IRoom GetRandomRoom()
     {
-
-      return null;
+      return NodeService.InstanceNotNull<Room>("res://Scenes/Rooms/Dungeons/Dungeon1.tscn");
     }
 
     public IEnumerable<AbstractEnemy> GetEnemies()
     {
-      return _enemies;
+      return _room.GetEnemies();
     }
 
     private void RemoveAllChildren()
@@ -67,7 +53,7 @@ namespace tdws.Scripts
     /// </returns>
     public IEnumerable<Door> GetDoors()
     {
-      return _doors;
+      return _room.GetDoors();
     }
   }
 }
