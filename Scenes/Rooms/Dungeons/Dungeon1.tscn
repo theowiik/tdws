@@ -36,4 +36,4 @@ position = Vector2( 167.248, 10.6557 )
 position = Vector2( 151.96, 9.26584 )
 
 [node name="Spawn" parent="." index="2"]
-position = Vector2( 160.299, 112.117 )
+position = Vector2( 372.594, 117.424 )
