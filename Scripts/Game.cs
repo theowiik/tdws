@@ -2,6 +2,7 @@ using System;
 using Godot;
 using tdws.Scripts.Actors;
 using tdws.Scripts.ProjectileShooters;
+using tdws.Scripts.Room;
 using tdws.Scripts.Services;
 using Object = Godot.Object;
 

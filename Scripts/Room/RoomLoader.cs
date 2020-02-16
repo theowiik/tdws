@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Godot;
 using tdws.Scripts.Actors;
 using tdws.Scripts.Services;
 
-namespace tdws.Scripts
+namespace tdws.Scripts.Room
 {
   /// <summary>
   ///   Manages rooms and levels.

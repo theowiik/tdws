@@ -4,7 +4,7 @@ using Godot;
 using tdws.Scripts.Actors;
 using tdws.Scripts.Services;
 
-namespace tdws.Scripts
+namespace tdws.Scripts.Room
 {
   public class Room : TileMap, IRoom
   {
@@ -48,7 +48,7 @@ namespace tdws.Scripts
 
       foreach (var doorPosition in doorPositions)
       {
-        var door = NodeService.InstanceNotNull<Door>("PATH");
+        var door = NodeService.InstanceNotNull<Door>("res://Scenes/World/Door.tscn");
         _doors.Add(door);
         AddChild(door);
 

@@ -2,7 +2,7 @@
 using Godot;
 using tdws.Scripts.Actors;
 
-namespace tdws.Scripts
+namespace tdws.Scripts.Room
 {
   /// <summary>
   ///   Represents a room.
