@@ -3,21 +3,26 @@ using Godot;
 namespace tdws.Scripts.Actors
 {
   /// <summary>
-  ///   The base monster all monsters inherit from.
+  ///   The base all enemies inherit from.
   /// </summary>
   public abstract class AbstractEnemy : AbstractActor, IDamageSource
   {
     /// <summary>
-    ///   The time the monsters will chase their target (in seconds) while they are outside their range.
+    ///   The amount of time the enemy will chase their target (in seconds) while they are outside their range.
     /// </summary>
     private const int ChaseTime = 3;
 
-    private Timer _chaseTimer;
+    private readonly Timer _chaseTimer;
 
     /// <summary>
     ///   The target destination.
     /// </summary>
     private KinematicBody2D _target;
+
+    protected AbstractEnemy()
+    {
+      _chaseTimer = new Timer();
+    }
 
     public int GetDamage()
     {
@@ -36,7 +41,6 @@ namespace tdws.Scripts.Actors
 
     protected override void GetNodes()
     {
-      _chaseTimer = GetNode("ChaseTimer") as Timer;
     }
 
     /// <summary>
@@ -79,7 +83,7 @@ namespace tdws.Scripts.Actors
     }
 
     /// <summary>
-    ///   Damages the thing that entered the monsters damage area.
+    ///   Damages the thing that entered the enemies damage area.
     /// </summary>
     /// <param name="body">
     ///   The body that entered the area.
