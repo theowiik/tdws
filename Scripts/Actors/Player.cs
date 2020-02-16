@@ -60,14 +60,16 @@ namespace tdws.Scripts.Actors
       EmitSignal(nameof(CoinsChanged), Stats.Coins);
     }
 
-    public void Move()
+    private void MoveLoop()
     {
       var inputDirection = GetMovementInputVector();
       var speed = Input.IsActionPressed("sprint") ? MaxSprintSpeed : MaxWalkSpeed;
       _velocity = inputDirection * speed;
 
       // Move
-      _velocity = MoveAndSlide(_velocity, Vector2.Zero, false, 4, 0, false);
+      MoveAndSlide(_velocity, Vector2.Zero, false, 4, 0, false);
+
+      GD.Print(_velocity);
 
       // Collisions
       for (var i = 0; i < GetSlideCount(); i++)
@@ -88,13 +90,13 @@ namespace tdws.Scripts.Actors
     /// </returns>
     private static Vector2 GetMovementInputVector()
     {
-      const int composant = 1;
+      const int component = 1;
       var inputVector = new Vector2();
 
-      if (Input.IsActionPressed("up")) inputVector.y -= composant;
-      if (Input.IsActionPressed("down")) inputVector.y += composant;
-      if (Input.IsActionPressed("right")) inputVector.x += composant;
-      if (Input.IsActionPressed("left")) inputVector.x -= composant;
+      if (Input.IsActionPressed("up")) inputVector.y -= component;
+      if (Input.IsActionPressed("down")) inputVector.y += component;
+      if (Input.IsActionPressed("right")) inputVector.x += component;
+      if (Input.IsActionPressed("left")) inputVector.x -= component;
 
       return inputVector.Normalized();
     }
@@ -115,6 +117,7 @@ namespace tdws.Scripts.Actors
 
     public override void _Process(float delta)
     {
+      MoveLoop();
       HolsterLoop();
       AnimationLoop();
       ShootLoop();
