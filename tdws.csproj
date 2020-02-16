@@ -74,7 +74,6 @@
     <Compile Include="Scripts\ILiving.cs" />
     <Compile Include="Scripts\IObjectPool.cs" />
     <Compile Include="Scripts\IPickupable.cs" />
-    <Compile Include="Scripts\IRoom.cs" />
     <Compile Include="Scripts\IState.cs" />
     <Compile Include="Scripts\ProjectilePool.cs" />
     <Compile Include="Scripts\ProjectileShooters\AbstractProjectileShooter.cs" />
@@ -90,8 +89,9 @@
     <Compile Include="Scripts\Projectiles\IProjectile.cs" />
     <Compile Include="Scripts\Projectiles\ProjectileFactory.cs" />
     <Compile Include="Scripts\Projectiles\WonkyProjectile.cs" />
-    <Compile Include="Scripts\Room.cs" />
-    <Compile Include="Scripts\RoomLoader.cs" />
+    <Compile Include="Scripts\Room\IRoom.cs" />
+    <Compile Include="Scripts\Room\Room.cs" />
+    <Compile Include="Scripts\Room\RoomLoader.cs" />
     <Compile Include="Scripts\Services\DirectionService.cs" />
     <Compile Include="Scripts\Services\ListService.cs" />
     <Compile Include="Scripts\Services\NodeService.cs" />
