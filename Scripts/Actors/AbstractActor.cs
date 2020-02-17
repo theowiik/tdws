@@ -21,7 +21,7 @@ namespace tdws.Scripts.Actors
 
     [Signal]
     public delegate void HealthChanged(int hp);
-    
+
     private AudioStreamPlayer _damagePlayer;
     protected AnimationPlayer AnimationPlayer;
     protected Stats Stats;
@@ -80,6 +80,34 @@ namespace tdws.Scripts.Actors
     private void EmitHealthChanged()
     {
       EmitSignal(nameof(HealthChanged), Stats.Hp);
+    }
+
+    /// <summary>
+    ///   Plays the appropriate animation for the actor given a direction enum.
+    /// </summary>
+    /// <param name="direction">
+    ///   The direction the actor is facing.
+    /// </param>
+    protected void PlayAnimation(Directions direction)
+    {
+      switch (direction)
+      {
+        case Directions.Up:
+          AnimationPlayer.Play("walk_up");
+          break;
+        case Directions.Right:
+          AnimationPlayer.Play("walk_right");
+          break;
+        case Directions.Down:
+          AnimationPlayer.Play("walk_down");
+          break;
+        case Directions.Left:
+          AnimationPlayer.Play("walk_left");
+          break;
+        default:
+          AnimationPlayer.Play("idle_down");
+          break;
+      }
     }
 
     /// <summary>

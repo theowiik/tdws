@@ -1,4 +1,5 @@
 using Godot;
+using tdws.Scripts.Services;
 
 namespace tdws.Scripts.Actors
 {
@@ -119,7 +120,8 @@ namespace tdws.Scripts.Actors
       if (!_isChasing) return;
 
       var toTarget = GlobalPosition.DirectionTo(_chasing.GlobalPosition);
-      MoveAndSlide(toTarget.Normalized() * 100);
+      var _velocity = MoveAndSlide(toTarget.Normalized() * 100);
+      PlayAnimation(DirectionService.VelocityToDirection(_velocity));
     }
   }
 }

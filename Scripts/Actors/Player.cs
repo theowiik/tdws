@@ -136,34 +136,6 @@ namespace tdws.Scripts.Actors
     }
 
     /// <summary>
-    ///   Plays the appropriate animation for the player given a direction enum.
-    /// </summary>
-    /// <param name="direction">
-    ///   The direction the player is facing.
-    /// </param>
-    private void PlayAnimation(Directions direction)
-    {
-      switch (direction)
-      {
-        case Directions.Up:
-          AnimationPlayer.Play("walk_up");
-          break;
-        case Directions.Right:
-          AnimationPlayer.Play("walk_right");
-          break;
-        case Directions.Down:
-          AnimationPlayer.Play("walk_down");
-          break;
-        case Directions.Left:
-          AnimationPlayer.Play("walk_left");
-          break;
-        default:
-          AnimationPlayer.Play("idle_down");
-          break;
-      }
-    }
-
-    /// <summary>
     ///   Checks if there was a projectile shooter switch and equips the new projectile shooter.
     /// </summary>
     private void HolsterLoop()
