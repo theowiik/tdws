@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Loot.wav-472288f8c133e2a7618bc77391eda701.sample"
+path="res://.import/loot.wav-85850dd44f5b47360990c7150879289a.sample"
 
 [deps]
 
-source_file="res://Assets/SFX/Loot.wav"
-dest_files=[ "res://.import/Loot.wav-472288f8c133e2a7618bc77391eda701.sample" ]
+source_file="res://Assets/sfx/loot.wav"
+dest_files=[ "res://.import/loot.wav-85850dd44f5b47360990c7150879289a.sample" ]
 
 [params]
 

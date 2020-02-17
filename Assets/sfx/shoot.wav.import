@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/shoot.wav-40e24fbd97ce891c91f89924f830eaae.sample"
+path="res://.import/shoot.wav-4a969f16b08b4fec69c20ebd753a6e19.sample"
 
 [deps]
 
-source_file="res://Assets/SFX/shoot.wav"
-dest_files=[ "res://.import/shoot.wav-40e24fbd97ce891c91f89924f830eaae.sample" ]
+source_file="res://Assets/sfx/shoot.wav"
+dest_files=[ "res://.import/shoot.wav-4a969f16b08b4fec69c20ebd753a6e19.sample" ]
 
 [params]
 

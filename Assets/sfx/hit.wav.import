@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Hit.wav-689173a1eaf98bb85d952a5bacd32f1e.sample"
+path="res://.import/hit.wav-a02c4b15cb2a46ff5b4f58b18804ff25.sample"
 
 [deps]
 
-source_file="res://Assets/SFX/Hit.wav"
-dest_files=[ "res://.import/Hit.wav-689173a1eaf98bb85d952a5bacd32f1e.sample" ]
+source_file="res://Assets/sfx/hit.wav"
+dest_files=[ "res://.import/hit.wav-a02c4b15cb2a46ff5b4f58b18804ff25.sample" ]
 
 [params]
 
