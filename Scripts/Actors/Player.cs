@@ -69,8 +69,6 @@ namespace tdws.Scripts.Actors
       // Move
       MoveAndSlide(_velocity, Vector2.Zero, false, 4, 0, false);
 
-      GD.Print(_velocity);
-
       // Collisions
       for (var i = 0; i < GetSlideCount(); i++)
       {
