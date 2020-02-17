@@ -1,24 +1,27 @@
 using Godot;
+using tdws.Scripts.Services;
 
 namespace tdws.Scripts.Projectiles
 {
+  /// <summary>
+  ///   Creates projectiles.
+  /// </summary>
   public static class ProjectileFactory
   {
     /// <summary>
-    ///   Creates and returns a standard bullet.
+    ///   <returns>The scene file for a bullet.</returns>
     /// </summary>
-    /// <returns>
-    ///   A standard bullet scene.
-    /// </returns>
     public static PackedScene CreateBullet()
     {
-      var packedScene = GD.Load("res://src/objects/projectiles/bullet/Bullet.tscn") as PackedScene;
-      return packedScene;
+      return NodeService.LoadNotNull<PackedScene>("res://Scenes/Projectiles/Bullet.tscn");
     }
 
+    /// <summary>
+    ///   <returns>The scene file for a homing projectile.</returns>
+    /// </summary>
     public static PackedScene CreateHomingProjectile()
     {
-      return GD.Load("res://src/objects/projectiles/homing_projectile/HomingProjectile.tscn") as PackedScene;
+      return null;
     }
   }
 }
