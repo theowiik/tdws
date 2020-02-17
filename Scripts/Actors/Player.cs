@@ -18,13 +18,6 @@ namespace tdws.Scripts.Actors
 
     private const int MaxWalkSpeed = 125;
     private const int MaxSprintSpeed = 175;
-
-    /// <summary>
-    ///   Contains a list of tuples where index 0 contains the key scan code. And index 1 contains the corresponding
-    ///   inventory index.
-    /// </summary>
-    private readonly List<Tuple<int, int>> _keyboardIndex;
-
     private readonly Holster _holster;
 
     /// <summary>
@@ -36,14 +29,6 @@ namespace tdws.Scripts.Actors
 
     public Player()
     {
-      _keyboardIndex = new List<Tuple<int, int>>
-      {
-        new Tuple<int, int>((int) KeyList.Key1, 0),
-        new Tuple<int, int>((int) KeyList.Key2, 1),
-        new Tuple<int, int>((int) KeyList.Key3, 2),
-        new Tuple<int, int>((int) KeyList.Key4, 3)
-      };
-
       _holster = new Holster();
     }
 
@@ -183,28 +168,16 @@ namespace tdws.Scripts.Actors
     /// </summary>
     private void HolsterLoop()
     {
-      var change = false;
+      var next = Input.IsActionJustReleased("weapon_next");
+      var prev = Input.IsActionJustReleased("weapon_previous");
 
-      if (Input.IsActionJustReleased("weapon_next"))
-      {
+      if (next)
         _holster.NextWeapon();
-        change = true;
-      }
-      else if (Input.IsActionJustReleased("weapon_previous"))
-      {
-        _holster.PreviousWeapon();
-        change = true;
-      }
-      else
-      {
-        foreach (var tuple in _keyboardIndex.Where(tuple => Input.IsKeyPressed(tuple.Item1)))
-        {
-          _holster.Select(tuple.Item2);
-          change = true;
-        }
-      }
 
-      if (change)
+      if (prev)
+        _holster.PreviousWeapon();
+
+      if (next || prev)
       {
         EquipHoldingProjectileShooter();
         EmitProjectileShooterChanged();
