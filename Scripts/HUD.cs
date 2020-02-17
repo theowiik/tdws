@@ -61,8 +61,6 @@ namespace tdws.Scripts
       _health = GetNode("Health") as RichTextLabel;
       _chat = GetNode("Chat") as RichTextLabel;
 
-      SetHealth(-100);
-      SetCoins(-100);
       ClearChat();
     }
 
