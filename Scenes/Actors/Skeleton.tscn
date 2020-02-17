@@ -59,10 +59,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [  ]
+"values": [ 18, 19 ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -84,7 +84,7 @@ tracks/0/keys = {
 z_index = 0
 
 [node name="Sprite" parent="." index="0"]
-frame = 17
+frame = 22
 
 [node name="AnimationPlayer" parent="." index="2"]
 anims/idle_down = SubResource( 1 )
