@@ -81,6 +81,7 @@ tracks/0/keys = {
 }
 
 [node name="Skeleton" instance=ExtResource( 1 )]
+z_index = 0
 
 [node name="Sprite" parent="." index="0"]
 frame = 17
