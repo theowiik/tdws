@@ -88,7 +88,7 @@ namespace tdws.Scripts.Actors
     /// <param name="body">
     ///   The body that entered the area.
     /// </param>
-    public void OnDamageAreaBodyEntered(object body)
+    public void OnDamageAreaEntered(object body)
     {
       if (body is IDamageable damageable) damageable.TakeDamage(this);
     }
