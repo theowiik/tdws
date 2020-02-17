@@ -11,6 +11,10 @@
 |Binaries|snake_case|
 |.tres|snake_case|
 
+### Signals
+**Signal name**: SomethingChanged, SomethingAdded etc.\
+**Connected to**: OnSomethingChanged, OnSomethingAdded etc.
+
 ## Requirements
 * C# 7.1 or higher
 
