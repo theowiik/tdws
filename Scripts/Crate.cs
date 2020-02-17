@@ -21,7 +21,7 @@ namespace tdws.Scripts
     public override void _Ready()
     {
       ProjectileShooter = ProjectileShooterFactory.CreateShotgun();
-      _lootPlayer = GetNode("LootPlayer") as AudioStreamPlayer;
+      _lootPlayer = GetNode<AudioStreamPlayer>("LootPlayer");
     }
 
     private void OnLootPlayerFinished()

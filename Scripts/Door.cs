@@ -18,9 +18,9 @@ namespace tdws.Scripts
     public override void _Ready()
     {
       _enterable = false;
-      _enterText = GetNode("EnterText") as RichTextLabel;
+      _enterText = GetNode<RichTextLabel>("EnterText");
       _enterText.Visible = false;
-      _animationPlayer = GetNode("AnimationPlayer") as AnimationPlayer;
+      _animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
       _animationPlayer.Play("locked");
       _atDoor = false;
     }
