@@ -1,4 +1,3 @@
-using System;
 using Godot;
 using tdws.Scripts.Actors;
 using tdws.Scripts.ProjectileShooters;
@@ -21,17 +20,26 @@ namespace tdws.Scripts
     private AbstractActor _player;
     private RoomLoader _roomLoader;
 
+    public Game()
+    {
+      _camera = new Camera2D();
+      _camera.Current = true;
+      _camera.SmoothingEnabled = true;
+
+      _player = ActorFactory.CreatePlayer();
+    }
+
     public override void _Ready()
     {
       _crosshair = GetNode<Sprite>("Crosshair");
       _hud = GetNode<HUD>("CanvasLayer/HUD");
-      _camera = GetNode<Camera2D>("Camera");
 
       // Hide the cursor
       Input.SetMouseMode(Input.MouseMode.Hidden);
 
       // Player
       SpawnPlayer();
+      _player.AddChild(_camera);
 
       // HUD
       _player.Connect(nameof(AbstractActor.HealthChanged), _hud, nameof(HUD.HealthChanged));
@@ -103,7 +111,7 @@ namespace tdws.Scripts
         {
           CallDeferred("add_child", coin); // Come on Godot.. >:(
           coin.GlobalPosition = position;
-          var randomVector = new Vector2((float) GD.RandRange(-1, 1), (float) GD.RandRange(-1, 1)).Normalized() * 100;
+          var randomVector = new Vector2((float)GD.RandRange(-1, 1), (float)GD.RandRange(-1, 1)).Normalized() * 100;
           coin.ApplyImpulse(Vector2.Zero, randomVector);
         }
     }
@@ -133,11 +141,10 @@ namespace tdws.Scripts
     }
 
     /// <summary>
-    ///   Spawns the player. Creates one if it does not exist.
+    ///   Spawns the player.
     /// </summary>
     private void SpawnPlayer()
     {
-      _player = ActorFactory.CreatePlayer();
       AddChild(_player);
     }
 
