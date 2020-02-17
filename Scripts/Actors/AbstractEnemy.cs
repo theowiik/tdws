@@ -12,16 +12,17 @@ namespace tdws.Scripts.Actors
     /// </summary>
     private const int ChaseTime = 3;
 
-    private readonly Timer _chaseTimer;
+    private Timer _chaseTimer;
+    private bool _isChasing;
 
     /// <summary>
     ///   The target destination.
     /// </summary>
-    private KinematicBody2D _target;
+    private KinematicBody2D _chasing;
 
-    protected AbstractEnemy()
+    public AbstractEnemy()
     {
-      _chaseTimer = new Timer();
+      _isChasing = false;
     }
 
     public int GetDamage()
@@ -41,6 +42,7 @@ namespace tdws.Scripts.Actors
 
     protected override void GetNodes()
     {
+      _chaseTimer = GetNode<Timer>("ChaseTimer");
     }
 
     /// <summary>
@@ -57,7 +59,10 @@ namespace tdws.Scripts.Actors
     protected override void HandleDamage(IDamageSource damageSource)
     {
       if (damageSource.HasActorSource())
-        _target = damageSource.GetActorSource();
+      {
+        _chasing = damageSource.GetActorSource();
+        _isChasing = true;
+      }
 
       _chaseTimer.Start(ChaseTime);
     }
@@ -70,7 +75,7 @@ namespace tdws.Scripts.Actors
     /// </param>
     private void OnDetectionAreaExited(object body)
     {
-      if (body == _target)
+      if (body == _chasing)
         _chaseTimer.Start(ChaseTime);
     }
 
@@ -79,7 +84,7 @@ namespace tdws.Scripts.Actors
     /// </summary>
     public void OnChaseTimerTimeout()
     {
-      _target = null;
+      _isChasing = false;
     }
 
     /// <summary>
@@ -104,15 +109,16 @@ namespace tdws.Scripts.Actors
       if (body is AbstractActor body2D)
       {
         _chaseTimer.Stop();
-        _target = body2D;
+        _chasing = body2D;
+        _isChasing = true;
       }
     }
 
     public override void _PhysicsProcess(float delta)
     {
-      if (_target == null) return;
+      if (!_isChasing) return;
 
-      var toTarget = GlobalPosition.DirectionTo(_target.GlobalPosition);
+      var toTarget = GlobalPosition.DirectionTo(_chasing.GlobalPosition);
       MoveAndSlide(toTarget.Normalized() * 100);
     }
   }
