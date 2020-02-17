@@ -36,5 +36,15 @@ namespace tdws.Scripts.Services
 
       throw new NullReferenceException("Could not instance");
     }
+
+    public static T InstanceScene<T>(PackedScene scene) where T : class
+    {
+      Objects.RequireNonNull(scene);
+
+      if (scene.Instance() is T instance)
+        return instance;
+
+      throw new Exception("The scene provided is not type T");
+    }
   }
 }
