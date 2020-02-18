@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Godot;
 using tdws.Scripts.ProjectileShooters;
 using tdws.Scripts.Services;
@@ -142,6 +139,7 @@ namespace tdws.Scripts.Actors
     {
       var next = Input.IsActionJustReleased("weapon_next");
       var prev = Input.IsActionJustReleased("weapon_previous");
+      var shortCut = false;
 
       if (next)
         _holster.NextWeapon();
@@ -149,7 +147,21 @@ namespace tdws.Scripts.Actors
       if (prev)
         _holster.PreviousWeapon();
 
-      if (next || prev)
+      // Temp fix
+      if (Input.IsActionJustPressed("slot_1"))
+      {
+        _holster.Select(0);
+        shortCut = true;
+      }
+
+      // Temp fix
+      if (Input.IsActionJustPressed("slot_2"))
+      {
+        _holster.Select(1);
+        shortCut = true;
+      }
+
+      if (next || prev || shortCut)
       {
         EquipHoldingProjectileShooter();
         EmitProjectileShooterChanged();
@@ -178,9 +190,7 @@ namespace tdws.Scripts.Actors
         EmitChatAdded(holding.Name);
       }
       else
-      {
         EmitChatAdded("Unequipped projectile shooter");
-      }
     }
 
     protected override void HandleDamage(IDamageSource damageSource)
