@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Sprites/tdws_spritesheet.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Coin.cs" type="Script" id=2]
+[ext_resource path="res://Assets/SFX/coin.wav" type="AudioStream" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 4.6982
@@ -9,6 +11,12 @@ radius = 4.6982
 radius = 5.91898
 
 [node name="Coin" type="RigidBody2D"]
+z_index = 10
+collision_layer = 2
+collision_mask = 28
+gravity_scale = 0.0
+linear_damp = 3.0
+script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -23,3 +31,8 @@ shape = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
 shape = SubResource( 2 )
+
+[node name="PickupPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+[connection signal="body_entered" from="PickupArea" to="." method="OnPickupAreaEntered"]
+[connection signal="finished" from="PickupPlayer" to="." method="OnPickupPlayerFinished"]

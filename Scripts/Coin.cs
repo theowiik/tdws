@@ -16,7 +16,7 @@ namespace tdws.Scripts
     /// <param name="body">
     ///   The body that entered the coin.
     /// </param>
-    private void OnPickupAreaBodyEntered(object body)
+    private void OnPickupAreaEntered(object body)
     {
       if (!_pickupable) return;
 
@@ -24,7 +24,7 @@ namespace tdws.Scripts
       {
         _pickupable = false;
         pickup.PickupCoins(Value);
-        ((AudioStreamPlayer) GetNode("PickupPlayer")).Play();
+        GetNode<AudioStreamPlayer>("PickupPlayer").Play();
         Hide();
       }
     }
