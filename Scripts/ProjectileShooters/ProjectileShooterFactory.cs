@@ -1,5 +1,3 @@
-using System.IO;
-using Godot;
 using tdws.Scripts.Services;
 
 namespace tdws.Scripts.ProjectileShooters

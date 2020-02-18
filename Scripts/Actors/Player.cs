@@ -1,3 +1,5 @@
+using System.Linq;
+using System;
 using Godot;
 using tdws.Scripts.ProjectileShooters;
 using tdws.Scripts.Services;
@@ -139,7 +141,15 @@ namespace tdws.Scripts.Actors
     {
       var next = Input.IsActionJustReleased("weapon_next");
       var prev = Input.IsActionJustReleased("weapon_previous");
-      var shortCut = false;
+      var slots = new int[] { (int)KeyList.Key1, (int)KeyList.Key2, (int)KeyList.Key3, (int)KeyList.Key4 };
+      var specificSelection = false;
+
+      for (int i = 0; i < slots.Length; i++) // TODO: How to do this more cleanly?
+        if (Input.IsKeyPressed(slots[i]))
+        {
+          _holster.Select(i);
+          specificSelection = true;
+        }
 
       if (next)
         _holster.NextWeapon();
@@ -147,21 +157,7 @@ namespace tdws.Scripts.Actors
       if (prev)
         _holster.PreviousWeapon();
 
-      // Temp fix
-      if (Input.IsActionJustPressed("slot_1"))
-      {
-        _holster.Select(0);
-        shortCut = true;
-      }
-
-      // Temp fix
-      if (Input.IsActionJustPressed("slot_2"))
-      {
-        _holster.Select(1);
-        shortCut = true;
-      }
-
-      if (next || prev || shortCut)
+      if (next || prev || specificSelection)
       {
         EquipHoldingProjectileShooter();
         EmitProjectileShooterChanged();

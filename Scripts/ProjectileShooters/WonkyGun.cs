@@ -1,4 +1,5 @@
 using Godot;
+using tdws.Scripts.Projectiles;
 
 namespace tdws.Scripts.ProjectileShooters
 {
@@ -6,7 +7,7 @@ namespace tdws.Scripts.ProjectileShooters
   {
     protected override void OverrideProperties()
     {
-      Projectile = GD.Load("res://src/objects/projectiles/wonky_projectile/WonkyProjectile.tscn") as PackedScene;
+      Projectile = ProjectileFactory.CreateWonkyProjectile();
       ProjectilesPerShot = 1;
     }
   }

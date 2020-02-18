@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Projectiles/AbstractProjectile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Projectiles/HomingProjectile.cs" type="Script" id=2]
+
+[node name="HomingProjectile" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Sprite" parent="." index="0"]
+frame = 42
+
+[node name="Hitbox" parent="." index="2"]
+position = Vector2( 0, 0 )

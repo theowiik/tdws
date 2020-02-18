@@ -21,7 +21,15 @@ namespace tdws.Scripts.Projectiles
     /// </summary>
     public static PackedScene CreateHomingProjectile()
     {
-      return null;
+      return NodeService.LoadNotNull<PackedScene>("res://Scenes/Projectiles/HomingProjectile.tscn");
+    }
+
+    /// <summary>
+    ///   <returns>The scene file for a homing projectile.</returns>
+    /// </summary>
+    public static PackedScene CreateWonkyProjectile()
+    {
+      return NodeService.LoadNotNull<PackedScene>("res://Scenes/Projectiles/WonkyProjectile.tscn");
     }
   }
 }

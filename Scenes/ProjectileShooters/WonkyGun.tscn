@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/ProjectileShooters/AbstractProjectileShooter.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scripts/ProjectileShooters/AssaultRifle.cs" type="Script" id=2]
+[ext_resource path="res://Scripts/ProjectileShooters/WonkyGun.cs" type="Script" id=2]
 
-[node name="AssaultRifle" instance=ExtResource( 1 )]
-frame = 33
+[node name="WonkyGun" instance=ExtResource( 1 )]
+frame = 36
 script = ExtResource( 2 )
 
 [node name="Output" parent="." index="1"]
-position = Vector2( 7.75844, -0.426287 )
+position = Vector2( 7.89456, -0.804077 )
