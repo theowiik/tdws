@@ -14,12 +14,10 @@ namespace tdws.Scripts.Projectiles
     /// </summary>
     private const float TurnMultiplier = 0.3f;
 
-    private Area2D _detectionArea;
     private AbstractEnemy _target;
 
     protected override void OverrideProperties()
     {
-      _detectionArea = GetNode("DetectionArea") as Area2D;
     }
 
     public override void _Process(float delta)
@@ -31,15 +29,25 @@ namespace tdws.Scripts.Projectiles
       Direction = Direction.Normalized();
     }
 
-    private void OnDetectionAreaBodyExited(object body)
+    /// <summary>
+    ///   Stops travelling towards its target. Gets called when a body leaves
+    ///   the detection area.
+    /// </summary>
+    /// <param name="body">The body that left the detection area.</param>
+    private void OnDetectionAreaExited(object body)
     {
       if (body == _target)
         _target = null;
     }
 
-    public void OnDetectionAreaBodyEntered(object body)
+    /// <summary>
+    ///   Sets the detected body as a target if it is a enemy.
+    ///   Gets called when a body enters the detection area.
+    /// </summary>
+    /// <param name="body"></param>
+    public void OnDetectionAreaEntered(object body)
     {
-      if (body is AbstractEnemy monster) _target = monster;
+      if (body is AbstractEnemy enemy) _target = enemy;
     }
   }
 }
