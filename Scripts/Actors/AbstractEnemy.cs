@@ -14,7 +14,6 @@ namespace tdws.Scripts.Actors
     private const int ChaseTime = 3;
 
     private Timer _chaseTimer;
-    private bool _isChasing;
 
     /// <summary>
     ///   The target destination.
@@ -23,7 +22,7 @@ namespace tdws.Scripts.Actors
 
     public AbstractEnemy()
     {
-      _isChasing = false;
+      _chasing = null;
     }
 
     public int GetDamage()
@@ -62,14 +61,15 @@ namespace tdws.Scripts.Actors
       if (damageSource.HasActorSource())
       {
         _chasing = damageSource.GetActorSource();
-        _isChasing = true;
       }
 
       _chaseTimer.Start(ChaseTime);
     }
 
     /// <summary>
-    ///   Gets called when a body enters the detection area.
+    ///   Gets called when a body exits the detection area.
+    ///   Starts the chase timer if the body that left the detection area is
+    ///   the same as the one being chased.
     /// </summary>
     /// <param name="body">
     ///   The body that entered the area.
@@ -85,7 +85,7 @@ namespace tdws.Scripts.Actors
     /// </summary>
     public void OnChaseTimerTimeout()
     {
-      _isChasing = false;
+      _chasing = null;
     }
 
     /// <summary>
@@ -111,13 +111,21 @@ namespace tdws.Scripts.Actors
       {
         _chaseTimer.Stop();
         _chasing = body2D;
-        _isChasing = true;
       }
+    }
+
+    /// <summary>
+    ///   Checks if a enemy is chasing the player.
+    /// </summary>
+    /// <returns>True if it is chasing false otherwise.</returns>
+    private bool isChasing()
+    {
+      return _chasing != null;
     }
 
     public override void _PhysicsProcess(float delta)
     {
-      if (!_isChasing) return;
+      if (!isChasing()) return;
 
       var toTarget = GlobalPosition.DirectionTo(_chasing.GlobalPosition);
       var _velocity = MoveAndSlide(toTarget.Normalized() * 100);
