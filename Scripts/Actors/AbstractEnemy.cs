@@ -1,5 +1,6 @@
 using Godot;
 using tdws.Scripts.Services;
+using System;
 
 namespace tdws.Scripts.Actors
 {
@@ -127,9 +128,16 @@ namespace tdws.Scripts.Actors
     {
       if (!isChasing()) return;
 
-      var toTarget = GlobalPosition.DirectionTo(_chasing.GlobalPosition);
-      var _velocity = MoveAndSlide(toTarget.Normalized() * 100);
-      PlayAnimation(DirectionService.VelocityToDirection(_velocity));
+      try
+      {
+        var toTarget = GlobalPosition.DirectionTo(_chasing.GlobalPosition);
+        var _velocity = MoveAndSlide(toTarget.Normalized() * 100);
+        PlayAnimation(DirectionService.VelocityToDirection(_velocity));
+      }
+      catch (ObjectDisposedException e)
+      {
+        _chasing = null;
+      }
     }
   }
 }
