@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Sprites/tdws_spritesheet.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Explosion.cs" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 39.2276
+
+[node name="Explosion" type="Node2D"]
+z_index = 10
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+vframes = 6
+hframes = 8
+frame = 46
+
+[node name="ExplosionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
+shape = SubResource( 1 )
+[connection signal="body_entered" from="ExplosionArea" to="." method="OnExplosionAreaEntered"]

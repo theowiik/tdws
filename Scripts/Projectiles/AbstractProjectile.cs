@@ -8,9 +8,17 @@ namespace tdws.Scripts.Projectiles
   /// </summary>
   public abstract class AbstractProjectile : Area2D, IProjectile
   {
+    [Signal]
+    public delegate void ProjectileHit(PackedScene packedScene);
+
     protected int Speed;
     public Vector2 Direction { get; set; }
     public AbstractActor ActorSource { get; set; }
+
+    /// <summary>
+    ///   The scene to instance when the projectile hits a target.
+    /// </summary>
+    protected PackedScene HitScene { get; set; }
 
     public int GetDamage()
     {
@@ -108,6 +116,9 @@ namespace tdws.Scripts.Projectiles
     {
       if (body is IDamageable damageable)
         damageable.TakeDamage(this);
+
+      if (HitScene != null)
+        EmitSignal(nameof(ProjectileHit), HitScene, GlobalPosition);
 
       if (body is RigidBody2D pushable)
         pushable.ApplyImpulse(Vector2.Zero, Direction * 50);

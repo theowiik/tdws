@@ -1,3 +1,6 @@
+using Godot;
+using tdws.Scripts.Services;
+
 namespace tdws.Scripts.Projectiles
 {
   /// <summary>
@@ -8,6 +11,7 @@ namespace tdws.Scripts.Projectiles
     protected override void OverrideProperties()
     {
       Speed = 200;
+      HitScene = NodeService.LoadNotNull<PackedScene>("res://Scenes/Explosion.tscn");
     }
   }
 }

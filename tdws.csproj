@@ -99,6 +99,7 @@
     <Compile Include="Scripts\Services\NodeService.cs" />
     <Compile Include="Scripts\Services\Objects.cs" />
     <Compile Include="Scripts\Stats.cs" />
+    <Compile Include="Scripts\Explosion.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Materials\blood.tres" />

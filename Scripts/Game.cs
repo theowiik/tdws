@@ -1,6 +1,7 @@
 using Godot;
 using tdws.Scripts.Actors;
 using tdws.Scripts.ProjectileShooters;
+using tdws.Scripts.Projectiles;
 using tdws.Scripts.Room;
 using tdws.Scripts.Services;
 using Object = Godot.Object;
@@ -128,15 +129,14 @@ namespace tdws.Scripts
     {
       if (projectileShooter == null) return;
 
-      var alreadyConnected = projectileShooter.IsConnected(nameof(AbstractProjectileShooter.ProjectileAdded), this,
-        nameof(AddChildNode));
+      var alreadyConnected = projectileShooter.IsConnected(nameof(AbstractProjectileShooter.ProjectileAdded), this, nameof(AddProjectile));
 
       if (alreadyConnected) return;
 
       projectileShooter.Connect(
         nameof(AbstractProjectileShooter.ProjectileAdded),
         this,
-        nameof(AddChildNode)
+        nameof(AddProjectile)
       );
     }
 
@@ -187,6 +187,29 @@ namespace tdws.Scripts
       if (node == null) return;
 
       AddChild(node);
+    }
+
+    /// <summary>
+    ///   Instances a packed scene at a specific position.
+    ///   The packed scenes root node must extend Node2D.
+    /// </summary>
+    /// <param name="packedScene">The scene to instance.</param>
+    /// <param name="position">The position to instance at.</param>
+    private void InstancePackedScene(PackedScene packedScene, Vector2 position)
+    {
+      var instance = packedScene.Instance();
+
+      if (instance is Node2D node2D)
+      {
+        AddChildNode(node2D);
+        node2D.GlobalPosition = position;
+      }
+    }
+
+    private void AddProjectile(AbstractProjectile projectile)
+    {
+      AddChildNode(projectile);
+      projectile.Connect(nameof(AbstractProjectile.ProjectileHit), this, nameof(InstancePackedScene));
     }
 
     /// <summary>
