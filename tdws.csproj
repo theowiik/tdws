@@ -91,6 +91,7 @@
     <Compile Include="Scripts\Projectiles\IProjectile.cs" />
     <Compile Include="Scripts\Projectiles\ProjectileFactory.cs" />
     <Compile Include="Scripts\Projectiles\WonkyProjectile.cs" />
+    <Compile Include="Scripts\RigidPlayer.cs" />
     <Compile Include="Scripts\Room\IRoom.cs" />
     <Compile Include="Scripts\Room\Room.cs" />
     <Compile Include="Scripts\Room\RoomLoader.cs" />
