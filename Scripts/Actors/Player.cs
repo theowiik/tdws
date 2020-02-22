@@ -117,7 +117,7 @@ namespace tdws.Scripts.Actors
     /// </summary>
     private void AnimationLoop()
     {
-      var direction = DirectionService.VelocityToDirection(_velocity);
+      var direction = DirectionService.VelocityToDirection(LinearVelocity);
       PlayAnimation(direction);
     }
 
