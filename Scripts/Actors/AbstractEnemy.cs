@@ -19,7 +19,7 @@ namespace tdws.Scripts.Actors
     /// <summary>
     ///   The target destination.
     /// </summary>
-    private KinematicBody2D _chasing;
+    private AbstractActor _chasing;
 
     public AbstractEnemy()
     {
@@ -126,18 +126,21 @@ namespace tdws.Scripts.Actors
 
     public override void _PhysicsProcess(float delta)
     {
-      if (!isChasing()) return;
-
-      try
+      if (isChasing())
       {
-        var toTarget = GlobalPosition.DirectionTo(_chasing.GlobalPosition);
-        var _velocity = MoveAndSlide(toTarget.Normalized() * 100);
-        PlayAnimation(DirectionService.VelocityToDirection(_velocity));
+        try
+        {
+          var toTarget = GlobalPosition.DirectionTo(_chasing.GlobalPosition);
+          LinearVelocity = toTarget.Normalized() * 100;
+          PlayAnimation(DirectionService.VelocityToDirection(LinearVelocity));
+        }
+        catch (ObjectDisposedException e)
+        {
+          _chasing = null;
+        }
       }
-      catch (ObjectDisposedException e)
-      {
-        _chasing = null;
-      }
+      else
+        LinearVelocity = Vector2.Zero;
     }
   }
 }

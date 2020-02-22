@@ -48,20 +48,7 @@ namespace tdws.Scripts.Actors
     {
       var inputDirection = GetMovementInputVector();
       var speed = Input.IsActionPressed("sprint") ? MaxSprintSpeed : MaxWalkSpeed;
-      _velocity = inputDirection * speed;
-
-      // Move
-      MoveAndSlide(_velocity, Vector2.Zero, false, 4, 0, false);
-
-      // Collisions
-      for (var i = 0; i < GetSlideCount(); i++)
-      {
-        var collision = GetSlideCollision(i);
-        var collider = collision.Collider;
-
-        var rigidBody = collider as RigidBody2D;
-        rigidBody?.ApplyCentralImpulse(-collision.Normal * Inertia);
-      }
+      LinearVelocity = inputDirection * speed;
     }
 
     /// <summary>

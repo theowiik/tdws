@@ -17,6 +17,7 @@ hframes = 8
 frame = 46
 
 [node name="ExplosionArea" type="Area2D" parent="."]
+collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
 shape = SubResource( 1 )

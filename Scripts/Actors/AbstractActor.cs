@@ -5,7 +5,7 @@ namespace tdws.Scripts.Actors
   /// <summary>
   ///   The base class all actors inherit from.
   /// </summary>
-  public abstract class AbstractActor : KinematicBody2D, IDamageable
+  public abstract class AbstractActor : RigidBody2D, IDamageable
   {
     [Signal]
     public delegate void ChatAdded(string msg);

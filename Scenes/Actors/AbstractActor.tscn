@@ -86,10 +86,12 @@ tracks/0/keys = {
 "values": [ 22, 23 ]
 }
 
-[node name="AbstractActor" type="KinematicBody2D"]
+[node name="AbstractActor" type="RigidBody2D"]
 z_index = 10
 collision_layer = 0
 collision_mask = 29
+mode = 2
+gravity_scale = 0.0
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
