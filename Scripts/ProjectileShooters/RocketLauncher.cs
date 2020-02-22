@@ -10,7 +10,7 @@ namespace tdws.Scripts.ProjectileShooters
     protected override void OverrideProperties()
     {
       ProjectilesPerShot = 1;
-      SecondsBetweenShots = 1.5f;
+      SecondsBetweenShots = 0.3f;
       MaxOffsetAngle = 2;
       Ammo = 100;
       MagSize = 100;
