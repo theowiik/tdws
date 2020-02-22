@@ -26,5 +26,10 @@ namespace tdws.Scripts.ProjectileShooters
     {
       return NodeService.InstanceNotNull<AbstractProjectileShooter>("res://Scenes/ProjectileShooters/AlienGun.tscn");
     }
+
+    public static IProjectileShooter CreateRocketLauncher()
+    {
+      return NodeService.InstanceNotNull<AbstractProjectileShooter>("res://Scenes/ProjectileShooters/RocketLauncher.tscn");
+    }
   }
 }

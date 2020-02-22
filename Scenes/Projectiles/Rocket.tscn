@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Projectiles/AbstractProjectile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Projectiles/Rocket.cs" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4.90717, 2.78267 )
+
+[node name="Rocket" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Sprite" parent="." index="0"]
+frame = 43
+
+[node name="Hitbox" parent="." index="2"]
+position = Vector2( 0.0683211, 0 )
+shape = SubResource( 1 )

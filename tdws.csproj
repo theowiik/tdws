@@ -83,9 +83,11 @@
     <Compile Include="Scripts\ProjectileShooters\ProjectileShooterFactory.cs" />
     <Compile Include="Scripts\ProjectileShooters\Shotgun.cs" />
     <Compile Include="Scripts\ProjectileShooters\WonkyGun.cs" />
+    <Compile Include="Scripts\ProjectileShooters\RocketLauncher.cs" />
     <Compile Include="Scripts\Projectiles\AbstractProjectile.cs" />
     <Compile Include="Scripts\Projectiles\Bullet.cs" />
     <Compile Include="Scripts\Projectiles\HomingProjectile.cs" />
+    <Compile Include="Scripts\Projectiles\Rocket.cs" />
     <Compile Include="Scripts\Projectiles\IProjectile.cs" />
     <Compile Include="Scripts\Projectiles\ProjectileFactory.cs" />
     <Compile Include="Scripts\Projectiles\WonkyProjectile.cs" />

@@ -9,7 +9,7 @@ namespace tdws.Scripts
   /// </summary>
   public class Holster
   {
-    private const int MaxInventorySize = 5;
+    private const int MaxInventorySize = 6;
     private readonly IProjectileShooter[] _projectileShooters;
     private int _inventoryIndex;
 
@@ -23,6 +23,7 @@ namespace tdws.Scripts
       Add(ProjectileShooterFactory.CreateShotgun());
       Add(ProjectileShooterFactory.CreateWonkyGun());
       Add(ProjectileShooterFactory.CreateAlienGun());
+      Add(ProjectileShooterFactory.CreateRocketLauncher());
     }
 
     /// <summary>

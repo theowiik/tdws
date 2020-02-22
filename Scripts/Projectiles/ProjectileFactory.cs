@@ -31,5 +31,13 @@ namespace tdws.Scripts.Projectiles
     {
       return NodeService.LoadNotNull<PackedScene>("res://Scenes/Projectiles/WonkyProjectile.tscn");
     }
+
+    /// <summary>
+    ///   <returns>The scene file for a rocket.</returns>
+    /// </summary>
+    public static PackedScene CreateRocket()
+    {
+      return NodeService.LoadNotNull<PackedScene>("res://Scenes/Projectiles/Rocket.tscn");
+    }
   }
 }
