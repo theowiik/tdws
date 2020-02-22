@@ -14,6 +14,12 @@ namespace tdws.Scripts
     {
       if (body is IDamageable damageable)
         damageable.TakeDamage(this);
+
+      if (body is RigidBody2D physicsBody2D)
+      {
+        var dirToBody = GlobalPosition.DirectionTo(physicsBody2D.GlobalPosition).Normalized();
+        physicsBody2D.ApplyImpulse(Vector2.Zero, dirToBody * 400);
+      }
     }
 
     public int GetDamage()
