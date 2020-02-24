@@ -92,6 +92,7 @@ collision_layer = 0
 collision_mask = 29
 mode = 2
 gravity_scale = 0.0
+linear_damp = 5.0
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

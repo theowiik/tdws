@@ -4,7 +4,7 @@
 [ext_resource path="res://Scripts/Explosion.cs" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 39.2276
+radius = 63.0083
 
 [node name="Explosion" type="Node2D"]
 z_index = 10
@@ -17,8 +17,14 @@ hframes = 8
 frame = 46
 
 [node name="ExplosionArea" type="Area2D" parent="."]
+collision_layer = 0
 collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
 shape = SubResource( 1 )
-[connection signal="body_entered" from="ExplosionArea" to="." method="OnExplosionAreaEntered"]
+
+[node name="LifetimeTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+[connection signal="timeout" from="LifetimeTimer" to="." method="OnLifetimeTimerTimeout"]

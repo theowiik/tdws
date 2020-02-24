@@ -87,6 +87,7 @@ namespace tdws.Scripts.Actors
     public void OnChaseTimerTimeout()
     {
       _chasing = null;
+      LinearVelocity = Vector2.Zero;
     }
 
     /// <summary>
@@ -126,21 +127,18 @@ namespace tdws.Scripts.Actors
 
     public override void _PhysicsProcess(float delta)
     {
-      if (isChasing())
+      if (!isChasing()) return;
+
+      try
       {
-        try
-        {
-          var toTarget = GlobalPosition.DirectionTo(_chasing.GlobalPosition);
-          LinearVelocity = toTarget.Normalized() * 100;
-          PlayAnimation(DirectionService.VelocityToDirection(LinearVelocity));
-        }
-        catch (ObjectDisposedException e)
-        {
-          _chasing = null;
-        }
+        var toTarget = GlobalPosition.DirectionTo(_chasing.GlobalPosition);
+        LinearVelocity = toTarget.Normalized() * 100;
+        PlayAnimation(DirectionService.VelocityToDirection(LinearVelocity));
       }
-      else
-        LinearVelocity = Vector2.Zero;
+      catch (ObjectDisposedException e)
+      {
+        _chasing = null;
+      }
     }
   }
 }
