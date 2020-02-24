@@ -12,14 +12,12 @@ namespace tdws.Scripts
     private const int PushForce = 500;
     private bool _hasExploded;
     private Area2D _explosionArea;
-    private bool _hasEnteredTree;
     private int _frames;
     private Timer _lifetimeTimer;
 
     public Explosion()
     {
       _hasExploded = false;
-      _hasEnteredTree = false;
     }
 
     public void OnLifetimeTimerTimeout()
@@ -31,11 +29,6 @@ namespace tdws.Scripts
     {
       _explosionArea = GetNode<Area2D>("ExplosionArea");
       _lifetimeTimer = GetNode<Timer>("LifetimeTimer");
-    }
-
-    public override void _EnterTree()
-    {
-      _hasEnteredTree = true;
     }
 
     public override void _Process(float delta)
