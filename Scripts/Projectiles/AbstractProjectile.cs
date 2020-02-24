@@ -20,6 +20,11 @@ namespace tdws.Scripts.Projectiles
     /// </summary>
     protected PackedScene HitScene { get; set; }
 
+    public AbstractProjectile()
+    {
+      Direction = new Vector2();
+    }
+
     public int GetDamage()
     {
       return 10;
@@ -57,7 +62,6 @@ namespace tdws.Scripts.Projectiles
     private void InitStandardValues()
     {
       Speed = 400;
-      Direction = new Vector2();
     }
 
     public override void _PhysicsProcess(float delta)
