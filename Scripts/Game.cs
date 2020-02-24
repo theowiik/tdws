@@ -186,7 +186,7 @@ namespace tdws.Scripts
     {
       if (node == null) return;
 
-      AddChild(node);
+      CallDeferred("add_child", node);
     }
 
     /// <summary>
