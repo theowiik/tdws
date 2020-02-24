@@ -46,10 +46,10 @@ namespace tdws.Scripts.ProjectileShooters
       for (var i = 0; i < ProjectilesPerShot; i++)
         if (Projectile.Instance() is AbstractProjectile projectile)
         {
-          EmitSignal(nameof(ProjectileAdded), projectile);
           projectile.GlobalPosition = _output.GlobalPosition;
           projectile.Direction = GetTrajectoryVector();
           projectile.ActorSource = actor;
+          EmitSignal(nameof(ProjectileAdded), projectile);
         }
     }
 
@@ -102,7 +102,7 @@ namespace tdws.Scripts.ProjectileShooters
     /// </returns>
     private Vector2 GetTrajectoryVector()
     {
-      var offsetAngle = (float) (MaxOffsetAngle * GD.RandRange(-1, 1));
+      var offsetAngle = (float)(MaxOffsetAngle * GD.RandRange(-1, 1));
       return ToMouseVec().Rotated(Mathf.Deg2Rad(offsetAngle));
     }
 
@@ -144,7 +144,7 @@ namespace tdws.Scripts.ProjectileShooters
 
     private void PrintAmmo()
     {
-//      GD.Print(Ammo + "/" + MagSize);
+      //      GD.Print(Ammo + "/" + MagSize);
     }
 
     /// <summary>
