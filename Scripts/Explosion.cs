@@ -14,6 +14,7 @@ namespace tdws.Scripts
     private Area2D _explosionArea;
     private int _frames;
     private Timer _lifetimeTimer;
+    private CPUParticles2D _particles;
 
     public Explosion()
     {
@@ -29,6 +30,8 @@ namespace tdws.Scripts
     {
       _explosionArea = GetNode<Area2D>("ExplosionArea");
       _lifetimeTimer = GetNode<Timer>("LifetimeTimer");
+      _particles = GetNode<CPUParticles2D>("Particles");
+      _particles.Emitting = true;
     }
 
     public override void _Process(float delta)
