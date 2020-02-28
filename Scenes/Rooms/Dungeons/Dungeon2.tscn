@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Rooms/Room.tscn" type="PackedScene" id=1]
+
+[node name="Room" instance=ExtResource( 1 )]
+tile_data = PoolIntArray( -65536, 1, 0, -65535, 1, 0, -65534, 1, 0, -65533, 1, 0, -65532, 1, 0, -65531, 1, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0 )
+
+[node name="Position2D" type="Position2D" parent="PossibleEnemyPositions" index="0"]
+position = Vector2( 81.7346, 56.5331 )
+
+[node name="Position2D2" type="Position2D" parent="PossibleEnemyPositions" index="1"]
+position = Vector2( 81.0534, 24.5204 )
+
+[node name="Position2D3" type="Position2D" parent="PossibleEnemyPositions" index="2"]
+position = Vector2( 76.2856, 84.7996 )
+
+[node name="Position2D" type="Position2D" parent="PossibleDoorPositions" index="0"]
+position = Vector2( 25.2015, -7.15178 )
+
+[node name="Position2D3" type="Position2D" parent="PossibleDoorPositions" index="1"]
+position = Vector2( 40.1862, -6.81121 )
+
+[node name="Position2D4" type="Position2D" parent="PossibleDoorPositions" index="2"]
+position = Vector2( 55.1708, -7.8329 )
+
+[node name="Position2D5" type="Position2D" parent="PossibleDoorPositions" index="3"]
+position = Vector2( 70.8366, -7.8329 )
+
+[node name="Position2D6" type="Position2D" parent="PossibleDoorPositions" index="4"]
+position = Vector2( 85.8213, -7.15178 )
+
+[node name="Position2D2" type="Position2D" parent="PossibleDoorPositions" index="5"]
+position = Vector2( 8.85458, -8.85458 )
+
+[node name="Spawn" parent="." index="2"]
+position = Vector2( 22.477, 22.1364 )
