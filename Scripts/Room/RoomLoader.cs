@@ -16,7 +16,7 @@ namespace tdws.Scripts.Room
 
     public void SetPlayer(AbstractActor player)
     {
-      _player = player ?? throw new ArgumentNullException(nameof(player), "Player can not be null");
+      _player = Objects.RequireNonNull(player);
     }
 
     public void NextRoom()
@@ -24,7 +24,7 @@ namespace tdws.Scripts.Room
       RemoveAllChildren();
       _room = GetRandomRoom();
 
-      AddChild((Room) _room); // Hmm...
+      AddChild((Room)_room); // Hmm...
       _player.GlobalPosition = _room.GetSpawnPoint();
     }
 
