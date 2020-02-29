@@ -20,10 +20,11 @@ namespace tdws.Scripts
 
       // Add a weapons at the start...
       Add(ProjectileShooterFactory.CreateAssaultRifle());
-      Add(ProjectileShooterFactory.CreateShotgun());
-      Add(ProjectileShooterFactory.CreateWonkyGun());
-      Add(ProjectileShooterFactory.CreateAlienGun());
-      Add(ProjectileShooterFactory.CreateRocketLauncher());
+      Add(ProjectileShooterFactory.CreateGodGun());
+      // Add(ProjectileShooterFactory.CreateShotgun());
+      // Add(ProjectileShooterFactory.CreateWonkyGun());
+      // Add(ProjectileShooterFactory.CreateAlienGun());
+      // Add(ProjectileShooterFactory.CreateRocketLauncher());
     }
 
     /// <summary>

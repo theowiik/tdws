@@ -13,6 +13,12 @@ namespace tdws.Scripts.Room
   {
     private AbstractActor _player;
     private IRoom _room;
+    private Region _region;
+
+    public RoomLoader()
+    {
+      _region = new DungeonRegion();
+    }
 
     public void SetPlayer(AbstractActor player)
     {
@@ -28,9 +34,10 @@ namespace tdws.Scripts.Room
       _player.GlobalPosition = _room.GetSpawnPoint();
     }
 
-    private static IRoom GetRandomRoom()
+    private IRoom GetRandomRoom()
     {
-      return NodeService.InstanceNotNull<Room>("res://Scenes/Rooms/Dungeons/Dungeon1.tscn");
+      // return NodeService.InstanceNotNull<Room>("res://Scenes/Rooms/Dungeons/Dungeon1.tscn");
+      return _region.GetRandomRoom();
     }
 
     public IEnumerable<AbstractEnemy> GetEnemies()

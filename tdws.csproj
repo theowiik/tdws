@@ -70,7 +70,6 @@
     <Compile Include="Scripts\ICanPickup.cs" />
     <Compile Include="Scripts\IDamageable.cs" />
     <Compile Include="Scripts\IDamageSource.cs" />
-    <Compile Include="Scripts\ILevel.cs" />
     <Compile Include="Scripts\ILiving.cs" />
     <Compile Include="Scripts\IObjectPool.cs" />
     <Compile Include="Scripts\IPickupable.cs" />
@@ -79,6 +78,7 @@
     <Compile Include="Scripts\ProjectileShooters\AbstractProjectileShooter.cs" />
     <Compile Include="Scripts\ProjectileShooters\AlienGun.cs" />
     <Compile Include="Scripts\ProjectileShooters\AssaultRifle.cs" />
+    <Compile Include="Scripts\ProjectileShooters\GodGun.cs" />
     <Compile Include="Scripts\ProjectileShooters\IProjectileShooter.cs" />
     <Compile Include="Scripts\ProjectileShooters\ProjectileShooterFactory.cs" />
     <Compile Include="Scripts\ProjectileShooters\Shotgun.cs" />
@@ -93,6 +93,8 @@
     <Compile Include="Scripts\Projectiles\WonkyProjectile.cs" />
     <Compile Include="Scripts\RigidPlayer.cs" />
     <Compile Include="Scripts\Room\IRoom.cs" />
+    <Compile Include="Scripts\Room\Region.cs" />
+    <Compile Include="Scripts\Room\DungeonRegion.cs" />
     <Compile Include="Scripts\Room\Room.cs" />
     <Compile Include="Scripts\Room\RoomLoader.cs" />
     <Compile Include="Scripts\Services\DirectionService.cs" />
