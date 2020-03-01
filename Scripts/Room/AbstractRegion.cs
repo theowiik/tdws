@@ -49,7 +49,7 @@ namespace tdws.Scripts.Room
     {
       var roomNames = GetRoomNames();
 
-      int randIndex = (int)(GD.Randi() % (roomNames.Count - 1));
+      int randIndex = (int)(GD.Randi() % roomNames.Count);
       var roomName = roomNames[randIndex];
       var roomPath = PathToRooms + "/" + roomName;
 
