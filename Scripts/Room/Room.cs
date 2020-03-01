@@ -29,7 +29,7 @@ namespace tdws.Scripts.Room
 
     public Vector2 GetSpawnPoint()
     {
-      return GetNode<Position2D>("Spawn").Position;
+      return GetNode<Position2D>("Spawn").GlobalPosition;
     }
 
     public override void _Ready()

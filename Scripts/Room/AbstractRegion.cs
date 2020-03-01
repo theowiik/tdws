@@ -7,7 +7,7 @@ namespace tdws.Scripts.Room
   /// <summary>
   ///   Represents a region that has rooms. Could be for example "forest" or "hell".
   /// </summary>
-  public abstract class Region
+  public abstract class AbstractRegion
   {
     /// <summary>
     ///   The path to the folder that holds the room scenes.
@@ -60,6 +60,6 @@ namespace tdws.Scripts.Room
     ///   Creates and returns a new region that is the next region.
     /// </summary>
     /// <returns>The next region.</returns>
-    public abstract Region GetNextRegion();
+    public abstract AbstractRegion GetNextRegion();
   }
 }

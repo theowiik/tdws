@@ -13,7 +13,7 @@ namespace tdws.Scripts.Room
   {
     private AbstractActor _player;
     private IRoom _room;
-    private Region _region;
+    private AbstractRegion _region;
 
     public RoomLoader()
     {
