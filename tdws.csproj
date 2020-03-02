@@ -65,6 +65,7 @@
     <Compile Include="Scripts\Directions.cs" />
     <Compile Include="Scripts\Door.cs" />
     <Compile Include="Scripts\Game.cs" />
+    <Compile Include="Scripts\HealthBar.cs" />
     <Compile Include="Scripts\Holster.cs" />
     <Compile Include="Scripts\HUD.cs" />
     <Compile Include="Scripts\ICanPickup.cs" />

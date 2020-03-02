@@ -58,6 +58,8 @@ namespace tdws.Scripts
       _roomLoader = GetNode<RoomLoader>("RoomLoader");
       _roomLoader.SetPlayer(_player);
       NextRoom();
+
+      SpawnBoss();
     }
 
     private void RoomLoadStarted()
@@ -68,6 +70,20 @@ namespace tdws.Scripts
     private void RoomLoadFinished()
     {
       // hide transition sprite
+    }
+
+    private void SpawnBoss()
+    {
+      var skelly = ActorFactory.CreateSkeleton();
+      var text = new Label();
+      text.Text = "boss :)";
+      skelly.AddChild(text);
+
+      var healthBar = NodeService.InstanceNotNull<HealthBar>("res://Scenes/HealthBar.tscn");
+      skelly.Connect(nameof(AbstractActor.HealthChanged), healthBar, nameof(HealthBar.OnHealthChanged));
+
+      AddChild(skelly);
+      AddChild(healthBar);
     }
 
     /// <summary>
