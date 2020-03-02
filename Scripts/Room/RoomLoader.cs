@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Godot;
 using tdws.Scripts.Actors;
@@ -13,11 +12,11 @@ namespace tdws.Scripts.Room
   {
     private AbstractActor _player;
     private IRoom _room;
-    private AbstractRegion _region;
+    private Region _region;
 
     public RoomLoader()
     {
-      _region = new DungeonRegion();
+      _region = RegionFactory.CreateDungeon();
     }
 
     public void SetPlayer(AbstractActor player)

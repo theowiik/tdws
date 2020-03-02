@@ -1,18 +1,27 @@
 using System.Collections.Generic;
 using Godot;
 using tdws.Scripts.Services;
+using System;
 
 namespace tdws.Scripts.Room
 {
   /// <summary>
   ///   Represents a region that has rooms. Could be for example "forest" or "hell".
   /// </summary>
-  public abstract class AbstractRegion
+  public class Region
   {
     /// <summary>
     ///   The path to the folder that holds the room scenes.
     /// </summary>
-    protected string PathToRooms;
+    private string PathToRooms;
+
+    private Func<Region> _regionChooser;
+
+    public Region(string pathToRooms, Func<Region> regionChooser)
+    {
+      PathToRooms = Objects.RequireNonNull(pathToRooms);
+      _regionChooser = Objects.RequireNonNull(regionChooser);
+    }
 
     /// <summary>
     ///   Returns a list of all the rooms as strings.
@@ -60,6 +69,9 @@ namespace tdws.Scripts.Room
     ///   Creates and returns a new region that is the next region.
     /// </summary>
     /// <returns>The next region.</returns>
-    public abstract AbstractRegion GetNextRegion();
+    public Region GetNextRegion()
+    {
+      return _regionChooser();
+    }
   }
 }
