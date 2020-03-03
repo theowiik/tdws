@@ -8,7 +8,7 @@ namespace tdws.Scripts.Room
   /// <summary>
   ///   Represents a region that has rooms. Could be for example "forest" or "hell".
   /// </summary>
-  public class Region
+  public sealed class Region
   {
     /// <summary>
     ///   The path to the folder that holds the room scenes.
@@ -17,7 +17,7 @@ namespace tdws.Scripts.Room
 
     private Func<Region> _regionChooser;
 
-    public Region(string pathToRooms, Func<Region> regionChooser)
+    private Region(string pathToRooms, Func<Region> regionChooser)
     {
       PathToRooms = Objects.RequireNonNull(pathToRooms);
       _regionChooser = Objects.RequireNonNull(regionChooser);
@@ -73,5 +73,27 @@ namespace tdws.Scripts.Room
     {
       return _regionChooser();
     }
+
+    #region Factory
+    public static class Factory
+    {
+      private const string PathToRooms = "res://Scenes/Rooms";
+
+      public static Region CreateStartDungeon()
+      {
+        return CreateDungeon();
+      }
+
+      public static Region CreateDungeon()
+      {
+        return new Region(PathToRooms + "/Dungeons", Region.Factory.CreateForest);
+      }
+
+      public static Region CreateForest()
+      {
+        return new Region(PathToRooms + "/Forest", Region.Factory.CreateForest);
+      }
+    }
+    #endregion
   }
 }

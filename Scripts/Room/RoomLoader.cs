@@ -16,7 +16,7 @@ namespace tdws.Scripts.Room
 
     public RoomLoader()
     {
-      _region = RegionFactory.CreateDungeon();
+      _region = Region.Factory.CreateStartDungeon();
     }
 
     public void SetPlayer(AbstractActor player)
