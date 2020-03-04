@@ -17,6 +17,11 @@ namespace tdws.Scripts.Actors
     private Timer _chaseTimer;
 
     /// <summary>
+    ///   A boolean to show if the enemy is currently being knocked back by a explosion, and thus can not move.
+    /// </summary>
+    private bool _isBeingKnockedback;
+
+    /// <summary>
     ///   The target destination.
     /// </summary>
     private AbstractActor _chasing;
@@ -24,6 +29,7 @@ namespace tdws.Scripts.Actors
     public AbstractEnemy()
     {
       _chasing = null;
+      _isBeingKnockedback = false;
     }
 
     public int GetDamage()
@@ -125,8 +131,22 @@ namespace tdws.Scripts.Actors
       return _chasing != null;
     }
 
+    public override void Knockback(Vector2 vector)
+    {
+      ApplyCentralImpulse(vector);
+      _isBeingKnockedback = true;
+    }
+
     public override void _PhysicsProcess(float delta)
     {
+      var d = 2f;
+
+      if (_isBeingKnockedback)
+        if (LinearVelocity.Length() <= d)
+          _isBeingKnockedback = false;
+        else
+          return;
+
       if (!isChasing()) return;
 
       try

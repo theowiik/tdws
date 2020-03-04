@@ -61,15 +61,12 @@ namespace tdws.Scripts
       GD.Print("exploding!");
 
       if (body is IDamageable damageable)
-      {
-        GD.Print("something took damage from the explosion");
         damageable.TakeDamage(this);
-      }
 
-      if (body is RigidBody2D physicsBody2D)
+      if (body is IKnockbackable knockbackable)
       {
-        var dirToBody = GlobalPosition.DirectionTo(physicsBody2D.GlobalPosition).Normalized();
-        physicsBody2D.ApplyImpulse(Vector2.Zero, dirToBody * PushForce);
+        var dirToBody = GlobalPosition.DirectionTo(body.GlobalPosition).Normalized();
+        knockbackable.Knockback(dirToBody * PushForce);
       }
     }
 

@@ -5,7 +5,7 @@ namespace tdws.Scripts.Actors
   /// <summary>
   ///   The base class all actors inherit from.
   /// </summary>
-  public abstract class AbstractActor : RigidBody2D, IDamageable
+  public abstract class AbstractActor : RigidBody2D, IDamageable, IKnockbackable
   {
     [Signal]
     public delegate void ChatAdded(string msg);
@@ -121,6 +121,11 @@ namespace tdws.Scripts.Actors
       if (msg == null) return;
 
       EmitSignal(nameof(ChatAdded), msg);
+    }
+
+    public virtual void Knockback(Vector2 vector)
+    {
+      ApplyCentralImpulse(vector);
     }
   }
 }
