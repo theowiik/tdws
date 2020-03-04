@@ -77,7 +77,7 @@ namespace tdws.Scripts.Actors
     /// <summary>
     ///   Emits the HealthChanged signal.
     /// </summary>
-    private void EmitHealthChanged()
+    public void EmitHealthChanged()
     {
       EmitSignal(nameof(HealthChanged), Stats.Hp);
     }

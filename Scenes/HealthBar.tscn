@@ -10,12 +10,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 90.7555
-margin_top = 72.4784
-margin_right = 291.756
-margin_bottom = 173.478
-text = "lorem"
+[node name="Bar" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Red" type="ColorRect" parent="Bar"]
+margin_right = 400.0
+margin_bottom = 10.0
+color = Color( 0.764706, 0.101961, 0.101961, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Green" type="ColorRect" parent="Bar"]
+margin_right = 400.0
+margin_bottom = 10.0
+color = Color( 0.137255, 0.607843, 0.188235, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
