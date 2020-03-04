@@ -18,15 +18,25 @@ namespace tdws.Scripts
 
     public override void _Process(float delta)
     {
-      float currentWidth = _bar.RectScale.x;
-      GD.Print("current width: " + currentWidth);
+      if (!_maxHealthSet)
+        return;
 
-      if (currentWidth - _animationSpeed < _widthPercentage)
-        _bar.RectScale = new Vector2(_widthPercentage, 1);
-      else if (currentWidth > _widthPercentage)
+      float currentWidth = _bar.RectScale.x;
+
+      if (currentWidth > _widthPercentage)
       {
-        GD.Print("decreasing");
-        _bar.RectScale -= new Vector2(_animationSpeed, 1);
+        var nextIsLowerThanActual = currentWidth - _animationSpeed < _widthPercentage;
+
+        if (nextIsLowerThanActual)
+        {
+          GD.Print("setting to max: " + currentWidth);
+          _bar.RectScale = new Vector2(_widthPercentage, 1);
+        }
+        else
+        {
+          GD.Print("decreasing a lil: " + currentWidth);
+          _bar.RectScale -= new Vector2(_animationSpeed, 1);
+        }
       }
 
       if (_bar.RectScale.x <= 0)

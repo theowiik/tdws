@@ -81,6 +81,7 @@ namespace tdws.Scripts
 
       var healthBar = NodeService.InstanceNotNull<HealthBar>("res://Scenes/HealthBar.tscn");
       skelly.Connect(nameof(AbstractActor.HealthChanged), healthBar, nameof(HealthBar.OnHealthChanged));
+      skelly.ZIndex = 100;
 
       _hud.AddChild(healthBar);
       AddChild(skelly);
