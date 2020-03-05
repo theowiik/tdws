@@ -28,15 +28,9 @@ namespace tdws.Scripts
         var nextIsLowerThanActual = currentWidth - _animationSpeed < _widthPercentage;
 
         if (nextIsLowerThanActual)
-        {
-          GD.Print("setting to max: " + currentWidth);
           _bar.RectScale = new Vector2(_widthPercentage, 1);
-        }
         else
-        {
-          GD.Print("decreasing a lil: " + currentWidth);
           _bar.RectScale -= new Vector2(_animationSpeed, 1);
-        }
       }
 
       if (_bar.RectScale.x <= 0)

@@ -58,8 +58,6 @@ namespace tdws.Scripts
     /// <param name="rigidBody">The body to explode.</param>
     private void Explode(RigidBody2D body)
     {
-      GD.Print("exploding!");
-
       if (body is IDamageable damageable)
         damageable.TakeDamage(this);
 

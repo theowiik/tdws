@@ -34,7 +34,7 @@ namespace tdws.Scripts
     /// <summary>
     ///   Makes the door enterable.
     /// </summary>
-    public void Enterable()
+    public void MakeEnterable()
     {
       _enterable = true;
       _animationPlayer.Play("unlocked");
