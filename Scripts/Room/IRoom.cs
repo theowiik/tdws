@@ -26,5 +26,11 @@ namespace tdws.Scripts.Room
     /// </summary>
     /// <returns>The spawn point.</returns>
     Vector2 GetSpawnPoint();
+
+    /// <summary>
+    ///   Checks if all enemies are dead.
+    /// </summary>
+    /// <returns>True if all enemies are dead. False otherwise.</returns>
+    bool AllEnemiesAreDead();
   }
 }

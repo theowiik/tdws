@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 using tdws.Scripts.Actors;
 using tdws.Scripts.ProjectileShooters;
@@ -16,7 +17,6 @@ namespace tdws.Scripts
     private Camera2D _camera;
     private PackedScene _coinScene;
     private Sprite _crosshair;
-    private int _enemiesKilled;
     private HUD _hud;
     private AbstractActor _player;
     private RoomLoader _roomLoader;
@@ -57,6 +57,7 @@ namespace tdws.Scripts
       // Room loader
       _roomLoader = GetNode<RoomLoader>("RoomLoader");
       _roomLoader.SetPlayer(_player);
+      // _roomLoader
       NextRoom();
 
       SpawnBoss();
@@ -101,7 +102,7 @@ namespace tdws.Scripts
       foreach (var monster in _roomLoader.GetEnemies())
       {
         monster.Connect(nameof(AbstractActor.CoinDropped), this, nameof(OnCoinDropped));
-        monster.Connect(nameof(AbstractActor.Died), this, nameof(OnDied));
+        monster.Connect(nameof(AbstractActor.Died), this, nameof(OnEnemyDeath));
       }
 
       RoomLoadFinished();
@@ -165,12 +166,6 @@ namespace tdws.Scripts
       AddChild(_player);
     }
 
-    private void AllEnemiesKilled()
-    {
-      foreach (var door in _roomLoader.GetDoors())
-        door.Enterable();
-    }
-
     public override void _Process(float delta)
     {
       CrosshairLoop();
@@ -232,12 +227,10 @@ namespace tdws.Scripts
     /// <summary>
     ///   Gets called when a enemy dies.
     /// </summary>
-    private void OnDied()
+    private void OnEnemyDeath()
     {
-      _enemiesKilled++;
-
-      if (_enemiesKilled >= 2)
-        AllEnemiesKilled();
+      if (_roomLoader.AllEnemiesAreDead())
+        _roomLoader.UnlockDoors();
     }
 
     /// <summary>
@@ -257,7 +250,7 @@ namespace tdws.Scripts
       CallDeferred("add_child", skeleton);
       skeleton.GlobalPosition = new Vector2(20, 20);
       skeleton.Connect(nameof(AbstractActor.CoinDropped), this, nameof(OnCoinDropped));
-      skeleton.Connect(nameof(AbstractActor.Died), this, nameof(OnDied));
+      skeleton.Connect(nameof(AbstractActor.Died), this, nameof(OnEnemyDeath));
     }
   }
 }

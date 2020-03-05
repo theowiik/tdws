@@ -77,5 +77,17 @@ namespace tdws.Scripts.Room
         skeleton.Position = enemyPosition.Position;
       }
     }
+
+    public bool AllEnemiesAreDead()
+    {
+      if (_enemies.Count() == 0)
+        return true;
+
+      foreach (var enemy in _enemies) // Check if there exists a enemy.
+        if (enemy != null)
+          return false;
+
+      return true;
+    }
   }
 }
