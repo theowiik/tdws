@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System;
 using Godot;
 
@@ -37,6 +38,11 @@ namespace tdws.Scripts.Services
       throw new NullReferenceException("Could not instance");
     }
 
+    /// <summary>
+    ///   Instances a scenes as type T.
+    /// </summary>
+    /// <typeparam name="T">The type to instance as.</typeparam>
+    /// <exception cref="NullReferenceException">If the provided scene is null.</exception>
     public static T InstanceScene<T>(PackedScene scene) where T : class
     {
       Objects.RequireNonNull(scene);
@@ -45,6 +51,27 @@ namespace tdws.Scripts.Services
         return instance;
 
       throw new Exception("The scene provided is not type T");
+    }
+
+    /// <summary>
+    ///   Returns a list of all child nodes that are of the specified type.
+    /// </summary>
+    /// <param name="node">The node to extract children from.</param>
+    /// <typeparam name="T">The type of children to extract.</typeparam>
+    /// <returns>A list of all child nodes that are of the specified type.</returns>
+    public static IList<T> GetChildrenOfType<T>(Node node)
+    {
+      if (node == null)
+        return new List<T>();
+
+      var output = new List<T>();
+      var children = node.GetChildren();
+
+      foreach (var child in children)
+        if (child is T t)
+          output.Add(t);
+
+      return output;
     }
   }
 }

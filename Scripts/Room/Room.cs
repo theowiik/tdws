@@ -43,7 +43,7 @@ namespace tdws.Scripts.Room
     /// </summary>
     private void AddDoors()
     {
-      var possibleDoorPositions = GetNode("PossibleDoorPositions").GetChildren().Cast<Position2D>().ToList();
+      var possibleDoorPositions = NodeService.GetChildrenOfType<Position2D>(GetNode("PossibleDoorPositions"));
       var doorPositions = ListService.SelectNRandom(possibleDoorPositions, 3);
 
       foreach (var doorPosition in doorPositions)
@@ -54,9 +54,9 @@ namespace tdws.Scripts.Room
 
         var tileCoordinate = WorldToMap(doorPosition.GlobalPosition);
         var instancePos = MapToWorld(tileCoordinate);
-        // TODO: How to get the width of a tile in code.
-        instancePos.x += 8;
-        instancePos.y += 8;
+        int tileWidth = (int)CellSize.x;
+        instancePos.x += tileWidth / 2;
+        instancePos.y += tileWidth / 2;
         door.GlobalPosition = instancePos;
       }
     }
@@ -66,7 +66,7 @@ namespace tdws.Scripts.Room
     /// </summary>
     private void AddEnemies()
     {
-      var possibleEnemyPositions = GetNode("PossibleEnemyPositions").GetChildren().Cast<Position2D>().ToList();
+      var possibleEnemyPositions = NodeService.GetChildrenOfType<Position2D>(GetNode("PossibleEnemyPositions"));
       var enemyPositions = ListService.SelectNRandom(possibleEnemyPositions, 3);
 
       foreach (var enemyPosition in enemyPositions)
