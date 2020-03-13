@@ -1,4 +1,3 @@
-using System.Linq;
 using Godot;
 using tdws.Scripts.Actors;
 using tdws.Scripts.ProjectileShooters;
@@ -23,6 +22,7 @@ namespace tdws.Scripts
 
     public Game()
     {
+      GD.Randomize();
       _camera = new Camera2D();
       _camera.Current = true;
       _camera.SmoothingEnabled = true;
