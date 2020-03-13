@@ -110,6 +110,11 @@ namespace tdws.Scripts.Actors
       }
     }
 
+    public int GetHealth()
+    {
+      return Stats.Hp;
+    }
+
     /// <summary>
     ///   Emits the ChatAdded signal. Does nothing if the provided message is null.
     /// </summary>
