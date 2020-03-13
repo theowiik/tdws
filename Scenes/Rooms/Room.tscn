@@ -16,3 +16,5 @@ script = ExtResource( 2 )
 [node name="PossibleDoorPositions" type="Node" parent="."]
 
 [node name="Spawn" type="Position2D" parent="."]
+
+[node name="Enemies" type="YSort" parent="."]

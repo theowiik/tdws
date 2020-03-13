@@ -3,18 +3,18 @@ using System.Linq;
 using Godot;
 using tdws.Scripts.Actors;
 using tdws.Scripts.Services;
+using System;
 
 namespace tdws.Scripts.Room
 {
   public class Room : TileMap, IRoom
   {
     private readonly IList<Door> _doors;
-    private readonly IList<AbstractEnemy> _enemies;
+    private YSort _enemies;
 
     public Room()
     {
       _doors = new List<Door>();
-      _enemies = new List<AbstractEnemy>();
     }
 
     public IEnumerable<Door> GetDoors()
@@ -24,7 +24,7 @@ namespace tdws.Scripts.Room
 
     public IEnumerable<AbstractEnemy> GetEnemies()
     {
-      return _enemies;
+      return NodeService.GetChildrenOfType<AbstractEnemy>(_enemies);
     }
 
     public Vector2 GetSpawnPoint()
@@ -34,6 +34,7 @@ namespace tdws.Scripts.Room
 
     public override void _Ready()
     {
+      _enemies = GetNode<YSort>("Enemies");
       AddDoors();
       AddEnemies();
     }
@@ -72,20 +73,19 @@ namespace tdws.Scripts.Room
       foreach (var enemyPosition in enemyPositions)
       {
         var skeleton = ActorFactory.CreateSkeleton();
-        _enemies.Add(skeleton);
-        CallDeferred("add_child", skeleton);
+        _enemies.AddChild(skeleton);
         skeleton.Position = enemyPosition.Position;
       }
     }
 
     public bool AllEnemiesAreDead()
     {
-      if (_enemies.Count() == 0)
+      if (GetEnemies().Count() == 0)
         return true;
 
-      foreach (var enemy in _enemies) // Check if there exists a enemy.
-        if (enemy != null)
-          return false;
+      foreach (AbstractActor enemy in GetEnemies())
+        if (enemy.GetHealth() > 0)
+          return false; // Atleast one enemy is alive
 
       return true;
     }
