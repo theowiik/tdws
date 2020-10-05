@@ -48,7 +48,7 @@ namespace tdws.Scripts.Services
       ShuffleList(shuffledList);
 
       var nSelected = 0;
-      var output = new List<T>();
+      var output    = new List<T>();
       foreach (var item in shuffledList)
       {
         output.Add(item);

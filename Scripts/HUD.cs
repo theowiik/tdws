@@ -57,9 +57,9 @@ namespace tdws.Scripts
 
     public override void _Ready()
     {
-      _coins = GetNode<RichTextLabel>("Coins");
+      _coins  = GetNode<RichTextLabel>("Coins");
       _health = GetNode<RichTextLabel>("Health");
-      _chat = GetNode<RichTextLabel>("Chat");
+      _chat   = GetNode<RichTextLabel>("Chat");
     }
 
     /// <summary>

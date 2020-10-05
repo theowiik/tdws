@@ -37,7 +37,7 @@ namespace tdws.Scripts.Projectiles
 
       var transform = Transform;
       transform.origin += Direction * Speed * delta;
-      Transform = transform;
+      Transform        =  transform;
     }
 
     /// <summary>
@@ -46,7 +46,7 @@ namespace tdws.Scripts.Projectiles
     /// </summary>
     private void RotateDirection()
     {
-      var rotate = RotateAmount;
+      var rotate                             = RotateAmount;
       if (GD.RandRange(0, 1) >= 0.5f) rotate *= -1;
 
       Direction = Direction.Rotated(rotate).Normalized();

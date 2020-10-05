@@ -3,14 +3,13 @@ using System.Linq;
 using Godot;
 using tdws.Scripts.Actors;
 using tdws.Scripts.Services;
-using System;
 
 namespace tdws.Scripts.Room
 {
   public class Room : TileMap, IRoom
   {
     private readonly IList<Door> _doors;
-    private YSort _enemies;
+    private          YSort       _enemies;
 
     public Room()
     {
@@ -32,6 +31,18 @@ namespace tdws.Scripts.Room
       return GetNode<Position2D>("Spawn").GlobalPosition;
     }
 
+    public bool AllEnemiesAreDead()
+    {
+      if (GetEnemies().Count() == 0)
+        return true;
+
+      foreach (AbstractActor enemy in GetEnemies())
+        if (enemy.GetHealth() > 0)
+          return false; // Atleast one enemy is alive
+
+      return true;
+    }
+
     public override void _Ready()
     {
       _enemies = GetNode<YSort>("Enemies");
@@ -45,7 +56,7 @@ namespace tdws.Scripts.Room
     private void AddDoors()
     {
       var possibleDoorPositions = NodeService.GetChildrenOfType<Position2D>(GetNode("PossibleDoorPositions"));
-      var doorPositions = ListService.SelectNRandom(possibleDoorPositions, 3);
+      var doorPositions         = ListService.SelectNRandom(possibleDoorPositions, 3);
 
       foreach (var doorPosition in doorPositions)
       {
@@ -54,11 +65,11 @@ namespace tdws.Scripts.Room
         AddChild(door);
 
         var tileCoordinate = WorldToMap(doorPosition.GlobalPosition);
-        var instancePos = MapToWorld(tileCoordinate);
-        int tileWidth = (int)CellSize.x;
-        instancePos.x += tileWidth / 2;
-        instancePos.y += tileWidth / 2;
-        door.GlobalPosition = instancePos;
+        var instancePos    = MapToWorld(tileCoordinate);
+        var tileWidth      = (int) CellSize.x;
+        instancePos.x       += tileWidth / 2;
+        instancePos.y       += tileWidth / 2;
+        door.GlobalPosition =  instancePos;
       }
     }
 
@@ -68,7 +79,7 @@ namespace tdws.Scripts.Room
     private void AddEnemies()
     {
       var possibleEnemyPositions = NodeService.GetChildrenOfType<Position2D>(GetNode("PossibleEnemyPositions"));
-      var enemyPositions = ListService.SelectNRandom(possibleEnemyPositions, 3);
+      var enemyPositions         = ListService.SelectNRandom(possibleEnemyPositions, 3);
 
       foreach (var enemyPosition in enemyPositions)
       {
@@ -76,18 +87,6 @@ namespace tdws.Scripts.Room
         _enemies.AddChild(skeleton);
         skeleton.Position = enemyPosition.Position;
       }
-    }
-
-    public bool AllEnemiesAreDead()
-    {
-      if (GetEnemies().Count() == 0)
-        return true;
-
-      foreach (AbstractActor enemy in GetEnemies())
-        if (enemy.GetHealth() > 0)
-          return false; // Atleast one enemy is alive
-
-      return true;
     }
   }
 }

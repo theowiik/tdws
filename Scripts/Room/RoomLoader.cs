@@ -10,9 +10,14 @@ namespace tdws.Scripts.Room
   /// </summary>
   public class RoomLoader : Node
   {
-    private AbstractActor _player;
-    private IRoom _room;
-    private Region _region;
+    private          AbstractActor _player;
+    private readonly Region        _region;
+    private          IRoom         _room;
+
+    public RoomLoader()
+    {
+      _region = Region.Factory.CreateStartDungeon();
+    }
 
     public override void _Process(float delta)
     {
@@ -25,11 +30,6 @@ namespace tdws.Scripts.Room
     public bool AllEnemiesAreDead()
     {
       return _room.AllEnemiesAreDead();
-    }
-
-    public RoomLoader()
-    {
-      _region = Region.Factory.CreateStartDungeon();
     }
 
     public void SetPlayer(AbstractActor player)
@@ -50,7 +50,7 @@ namespace tdws.Scripts.Room
       RemoveAllChildren();
       _room = GetRandomRoom();
 
-      AddChild((Room)_room); // Hmm...
+      AddChild((Room) _room); // Hmm...
     }
 
     private IRoom GetRandomRoom()

@@ -1,6 +1,6 @@
+using System;
 using Godot;
 using tdws.Scripts.Services;
-using System;
 
 namespace tdws.Scripts.Actors
 {
@@ -17,18 +17,18 @@ namespace tdws.Scripts.Actors
     private Timer _chaseTimer;
 
     /// <summary>
-    ///   A boolean to show if the enemy is currently being knocked back by a explosion, and thus can not move.
-    /// </summary>
-    private bool _isBeingKnockedback;
-
-    /// <summary>
     ///   The target destination.
     /// </summary>
     private AbstractActor _chasing;
 
+    /// <summary>
+    ///   A boolean to show if the enemy is currently being knocked back by a explosion, and thus can not move.
+    /// </summary>
+    private bool _isBeingKnockedback;
+
     public AbstractEnemy()
     {
-      _chasing = null;
+      _chasing            = null;
       _isBeingKnockedback = false;
     }
 
@@ -65,10 +65,7 @@ namespace tdws.Scripts.Actors
 
     protected override void HandleDamage(IDamageSource damageSource)
     {
-      if (damageSource.HasActorSource())
-      {
-        _chasing = damageSource.GetActorSource();
-      }
+      if (damageSource.HasActorSource()) _chasing = damageSource.GetActorSource();
 
       _chaseTimer.Start(ChaseTime);
     }
@@ -92,7 +89,7 @@ namespace tdws.Scripts.Actors
     /// </summary>
     public void OnChaseTimerTimeout()
     {
-      _chasing = null;
+      _chasing       = null;
       LinearVelocity = Vector2.Zero;
     }
 

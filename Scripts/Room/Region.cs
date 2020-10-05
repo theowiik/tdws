@@ -1,7 +1,7 @@
+using System;
 using System.Collections.Generic;
 using Godot;
 using tdws.Scripts.Services;
-using System;
 
 namespace tdws.Scripts.Room
 {
@@ -10,16 +10,16 @@ namespace tdws.Scripts.Room
   /// </summary>
   public sealed class Region
   {
+    private readonly Func<Region> _regionChooser;
+
     /// <summary>
     ///   The path to the folder that holds the room scenes.
     /// </summary>
-    private string PathToRooms;
-
-    private Func<Region> _regionChooser;
+    private readonly string PathToRooms;
 
     private Region(string pathToRooms, Func<Region> regionChooser)
     {
-      PathToRooms = Objects.RequireNonNull(pathToRooms);
+      PathToRooms    = Objects.RequireNonNull(pathToRooms);
       _regionChooser = Objects.RequireNonNull(regionChooser);
     }
 
@@ -58,9 +58,9 @@ namespace tdws.Scripts.Room
     {
       var roomNames = GetRoomNames();
 
-      int randIndex = (int)(GD.Randi() % roomNames.Count);
-      var roomName = roomNames[randIndex];
-      var roomPath = PathToRooms + "/" + roomName;
+      var randIndex = (int) (GD.Randi() % roomNames.Count);
+      var roomName  = roomNames[randIndex];
+      var roomPath  = PathToRooms + "/" + roomName;
 
       return NodeService.InstanceNotNull<IRoom>(roomPath);
     }
@@ -75,6 +75,7 @@ namespace tdws.Scripts.Room
     }
 
     #region Factory
+
     public static class Factory
     {
       private const string PathToRooms = "res://Scenes/Rooms";
@@ -86,14 +87,15 @@ namespace tdws.Scripts.Room
 
       public static Region CreateDungeon()
       {
-        return new Region(PathToRooms + "/Dungeons", Region.Factory.CreateForest);
+        return new Region(PathToRooms + "/Dungeons", CreateForest);
       }
 
       public static Region CreateForest()
       {
-        return new Region(PathToRooms + "/Forest", Region.Factory.CreateForest);
+        return new Region(PathToRooms + "/Forest", CreateForest);
       }
     }
+
     #endregion
   }
 }

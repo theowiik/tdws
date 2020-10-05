@@ -8,17 +8,32 @@ namespace tdws.Scripts
   /// </summary>
   public class Explosion : Node2D, IDamageSource
   {
-    private const int Damage = 10;
-    private const int PushForce = 500;
-    private bool _hasExploded;
-    private Area2D _explosionArea;
-    private int _frames;
-    private Timer _lifetimeTimer;
-    private CPUParticles2D _particles;
+    private const int            Damage    = 10;
+    private const int            PushForce = 500;
+    private       Area2D         _explosionArea;
+    private       int            _frames;
+    private       bool           _hasExploded;
+    private       Timer          _lifetimeTimer;
+    private       CPUParticles2D _particles;
 
     public Explosion()
     {
       _hasExploded = false;
+    }
+
+    public int GetDamage()
+    {
+      return Damage;
+    }
+
+    public AbstractActor GetActorSource()
+    {
+      return null;
+    }
+
+    public bool HasActorSource()
+    {
+      return false;
     }
 
     public void OnLifetimeTimerTimeout()
@@ -28,9 +43,9 @@ namespace tdws.Scripts
 
     public override void _Ready()
     {
-      _explosionArea = GetNode<Area2D>("ExplosionArea");
-      _lifetimeTimer = GetNode<Timer>("LifetimeTimer");
-      _particles = GetNode<CPUParticles2D>("Particles");
+      _explosionArea      = GetNode<Area2D>("ExplosionArea");
+      _lifetimeTimer      = GetNode<Timer>("LifetimeTimer");
+      _particles          = GetNode<CPUParticles2D>("Particles");
       _particles.Emitting = true;
     }
 
@@ -66,21 +81,6 @@ namespace tdws.Scripts
         var dirToBody = GlobalPosition.DirectionTo(body.GlobalPosition).Normalized();
         knockbackable.Knockback(dirToBody * PushForce);
       }
-    }
-
-    public int GetDamage()
-    {
-      return Damage;
-    }
-
-    public AbstractActor GetActorSource()
-    {
-      return null;
-    }
-
-    public bool HasActorSource()
-    {
-      return false;
     }
   }
 }

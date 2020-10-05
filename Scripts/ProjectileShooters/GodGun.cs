@@ -4,11 +4,11 @@ namespace tdws.Scripts.ProjectileShooters
   {
     protected override void OverrideProperties()
     {
-      ProjectilesPerShot = 3;
-      MaxOffsetAngle = 0;
-      SecondsBetweenShots = 0.05f;
+      ProjectilesPerShot    = 3;
+      MaxOffsetAngle        = 0;
+      SecondsBetweenShots   = 0.05f;
       ProjectileShooterName = "God Gun";
-      Ammo = 99999999;
+      Ammo                  = 99999999;
     }
   }
 }

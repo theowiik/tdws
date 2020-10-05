@@ -1,6 +1,9 @@
 using Godot;
 
-public class Hotbar : Control
+namespace tdws.Scripts
 {
-  // hi im a hotbar
+  public class Hotbar : Control
+  {
+    // hi im a hotbar
+  }
 }

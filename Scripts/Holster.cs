@@ -1,5 +1,4 @@
 using System;
-using Godot;
 using tdws.Scripts.ProjectileShooters;
 
 namespace tdws.Scripts
@@ -9,13 +8,13 @@ namespace tdws.Scripts
   /// </summary>
   public class Holster
   {
-    private const int MaxInventorySize = 6;
+    private const    int                  MaxInventorySize = 6;
     private readonly IProjectileShooter[] _projectileShooters;
-    private int _inventoryIndex;
+    private          int                  _inventoryIndex;
 
     public Holster()
     {
-      _inventoryIndex = 0;
+      _inventoryIndex     = 0;
       _projectileShooters = new IProjectileShooter[MaxInventorySize];
 
       // Add a weapons at the start...

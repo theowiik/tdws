@@ -4,15 +4,15 @@ namespace tdws.Scripts
 {
   public class HealthBar : Control
   {
-    private ColorRect _bar;
-    private int _maxHealth;
-    private bool _maxHealthSet;
-    private float _widthPercentage;
-    private float _animationSpeed;
+    private readonly float     _animationSpeed;
+    private          ColorRect _bar;
+    private          int       _maxHealth;
+    private          bool      _maxHealthSet;
+    private          float     _widthPercentage;
 
     public HealthBar()
     {
-      _maxHealthSet = false;
+      _maxHealthSet   = false;
       _animationSpeed = 0.01f;
     }
 
@@ -21,7 +21,7 @@ namespace tdws.Scripts
       if (!_maxHealthSet)
         return;
 
-      float currentWidth = _bar.RectScale.x;
+      var currentWidth = _bar.RectScale.x;
 
       if (currentWidth > _widthPercentage)
       {
@@ -46,11 +46,11 @@ namespace tdws.Scripts
     {
       if (!_maxHealthSet)
       {
-        _maxHealth = health;
+        _maxHealth    = health;
         _maxHealthSet = true;
       }
 
-      _widthPercentage = (float)health / (float)_maxHealth;
+      _widthPercentage = health / (float) _maxHealth;
     }
 
     /// <summary>

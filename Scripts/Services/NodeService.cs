@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 using Godot;
 
 namespace tdws.Scripts.Services
@@ -64,7 +64,7 @@ namespace tdws.Scripts.Services
       if (node == null)
         return new List<T>();
 
-      var output = new List<T>();
+      var output   = new List<T>();
       var children = node.GetChildren();
 
       foreach (var child in children)

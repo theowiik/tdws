@@ -5,8 +5,8 @@ namespace tdws.Scripts
 {
   public class RigidPlayer : RigidBody2D
   {
-    private const int MaxWalkSpeed = 166;
-    private Vector2 _velocity;
+    private const int     MaxWalkSpeed = 166;
+    private       Vector2 _velocity;
 
     public RigidPlayer()
     {
@@ -28,13 +28,13 @@ namespace tdws.Scripts
 
     private static Vector2 GetMovementInputVector()
     {
-      const int component = 1;
-      var inputVector = new Vector2();
+      const int component   = 1;
+      var       inputVector = new Vector2();
 
-      if (Input.IsActionPressed("up")) inputVector.y -= component;
-      if (Input.IsActionPressed("down")) inputVector.y += component;
+      if (Input.IsActionPressed("up")) inputVector.y    -= component;
+      if (Input.IsActionPressed("down")) inputVector.y  += component;
       if (Input.IsActionPressed("right")) inputVector.x += component;
-      if (Input.IsActionPressed("left")) inputVector.x -= component;
+      if (Input.IsActionPressed("left")) inputVector.x  -= component;
 
       return inputVector.Normalized();
     }

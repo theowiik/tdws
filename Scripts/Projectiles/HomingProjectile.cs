@@ -1,4 +1,3 @@
-using Godot;
 using tdws.Scripts.Actors;
 
 namespace tdws.Scripts.Projectiles
@@ -26,7 +25,7 @@ namespace tdws.Scripts.Projectiles
 
       var desiredDirection = _target.GlobalPosition - GlobalPosition;
       Direction += desiredDirection.Normalized() * TurnMultiplier;
-      Direction = Direction.Normalized();
+      Direction =  Direction.Normalized();
     }
 
     /// <summary>

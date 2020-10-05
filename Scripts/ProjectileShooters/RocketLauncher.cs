@@ -9,13 +9,13 @@ namespace tdws.Scripts.ProjectileShooters
   {
     protected override void OverrideProperties()
     {
-      ProjectilesPerShot = 1;
-      SecondsBetweenShots = 0.3f;
-      MaxOffsetAngle = 2;
-      Ammo = 100;
-      MagSize = 100;
+      ProjectilesPerShot    = 1;
+      SecondsBetweenShots   = 0.3f;
+      MaxOffsetAngle        = 2;
+      Ammo                  = 100;
+      MagSize               = 100;
       ProjectileShooterName = "Rocket Launcher";
-      Projectile = ProjectileFactory.CreateRocket();
+      Projectile            = ProjectileFactory.CreateRocket();
     }
   }
 }
