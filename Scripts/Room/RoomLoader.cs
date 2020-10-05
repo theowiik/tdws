@@ -10,9 +10,9 @@ namespace tdws.Scripts.Room
   /// </summary>
   public class RoomLoader : Node
   {
-    private          AbstractActor _player;
     private readonly Region        _region;
-    private          IRoom         _room;
+    private          AbstractActor _player;
+    private          Room          _room;
 
     public RoomLoader()
     {
@@ -49,11 +49,21 @@ namespace tdws.Scripts.Room
     {
       RemoveAllChildren();
       _room = GetRandomRoom();
+      _room.Connect("ready", this, nameof(OnRoomReady));
 
-      AddChild((Room) _room); // Hmm...
+      AddChild(_room);
     }
 
-    private IRoom GetRandomRoom()
+    /// <summary>
+    ///   Gets called when a room is loaded. Sets the players position at the spawn coordinate.
+    /// </summary>
+    private void OnRoomReady()
+    {
+      _player.GlobalPosition = _room.GetSpawnPoint();
+      _player.ForceUpdateTransform();
+    }
+
+    private Room GetRandomRoom()
     {
       return _region.GetRandomRoom();
     }

@@ -13,10 +13,10 @@ namespace tdws.Scripts
   public sealed class Game : Node2D
   {
     private readonly Camera2D      _camera;
+    private readonly AbstractActor _player;
     private          PackedScene   _coinScene;
     private          Sprite        _crosshair;
     private          HUD           _hud;
-    private readonly AbstractActor _player;
     private          RoomLoader    _roomLoader;
 
     public Game()
