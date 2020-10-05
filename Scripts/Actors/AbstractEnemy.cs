@@ -80,7 +80,7 @@ namespace tdws.Scripts.Actors
     /// </param>
     private void OnDetectionAreaExited(object body)
     {
-      if (body == _chasing)
+      if (body == _chasing && _chaseTimer.IsInsideTree())
         _chaseTimer.Start(ChaseTime);
     }
 
