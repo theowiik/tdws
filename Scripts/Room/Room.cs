@@ -6,7 +6,7 @@ using tdws.Scripts.Services;
 
 namespace tdws.Scripts.Room
 {
-  public class Room : TileMap, IRoom
+  public sealed class Room : TileMap
   {
     private readonly IList<Door> _doors;
     private          YSort       _enemies;
@@ -16,21 +16,37 @@ namespace tdws.Scripts.Room
       _doors = new List<Door>();
     }
 
+    /// <summary>
+    ///   Returns a list of the rooms doors.
+    /// </summary>
+    /// <returns>A list of the rooms doors.</returns>
     public IEnumerable<Door> GetDoors()
     {
       return _doors;
     }
 
+    /// <summary>
+    ///   Returns a list of the rooms enemies.
+    /// </summary>
+    /// <returns>A list of the rooms enemies.</returns>
     public IEnumerable<AbstractEnemy> GetEnemies()
     {
       return NodeService.GetChildrenOfType<AbstractEnemy>(_enemies);
     }
 
+    /// <summary>
+    ///   Returns the spawn point.
+    /// </summary>
+    /// <returns>The spawn point.</returns>
     public Vector2 GetSpawnPoint()
     {
       return GetNode<Position2D>("Spawn").GlobalPosition;
     }
 
+    /// <summary>
+    ///   Checks if all enemies are dead.
+    /// </summary>
+    /// <returns>True if all enemies are dead. False otherwise.</returns>
     public bool AllEnemiesAreDead()
     {
       if (GetEnemies().Count() == 0)

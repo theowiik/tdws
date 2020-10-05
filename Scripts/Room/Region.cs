@@ -54,7 +54,7 @@ namespace tdws.Scripts.Room
     ///   Returns a random room that is in the region.
     /// </summary>
     /// <returns></returns>
-    public IRoom GetRandomRoom()
+    public Room GetRandomRoom()
     {
       var roomNames = GetRoomNames();
 
@@ -62,7 +62,7 @@ namespace tdws.Scripts.Room
       var roomName  = roomNames[randIndex];
       var roomPath  = PathToRooms + "/" + roomName;
 
-      return NodeService.InstanceNotNull<IRoom>(roomPath);
+      return NodeService.InstanceNotNull<Room>(roomPath);
     }
 
     /// <summary>
@@ -85,7 +85,7 @@ namespace tdws.Scripts.Room
         return CreateDungeon();
       }
 
-      public static Region CreateDungeon()
+      private static Region CreateDungeon()
       {
         return new Region(PathToRooms + "/Dungeons", CreateForest);
       }
