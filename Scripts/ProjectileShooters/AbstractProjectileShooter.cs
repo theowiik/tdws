@@ -144,7 +144,6 @@ namespace tdws.Scripts.ProjectileShooters
 
     private void PrintAmmo()
     {
-      //      GD.Print(Ammo + "/" + MagSize);
     }
 
     /// <summary>

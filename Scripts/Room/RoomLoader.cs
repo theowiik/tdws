@@ -37,13 +37,20 @@ namespace tdws.Scripts.Room
       _player = Objects.RequireNonNull(player);
     }
 
+    public Vector2 GetSpawnPoint()
+    {
+      return _room.GetSpawnPoint();
+    }
+
+    /// <summary>
+    ///   Removes the current room from the scene tree and adds a new random door.
+    /// </summary>
     public void NextRoom()
     {
       RemoveAllChildren();
       _room = GetRandomRoom();
 
       AddChild((Room)_room); // Hmm...
-      _player.GlobalPosition = _room.GetSpawnPoint();
     }
 
     private IRoom GetRandomRoom()
