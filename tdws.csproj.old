@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C6565ACC-049C-45E0-AB6A-E7FD50DCE4F3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <OutputPath>.mono\temp\bin\$(Configuration)</OutputPath>
+    <RootNamespace>tdws</RootNamespace>
+    <AssemblyName>tdws</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <BaseIntermediateOutputPath>.mono\temp\obj</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\$(Configuration)</IntermediateOutputPath>
+    <ApiConfiguration Condition=" '$(Configuration)' != 'Release' ">Debug</ApiConfiguration>
+    <ApiConfiguration Condition=" '$(Configuration)' == 'Release' ">Release</ApiConfiguration>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>portable</DebugType>
+    <Optimize>true</Optimize>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Tools|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TOOLS;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GodotSharp">
+      <Private>False</Private>
+      <HintPath>$(ProjectDir)/.mono/assemblies/$(ApiConfiguration)/GodotSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="GodotSharpEditor" Condition=" '$(Configuration)' == 'Tools' ">
+      <Private>False</Private>
+      <HintPath>$(ProjectDir)/.mono/assemblies/$(ApiConfiguration)/GodotSharpEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scripts\Actors\AbstractActor.cs" />
+    <Compile Include="Scripts\Actors\AbstractEnemy.cs" />
+    <Compile Include="Scripts\Actors\ActorFactory.cs" />
+    <Compile Include="Scripts\Actors\Player.cs" />
+    <Compile Include="Scripts\Box.cs" />
+    <Compile Include="Scripts\Camera.cs" />
+    <Compile Include="Scripts\Coin.cs" />
+    <Compile Include="Scripts\Crate.cs" />
+    <Compile Include="Scripts\DeathEffect.cs" />
+    <Compile Include="Scripts\Directions.cs" />
+    <Compile Include="Scripts\Door.cs" />
+    <Compile Include="Scripts\Game.cs" />
+    <Compile Include="Scripts\HealthBar.cs" />
+    <Compile Include="Scripts\Holster.cs" />
+    <Compile Include="Scripts\Hotbar.cs" />
+    <Compile Include="Scripts\HUD.cs" />
+    <Compile Include="Scripts\ICanPickup.cs" />
+    <Compile Include="Scripts\IDamageable.cs" />
+    <Compile Include="Scripts\IKnockbackable.cs" />
+    <Compile Include="Scripts\IDamageSource.cs" />
+    <Compile Include="Scripts\ILiving.cs" />
+    <Compile Include="Scripts\IObjectPool.cs" />
+    <Compile Include="Scripts\IPickupable.cs" />
+    <Compile Include="Scripts\IState.cs" />
+    <Compile Include="Scripts\ProjectilePool.cs" />
+    <Compile Include="Scripts\ProjectileShooters\AbstractProjectileShooter.cs" />
+    <Compile Include="Scripts\ProjectileShooters\AlienGun.cs" />
+    <Compile Include="Scripts\ProjectileShooters\AssaultRifle.cs" />
+    <Compile Include="Scripts\ProjectileShooters\GodGun.cs" />
+    <Compile Include="Scripts\ProjectileShooters\IProjectileShooter.cs" />
+    <Compile Include="Scripts\ProjectileShooters\ProjectileShooterFactory.cs" />
+    <Compile Include="Scripts\ProjectileShooters\Shotgun.cs" />
+    <Compile Include="Scripts\ProjectileShooters\WonkyGun.cs" />
+    <Compile Include="Scripts\ProjectileShooters\RocketLauncher.cs" />
+    <Compile Include="Scripts\Projectiles\AbstractProjectile.cs" />
+    <Compile Include="Scripts\Projectiles\Bullet.cs" />
+    <Compile Include="Scripts\Projectiles\HomingProjectile.cs" />
+    <Compile Include="Scripts\Projectiles\Rocket.cs" />
+    <Compile Include="Scripts\Projectiles\IProjectile.cs" />
+    <Compile Include="Scripts\Projectiles\ProjectileFactory.cs" />
+    <Compile Include="Scripts\Projectiles\WonkyProjectile.cs" />
+    <Compile Include="Scripts\RigidPlayer.cs" />
+    <Compile Include="Scripts\Room\IRoom.cs" />
+    <Compile Include="Scripts\Room\Region.cs" />
+    <Compile Include="Scripts\Room\Room.cs" />
+    <Compile Include="Scripts\Room\RoomLoader.cs" />
+    <Compile Include="Scripts\Services\DirectionService.cs" />
+    <Compile Include="Scripts\Services\ListService.cs" />
+    <Compile Include="Scripts\Services\NodeService.cs" />
+    <Compile Include="Scripts\Services\Objects.cs" />
+    <Compile Include="Scripts\Stats.cs" />
+    <Compile Include="Scripts\Explosion.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Materials\blood.tres" />
+    <Content Include="Scenes\Actors\AbstractActor.tscn" />
+    <Content Include="Scenes\Actors\AbstractMonster.tscn" />
+    <Content Include="Scenes\Actors\Holster.tscn" />
+    <Content Include="Scenes\Actors\Player.tscn" />
+    <Content Include="Scenes\Actors\Skeleton.tscn" />
+    <Content Include="Scenes\DeathEffect.tscn" />
+    <Content Include="Scenes\HUD.tscn" />
+    <Content Include="Scenes\Objects\Box.tscn" />
+    <Content Include="Scenes\Objects\Coin.tscn" />
+    <Content Include="Scenes\Objects\Crate.tscn" />
+    <Content Include="Scenes\Objects\Door.tscn" />
+    <Content Include="Scenes\Projectiles\AbstractProjectile.tscn" />
+    <Content Include="Scenes\Projectiles\Bullet.tscn" />
+    <Content Include="Scenes\Projectiles\HomingProjectile.tscn" />
+    <Content Include="Scenes\Projectiles\WonkyProjectile.tscn" />
+    <Content Include="Scenes\ProjectileShooters\AbstractProjectileShooter.tscn" />
+    <Content Include="Scenes\ProjectileShooters\AlienGun.tscn" />
+    <Content Include="Scenes\ProjectileShooters\AssaultRifle.tscn" />
+    <Content Include="Scenes\ProjectileShooters\Crosshair.tscn" />
+    <Content Include="Scenes\ProjectileShooters\Game.tscn" />
+    <Content Include="Scenes\ProjectileShooters\Shotgun.tscn" />
+    <Content Include="Scenes\ProjectileShooters\WonkyGun.tscn" />
+    <Content Include="Scenes\StateMachine.tscn" />
+    <Content Include="Tilesets\dungeon.tres" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scenes\Levels" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
