@@ -9,9 +9,9 @@ namespace tdws.Scripts
   {
     public override void _Ready()
     {
-      Current = true;
+      Current          = true;
       SmoothingEnabled = true;
-      SmoothingSpeed = 5f;
+      SmoothingSpeed   = 5f;
     }
   }
 }

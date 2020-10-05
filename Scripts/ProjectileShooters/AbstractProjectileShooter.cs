@@ -13,12 +13,13 @@ namespace tdws.Scripts.ProjectileShooters
     [Signal]
     public delegate void ProjectileAdded(AbstractProjectile projectile);
 
-    private Position2D _output;
-    private AudioStreamPlayer _shootPlayer;
-    private Timer _timer;
-    protected int Ammo;
     private int _knockbackForce;
-    protected int MagSize;
+
+    private   Position2D        _output;
+    private   AudioStreamPlayer _shootPlayer;
+    private   Timer             _timer;
+    protected int               Ammo;
+    protected int               MagSize;
 
     /// <summary>
     ///   The maximum offset the projectiles will have in degrees.
@@ -26,9 +27,9 @@ namespace tdws.Scripts.ProjectileShooters
     protected double MaxOffsetAngle;
 
     protected PackedScene Projectile;
-    protected string ProjectileShooterName;
-    protected int ProjectilesPerShot;
-    protected float SecondsBetweenShots;
+    protected string      ProjectileShooterName;
+    protected int         ProjectilesPerShot;
+    protected float       SecondsBetweenShots;
 
     public void Reload()
     {
@@ -47,8 +48,8 @@ namespace tdws.Scripts.ProjectileShooters
         if (Projectile.Instance() is AbstractProjectile projectile)
         {
           projectile.GlobalPosition = _output.GlobalPosition;
-          projectile.Direction = GetTrajectoryVector();
-          projectile.ActorSource = actor;
+          projectile.Direction      = GetTrajectoryVector();
+          projectile.ActorSource    = actor;
           EmitSignal(nameof(ProjectileAdded), projectile);
         }
     }
@@ -102,13 +103,13 @@ namespace tdws.Scripts.ProjectileShooters
     /// </returns>
     private Vector2 GetTrajectoryVector()
     {
-      var offsetAngle = (float)(MaxOffsetAngle * GD.RandRange(-1, 1));
+      var offsetAngle = (float) (MaxOffsetAngle * GD.RandRange(-1, 1));
       return ToMouseVec().Rotated(Mathf.Deg2Rad(offsetAngle));
     }
 
     public override void _Ready()
     {
-      _output = GetNode("Output") as Position2D;
+      _output      = GetNode("Output") as Position2D;
       _shootPlayer = GetNode("ShootPlayer") as AudioStreamPlayer;
       InitStandardValues();
       OverrideProperties();
@@ -119,17 +120,17 @@ namespace tdws.Scripts.ProjectileShooters
     /// </summary>
     private void InitStandardValues()
     {
-      Projectile = ProjectileFactory.CreateBullet();
-      _timer = GetNode("Timer") as Timer;
-      _timer.Autostart = false;
-      _timer.OneShot = true;
-      SecondsBetweenShots = 0.4f;
-      MagSize = 20;
-      Ammo = MagSize;
-      ProjectilesPerShot = 8;
+      Projectile            = ProjectileFactory.CreateBullet();
+      _timer                = GetNode("Timer") as Timer;
+      _timer.Autostart      = false;
+      _timer.OneShot        = true;
+      SecondsBetweenShots   = 0.4f;
+      MagSize               = 20;
+      Ammo                  = MagSize;
+      ProjectilesPerShot    = 8;
       ProjectileShooterName = "Abstract Projectile Shooter";
-      MaxOffsetAngle = 3;
-      _knockbackForce = 50;
+      MaxOffsetAngle        = 3;
+      _knockbackForce       = 50;
     }
 
     /// <summary>
@@ -154,10 +155,10 @@ namespace tdws.Scripts.ProjectileShooters
       var radians = ToMouseVec().Angle();
       GlobalRotation = radians;
 
-      var firstQuadrant = radians >= -Math.PI / 2 && radians <= 0;
-      var secondQuadrant = radians <= Math.PI / 2 && radians >= 0;
-      var thirdQuadrant = radians >= Math.PI / 2 && radians <= Math.PI;
-      var fourthQuadrant = radians >= -Math.PI && radians <= -Math.PI / 2;
+      var firstQuadrant  = radians >= -Math.PI / 2 && radians <= 0;
+      var secondQuadrant = radians <= Math.PI  / 2 && radians >= 0;
+      var thirdQuadrant  = radians >= Math.PI  / 2 && radians <= Math.PI;
+      var fourthQuadrant = radians >= -Math.PI     && radians <= -Math.PI / 2;
 
       FlipV = thirdQuadrant || fourthQuadrant;
     }

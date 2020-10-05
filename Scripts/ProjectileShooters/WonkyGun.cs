@@ -1,4 +1,3 @@
-using Godot;
 using tdws.Scripts.Projectiles;
 
 namespace tdws.Scripts.ProjectileShooters
@@ -7,7 +6,7 @@ namespace tdws.Scripts.ProjectileShooters
   {
     protected override void OverrideProperties()
     {
-      Projectile = ProjectileFactory.CreateWonkyProjectile();
+      Projectile         = ProjectileFactory.CreateWonkyProjectile();
       ProjectilesPerShot = 1;
     }
   }

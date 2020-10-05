@@ -10,7 +10,7 @@ namespace tdws.Scripts.Projectiles
   {
     protected override void OverrideProperties()
     {
-      Speed = 200;
+      Speed    = 200;
       HitScene = NodeService.LoadNotNull<PackedScene>("res://Scenes/Explosion.tscn");
     }
   }

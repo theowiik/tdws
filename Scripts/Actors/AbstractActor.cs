@@ -22,14 +22,14 @@ namespace tdws.Scripts.Actors
     [Signal]
     public delegate void HealthChanged(int hp);
 
-    private AudioStreamPlayer _damagePlayer;
-    protected AnimationPlayer AnimationPlayer;
-    protected Stats Stats;
+    private   AudioStreamPlayer _damagePlayer;
+    protected AnimationPlayer   AnimationPlayer;
+    protected Stats             Stats;
 
     protected AbstractActor()
     {
       Inertia = 10;
-      Stats = new Stats(100, 100);
+      Stats   = new Stats(100, 100);
     }
 
     protected int Inertia { get; }
@@ -53,10 +53,15 @@ namespace tdws.Scripts.Actors
       QueueFree();
     }
 
+    public virtual void Knockback(Vector2 vector)
+    {
+      ApplyCentralImpulse(vector);
+    }
+
     public override void _Ready()
     {
       AnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
-      _damagePlayer = GetNode<AudioStreamPlayer>("DamagePlayer");
+      _damagePlayer   = GetNode<AudioStreamPlayer>("DamagePlayer");
       GetNodes();
     }
 
@@ -126,11 +131,6 @@ namespace tdws.Scripts.Actors
       if (msg == null) return;
 
       EmitSignal(nameof(ChatAdded), msg);
-    }
-
-    public virtual void Knockback(Vector2 vector)
-    {
-      ApplyCentralImpulse(vector);
     }
   }
 }

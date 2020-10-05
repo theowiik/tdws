@@ -12,18 +12,19 @@ namespace tdws.Scripts.Projectiles
     public delegate void ProjectileHit(PackedScene packedScene);
 
     protected int Speed;
-    public Vector2 Direction { get; set; }
+
+    public AbstractProjectile()
+    {
+      Direction = new Vector2();
+    }
+
+    public Vector2       Direction   { get; set; }
     public AbstractActor ActorSource { get; set; }
 
     /// <summary>
     ///   The scene to instance when the projectile hits a target.
     /// </summary>
     protected PackedScene HitScene { get; set; }
-
-    public AbstractProjectile()
-    {
-      Direction = new Vector2();
-    }
 
     public int GetDamage()
     {
@@ -107,7 +108,7 @@ namespace tdws.Scripts.Projectiles
     {
       var transform = Transform;
       transform.origin += Direction * Speed * delta;
-      Transform = transform;
+      Transform        =  transform;
     }
 
     /// <summary>

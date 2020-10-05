@@ -1,10 +1,9 @@
 using Godot;
 using tdws.Scripts.Actors;
-using tdws.Scripts.ProjectileShooters;
 using tdws.Scripts.Projectiles;
+using tdws.Scripts.ProjectileShooters;
 using tdws.Scripts.Room;
 using tdws.Scripts.Services;
-using Object = Godot.Object;
 
 namespace tdws.Scripts
 {
@@ -13,18 +12,18 @@ namespace tdws.Scripts
   /// </summary>
   public sealed class Game : Node2D
   {
-    private Camera2D _camera;
-    private PackedScene _coinScene;
-    private Sprite _crosshair;
-    private HUD _hud;
-    private AbstractActor _player;
-    private RoomLoader _roomLoader;
+    private readonly Camera2D      _camera;
+    private          PackedScene   _coinScene;
+    private          Sprite        _crosshair;
+    private          HUD           _hud;
+    private readonly AbstractActor _player;
+    private          RoomLoader    _roomLoader;
 
     public Game()
     {
       GD.Randomize();
-      _camera = new Camera2D();
-      _camera.Current = true;
+      _camera                  = new Camera2D();
+      _camera.Current          = true;
       _camera.SmoothingEnabled = true;
 
       _player = ActorFactory.CreatePlayer();
@@ -33,7 +32,7 @@ namespace tdws.Scripts
     public override void _Ready()
     {
       _crosshair = GetNode<Sprite>("Crosshair");
-      _hud = GetNode<HUD>("CanvasLayer/HUD");
+      _hud       = GetNode<HUD>("CanvasLayer/HUD");
 
       // Hide the cursor
       Input.SetMouseMode(Input.MouseMode.Hidden);
@@ -44,10 +43,10 @@ namespace tdws.Scripts
 
       // HUD
       _player.Connect(nameof(AbstractActor.HealthChanged), _hud, nameof(HUD.HealthChanged));
-      _player.Connect(nameof(AbstractActor.ChatAdded), _hud, nameof(HUD.AddChat));
+      _player.Connect(nameof(AbstractActor.ChatAdded),     _hud, nameof(HUD.AddChat));
 
       // Coins
-      _player.Connect(nameof(AbstractActor.CoinDropped), this, nameof(OnCoinDropped));
+      _player.Connect(nameof(AbstractActor.CoinDropped),  this, nameof(OnCoinDropped));
       _player.Connect(nameof(AbstractActor.CoinsChanged), _hud, nameof(HUD.OnCoinsChanged));
       _coinScene = NodeService.LoadNotNull<PackedScene>("res://Scenes/Objects/Coin.tscn");
 
@@ -76,7 +75,7 @@ namespace tdws.Scripts
     private void SpawnBoss()
     {
       var skelly = ActorFactory.CreateSkeleton();
-      var text = new Label();
+      var text   = new Label();
       text.Text = "boss :)";
       skelly.AddChild(text);
 
@@ -102,7 +101,7 @@ namespace tdws.Scripts
       foreach (var monster in _roomLoader.GetEnemies())
       {
         monster.Connect(nameof(AbstractActor.CoinDropped), this, nameof(OnCoinDropped));
-        monster.Connect(nameof(AbstractActor.Died), this, nameof(OnEnemyDeath));
+        monster.Connect(nameof(AbstractActor.Died),        this, nameof(OnEnemyDeath));
       }
 
       RoomLoadFinished();
@@ -130,7 +129,7 @@ namespace tdws.Scripts
         {
           CallDeferred("add_child", coin); // Come on Godot.. >:(
           coin.GlobalPosition = position;
-          var randomVector = new Vector2((float)GD.RandRange(-1, 1), (float)GD.RandRange(-1, 1)).Normalized() * 100;
+          var randomVector = new Vector2((float) GD.RandRange(-1, 1), (float) GD.RandRange(-1, 1)).Normalized() * 100;
           coin.ApplyImpulse(Vector2.Zero, randomVector);
         }
     }
@@ -147,7 +146,8 @@ namespace tdws.Scripts
     {
       if (projectileShooter == null) return;
 
-      var alreadyConnected = projectileShooter.IsConnected(nameof(AbstractProjectileShooter.ProjectileAdded), this, nameof(AddProjectile));
+      var alreadyConnected = projectileShooter.IsConnected(nameof(AbstractProjectileShooter.ProjectileAdded), this,
+        nameof(AddProjectile));
 
       if (alreadyConnected) return;
 
@@ -250,7 +250,7 @@ namespace tdws.Scripts
       CallDeferred("add_child", skeleton);
       skeleton.GlobalPosition = new Vector2(20, 20);
       skeleton.Connect(nameof(AbstractActor.CoinDropped), this, nameof(OnCoinDropped));
-      skeleton.Connect(nameof(AbstractActor.Died), this, nameof(OnEnemyDeath));
+      skeleton.Connect(nameof(AbstractActor.Died),        this, nameof(OnEnemyDeath));
     }
   }
 }

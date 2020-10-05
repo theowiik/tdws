@@ -7,8 +7,8 @@ namespace tdws.Scripts
   /// </summary>
   public class Coin : RigidBody2D
   {
-    private const int Value = 10;
-    private bool _pickupable = true;
+    private const int  Value       = 10;
+    private       bool _pickupable = true;
 
     /// <summary>
     ///   Is called when a body enters the coin.

@@ -1,9 +1,6 @@
-using System.Linq;
-using System;
 using Godot;
 using tdws.Scripts.ProjectileShooters;
 using tdws.Scripts.Services;
-using Object = Godot.Object;
 
 namespace tdws.Scripts.Actors
 {
@@ -15,8 +12,8 @@ namespace tdws.Scripts.Actors
     [Signal]
     public delegate void ProjectileShooterChanged(AbstractProjectileShooter projectileShooter);
 
-    private const int MaxWalkSpeed = 125;
-    private const int MaxSprintSpeed = 175;
+    private const    int     MaxWalkSpeed   = 125;
+    private const    int     MaxSprintSpeed = 175;
     private readonly Holster _holster;
 
     /// <summary>
@@ -47,7 +44,7 @@ namespace tdws.Scripts.Actors
     private void MoveLoop()
     {
       var inputDirection = GetMovementInputVector();
-      var speed = Input.IsActionPressed("sprint") ? MaxSprintSpeed : MaxWalkSpeed;
+      var speed          = Input.IsActionPressed("sprint") ? MaxSprintSpeed : MaxWalkSpeed;
       LinearVelocity = inputDirection * speed;
     }
 
@@ -59,13 +56,13 @@ namespace tdws.Scripts.Actors
     /// </returns>
     private static Vector2 GetMovementInputVector()
     {
-      const int component = 1;
-      var inputVector = new Vector2();
+      const int component   = 1;
+      var       inputVector = new Vector2();
 
-      if (Input.IsActionPressed("up")) inputVector.y -= component;
-      if (Input.IsActionPressed("down")) inputVector.y += component;
+      if (Input.IsActionPressed("up")) inputVector.y    -= component;
+      if (Input.IsActionPressed("down")) inputVector.y  += component;
       if (Input.IsActionPressed("right")) inputVector.x += component;
-      if (Input.IsActionPressed("left")) inputVector.x -= component;
+      if (Input.IsActionPressed("left")) inputVector.x  -= component;
 
       return inputVector.Normalized();
     }
@@ -126,12 +123,12 @@ namespace tdws.Scripts.Actors
     /// </summary>
     private void HolsterLoop()
     {
-      var next = Input.IsActionJustReleased("weapon_next");
-      var prev = Input.IsActionJustReleased("weapon_previous");
-      var slots = new int[] { (int)KeyList.Key1, (int)KeyList.Key2, (int)KeyList.Key3, (int)KeyList.Key4 };
+      var next              = Input.IsActionJustReleased("weapon_next");
+      var prev              = Input.IsActionJustReleased("weapon_previous");
+      var slots             = new[] {(int) KeyList.Key1, (int) KeyList.Key2, (int) KeyList.Key3, (int) KeyList.Key4};
       var specificSelection = false;
 
-      for (int i = 0; i < slots.Length; i++) // TODO: How to do this more cleanly?
+      for (var i = 0; i < slots.Length; i++) // TODO: How to do this more cleanly?
         if (Input.IsKeyPressed(slots[i]))
         {
           _holster.Select(i);
@@ -173,7 +170,9 @@ namespace tdws.Scripts.Actors
         EmitChatAdded(holding.Name);
       }
       else
+      {
         EmitChatAdded("Unequipped projectile shooter");
+      }
     }
 
     protected override void HandleDamage(IDamageSource damageSource)

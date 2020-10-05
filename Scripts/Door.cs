@@ -11,16 +11,16 @@ namespace tdws.Scripts
     public delegate void DoorEntered();
 
     private AnimationPlayer _animationPlayer;
-    private bool _atDoor;
-    private bool _enterable;
-    private RichTextLabel _enterText;
+    private bool            _atDoor;
+    private bool            _enterable;
+    private RichTextLabel   _enterText;
 
     public override void _Ready()
     {
-      _enterable = false;
-      _enterText = GetNode<RichTextLabel>("EnterText");
+      _enterable         = false;
+      _enterText         = GetNode<RichTextLabel>("EnterText");
       _enterText.Visible = false;
-      _animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+      _animationPlayer   = GetNode<AnimationPlayer>("AnimationPlayer");
       _animationPlayer.Play("locked");
       _atDoor = false;
     }
@@ -53,7 +53,7 @@ namespace tdws.Scripts
 
     private void OnDoorBodyExited(object body)
     {
-      _atDoor = false;
+      _atDoor            = false;
       _enterText.Visible = false;
 
       if (_enterable)

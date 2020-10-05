@@ -9,7 +9,7 @@ namespace tdws.Scripts
   public class Crate : Area2D
   {
     private AudioStreamPlayer _lootPlayer;
-    private bool _pickedUp;
+    private bool              _pickedUp;
 
     public Crate()
     {
@@ -21,7 +21,7 @@ namespace tdws.Scripts
     public override void _Ready()
     {
       ProjectileShooter = ProjectileShooterFactory.CreateShotgun();
-      _lootPlayer = GetNode<AudioStreamPlayer>("LootPlayer");
+      _lootPlayer       = GetNode<AudioStreamPlayer>("LootPlayer");
     }
 
     private void OnLootPlayerFinished()
